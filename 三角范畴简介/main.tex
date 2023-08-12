@@ -13,7 +13,7 @@
 
 \newcommand*{\name}{张陈成}
 \newcommand*{\id}{023071910029}
-\newcommand*{\course}{三家范畴抄书笔记}
+\newcommand*{\course}{三角范畴抄书笔记}
 \newcommand*{\assignment}{三角范畴简介}
 
 \theoremstyle{definition}
@@ -48,6 +48,541 @@
 \maketitle
 \tableofcontents
 
-\section{}
+\section{预三角范畴}
+
+\begin{definition}[加法范畴的自等价]
+    称 $T:\mathcal C\to \mathcal C$ 为范畴 $\mathcal C$ 到自身的范畴等价, 当且仅当
+    \begin{enumerate}
+        \item (全) $T:\mathrm{Hom}_{\mathcal C}(X,Y)\to \mathrm{Hom}_{\mathcal C}(TX,TY)$ 对一切 $X,Y\in \mathsf{Ob}(\mathcal C)$ 满.
+        \item (忠实) $T:\mathrm{Hom}_{\mathcal C}(X,Y)\to \mathrm{Hom}_{\mathcal C}(TX,TY)$ 对一切 $X,Y\in \mathsf{Ob}(\mathcal C)$ 单.
+        \item (稠密/本质满) 对任意 $X'\in \mathsf{Ob}(C)$, 总存在 $X\in \mathrm{Ob}(C)$ 使得 $TX\simeq X'$.
+    \end{enumerate}
+\end{definition}
+
+\begin{remark}
+    等价地, 存在函子 $S:\mathcal C\to \mathcal C$ 与函子的自然同构 $TS\simeq \mathrm{id}_{\mathcal C}\simeq ST$. 不妨直接假定 $S^{-1}=T$\footnote{$\textcolor{red}{\text{待补充???}}$}.
+\end{remark}
+
+\begin{definition}[三角及其间态射]
+    称 $(\mathcal C, T)$ 中的三角为六元组 $(X,Y,Z,u,v,w)$, 即如下态射序列
+    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJUWCJdLFswLDEsInUiXSxbMSwyLCJ2Il0sWzIsMywidyJdXQ==
+    \[\begin{tikzcd}
+            X & Y & Z & TX
+            \arrow["u", from=1-1, to=1-2]
+            \arrow["v", from=1-2, to=1-3]
+            \arrow["w", from=1-3, to=1-4]
+        \end{tikzcd}.\]
+    三角间的态射对应态射范畴的三角. 即, 使得下图交换的三元组 $(f,g,h)$.
+    % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJUWCJdLFswLDEsIlgnIl0sWzEsMSwiWSciXSxbMiwxLCJaJyJdLFszLDEsIlRYJyJdLFswLDEsInUiXSxbMSwyLCJ2Il0sWzIsMywidyJdLFswLDQsImYnIiwyXSxbMSw1LCJnJyIsMl0sWzIsNiwiaCciLDJdLFszLDcsIlRmJyJdLFs0LDUsInUnIiwyXSxbNSw2LCJ2JyIsMl0sWzYsNywidyciLDJdXQ==
+    \[\begin{tikzcd}
+            X & Y & Z & TX \\
+            {X'} & {Y'} & {Z'} & {TX'}
+            \arrow["u", from=1-1, to=1-2]
+            \arrow["v", from=1-2, to=1-3]
+            \arrow["w", from=1-3, to=1-4]
+            \arrow["{f'}"', from=1-1, to=2-1]
+            \arrow["{g'}"', from=1-2, to=2-2]
+            \arrow["{h'}"', from=1-3, to=2-3]
+            \arrow["{Tf'}", from=1-4, to=2-4]
+            \arrow["{u'}"', from=2-1, to=2-2]
+            \arrow["{v'}"', from=2-2, to=2-3]
+            \arrow["{w'}"', from=2-3, to=2-4]
+        \end{tikzcd}.\]
+\end{definition}
+
+\begin{definition}[三角同构]
+    若三角间的某态射有左逆及右逆(从而左右逆相等), 则称两三角同构.
+\end{definition}
+
+\begin{example}
+    三角 $(X,Y,Z,u,v,w)$ 与 $(X,Y,Z,\varepsilon_1u,\varepsilon_2v,\varepsilon_3w)$ 同构. 其中 $\varepsilon_i\in \{\pm1\}$, $\varepsilon_1\varepsilon_2\varepsilon_3=1$.
+\end{example}
+
+\begin{definition}[预三角范畴]
+    给定范畴 $\mathcal C $, 范畴自同构函子 $T:\mathcal C\to \mathcal C$, 以及某些三角组成的类 $\mathcal E$. 称 $(\mathcal C,T,\mathcal E$ 为预三角范畴, 若满足以下命题.
+    \begin{enumerate}
+        \item $\mathcal E$ 中存在形如以下的三角.
+              \begin{enumerate}
+                  \item $\begin{tikzcd}
+                                X & X & 0 & TX
+                                \arrow["{\mathrm{id}_X}", from=1-1, to=1-2]
+                                \arrow["0", from=1-2, to=1-3]
+                                \arrow["0", from=1-3, to=1-4]
+                            \end{tikzcd}$ 为三角.
+                  \item 任意 $\begin{tikzcd}
+                                X & Y
+                                \arrow["f", from=1-1, to=1-2]
+                            \end{tikzcd}$ 可嵌入形如 $\begin{tikzcd}
+                                X & Y & Z & TX
+                                \arrow["f", from=1-1, to=1-2]
+                                \arrow["g", from=1-2, to=1-3]
+                                \arrow["{h'}", from=1-3, to=1-4]
+                            \end{tikzcd}$ 的三角.
+                  \item 对任意 $(X,Y,Z, u,v,w)\in \mathcal E$, 若 $\mathcal C$ 中存在同构的三角 $(X,Y,Z, u,v,w)\simeq (X',Y',Z', u',v',w')$, 则后者也在 $\mathcal E$ 中.
+              \end{enumerate}
+        \item $\mathcal E$ 中三角的顺时针旋转也在 $\mathcal E$ 中. 此处顺时针旋转是指
+              % https://q.uiver.app/#q=WzAsOCxbMSwwLCJZIl0sWzIsMCwiWiJdLFszLDAsIlRYXFxCaWddIl0sWzAsMCwiXFxCaWdbWCJdLFs0LDAsIlxcQmlnW1kiXSxbNSwwLCJaIl0sWzYsMCwiVFgiXSxbNywwLCJUWVxcQmlnXSJdLFszLDAsInUiXSxbMCwxLCJ2Il0sWzEsMiwidyJdLFs0LDUsInYiXSxbNSw2LCJ3Il0sWzYsNywiLVR1Il0sWzIsNCwiIiwwLHsibGV2ZWwiOjJ9XV0=
+              \[\begin{tikzcd}
+                      {\Big[X} & Y & Z & {TX\Big]} & {\Big[Y} & Z & TX & {TY\Big]}
+                      \arrow["u", from=1-1, to=1-2]
+                      \arrow["v", from=1-2, to=1-3]
+                      \arrow["w", from=1-3, to=1-4]
+                      \arrow["v", from=1-5, to=1-6]
+                      \arrow["w", from=1-6, to=1-7]
+                      \arrow["{-Tu}", from=1-7, to=1-8]
+                      \arrow[Rightarrow, from=1-4, to=1-5]
+                  \end{tikzcd}.\]
+        \item 态射范畴的态射也可补全作三角. 换言之, 交换图 $\begin{tikzcd}
+                      X & Y \\
+                      {X'} & {Y'}
+                      \arrow["u", from=1-1, to=1-2]
+                      \arrow["{u'}"', from=2-1, to=2-2]
+                      \arrow["f"', from=1-1, to=2-1]
+                      \arrow["g", from=1-2, to=2-2]
+                  \end{tikzcd}$ 总能被补全作交换图
+              % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzAsMSwiWCciXSxbMSwwLCJZIl0sWzEsMSwiWSciXSxbMiwwLCJaIl0sWzMsMCwiVFgiXSxbMiwxLCJaJyJdLFszLDEsIlRYJyJdLFswLDIsInUiXSxbMSwzLCJ1JyIsMl0sWzAsMSwiZiIsMl0sWzIsMywiZyJdLFsyLDQsInYiXSxbNCw1LCJ3Il0sWzMsNiwidiIsMl0sWzYsNywidyciLDJdLFs0LDYsImgiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNSw3LCJUZiJdXQ==
+              \[\begin{tikzcd}
+                      X & Y & Z & TX \\
+                      {X'} & {Y'} & {Z'} & {TX'}
+                      \arrow["u", from=1-1, to=1-2]
+                      \arrow["{u'}"', from=2-1, to=2-2]
+                      \arrow["f"', from=1-1, to=2-1]
+                      \arrow["g", from=1-2, to=2-2]
+                      \arrow["v", from=1-2, to=1-3]
+                      \arrow["w", from=1-3, to=1-4]
+                      \arrow["v"', from=2-2, to=2-3]
+                      \arrow["{w'}"', from=2-3, to=2-4]
+                      \arrow["h", dashed, from=1-3, to=2-3]
+                      \arrow["Tf", from=1-4, to=2-4]
+                  \end{tikzcd}.\]
+    \end{enumerate}
+    称 $\mathcal E$ 中的三角为``好三角'', 也可想象之为``正合列''.
+\end{definition}
+
+\begin{remark}\label{proof}
+    以上定义中条件可改进如下
+    \begin{enumerate}
+        \item 1-(b) 中嵌入位置是任意的,
+        \item 1-(b) 中嵌入的三角在同构意义下唯一.
+        \item 2 是充要的, 可定义``顺时针旋转''的逆变换为``逆时针旋转''.
+        \item 3 中 $\{f,g,h\}$ 中任意两者的存在性推出第三者的存在性(不必唯一)\footnote{$\textcolor{red}{\text{该条结论位置不妥, 往后调整之.}}$}.
+    \end{enumerate}
+    往后依次证明之.
+\end{remark}
+
+\begin{proposition}
+    注 \ref{proof} 中的第三条成立.
+    \begin{proof}
+        任意三角在 $T^{-1}$ 作用下得到同构的三角, 此处 $T^{-2}$ 的逆变换为六次顺时针旋转. 因此, 好三角的六次逆时针旋转仍为好三角. 验证知逆时针旋转为 $T^{-2}$ 与五次顺时针旋转之/复合. 反之, 若逆时针变换定义, 则定义顺时针变换为 $T^2$ 与五次逆时针旋转之复合.
+    \end{proof}
+\end{proposition}
+
+\begin{proposition}
+    注 \ref{proof} 中的第一条成立.
+    \begin{proof}
+        依定义, 存在三角
+        % https://q.uiver.app/#q=WzAsNCxbMCwwLCJUXnstMX1YIl0sWzEsMCwiVF57LTF9WSJdLFsyLDAsIlReey0xfVoiXSxbMywwLCJYIl0sWzAsMSwiLVReey0xfXUiXSxbMSwyLCItVF57LTF9diJdLFsyLDMsIi1UXnstMX13Il1d
+        \[\begin{tikzcd}[column sep=large]
+                {T^{-1}X} & {T^{-1}Y} & {T^{-1}Z} & X
+                \arrow["{-T^{-1}u}", from=1-1, to=1-2]
+                \arrow["{-T^{-1}v}", from=1-2, to=1-3]
+                \arrow["{-T^{-1}w}", from=1-3, to=1-4]
+            \end{tikzcd}.\]
+        考虑顺时针旋转, 得
+        % https://q.uiver.app/#q=WzAsNCxbMCwwLCJUXnstMX1ZIl0sWzEsMCwiVF57LTF9WiJdLFsyLDAsIlgiXSxbMywwLCJZIl0sWzAsMSwiLVReey0xfXYiXSxbMSwyLCItVF57LTF9dyJdLFsyLDMsInUiXV0=
+        \[\begin{tikzcd}[column sep=large]
+                {T^{-1}Y} & {T^{-1}Z} & X & Y
+                \arrow["{-T^{-1}v}", from=1-1, to=1-2]
+                \arrow["{-T^{-1}w}", from=1-2, to=1-3]
+                \arrow["u", from=1-3, to=1-4]
+            \end{tikzcd}. \]
+        再次顺时针旋转, 遂有
+        % https://q.uiver.app/#q=WzAsNCxbMCwwLCJUXnstMX1aIl0sWzEsMCwiWCJdLFsyLDAsIlkiXSxbMywwLCJaIl0sWzAsMSwiLVReey0xfXciXSxbMSwyLCJ1Il0sWzIsMywidiJdXQ==
+        \[\begin{tikzcd}[column sep=large]
+                {T^{-1}Z} & X & Y & Z
+                \arrow["{-T^{-1}w}", from=1-1, to=1-2]
+                \arrow["u", from=1-2, to=1-3]
+                \arrow["v", from=1-3, to=1-4]
+            \end{tikzcd}.\]
+    \end{proof}
+\end{proposition}
+
+\begin{proposition}
+    ``好三角''中相继映射之复合为 $0$.
+    \begin{proof}
+        不妨取好三角
+        % https://q.uiver.app/#q=WzAsNCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJUWCJdLFswLDEsInUiXSxbMSwyLCJ2Il0sWzIsMywidyJdXQ==
+        \[\begin{tikzcd}
+                X & Y & Z & TX
+                \arrow["u", from=1-1, to=1-2]
+                \arrow["v", from=1-2, to=1-3]
+                \arrow["w", from=1-3, to=1-4]
+            \end{tikzcd}.\]
+        将原三角补全作以下态射范畴的三角
+        % https://q.uiver.app/#q=WzAsOCxbMCwxLCJYIl0sWzEsMSwiWSJdLFsyLDEsIloiXSxbMywxLCJUWCJdLFswLDAsIlgiXSxbMSwwLCJYIl0sWzIsMCwiMCJdLFszLDAsIlRYIl0sWzAsMSwidSJdLFsxLDIsInYiXSxbMiwzLCJ3Il0sWzcsMywiVHUiXSxbNiw3XSxbNiwyLCIiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNCwwLCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs1LDZdLFs0LDUsIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzUsMSwidSIsMl1d
+        \[\begin{tikzcd}
+                X & X & 0 & TX \\
+                X & Y & Z & TX
+                \arrow["u", from=2-1, to=2-2]
+                \arrow["v", from=2-2, to=2-3]
+                \arrow["w", from=2-3, to=2-4]
+                \arrow["Tu", from=1-4, to=2-4]
+                \arrow[from=1-3, to=1-4]
+                \arrow[dashed, from=1-3, to=2-3]
+                \arrow[Rightarrow, no head, from=1-1, to=2-1]
+                \arrow[from=1-2, to=1-3]
+                \arrow[Rightarrow, no head, from=1-1, to=1-2]
+                \arrow["u"', from=1-2, to=2-2]
+            \end{tikzcd}.\]
+        从而 $vu=0$. 考虑一次顺时针旋转, 则 $wv=0$.
+    \end{proof}
+\end{proposition}
+
+\begin{definition}[上同调函子]
+    称预三角范畴 $\mathcal C$ 到 Abel 范畴 $\mathcal A$ 上的加法函子 $H$ 是上同调函子, 当且仅当 $H$ 在好三角上的作用导出长正合列
+    % https://q.uiver.app/#q=WzAsNyxbMiwwLCJIKFgpIl0sWzMsMCwiSChZKSJdLFs0LDAsIkgoWikiXSxbNSwwLCJIKFRYKSJdLFsxLDAsIkgoVF57LTF9WikiXSxbMCwwLCJcXGNkb3RzIl0sWzYsMCwiXFxjZG90cyJdLFszLDYsIkgoLVR1KSJdLFsyLDMsIkgodykiXSxbMSwyLCJIKHYpIl0sWzAsMSwiSCh1KSJdLFs0LDAsIkgoLVReey0xfXcpIl0sWzUsNCwiSCgtVF57LTF9dikiXV0=
+    \[\begin{tikzcd}[column sep=large]
+            \cdots & {H(T^{-1}Z)} & {H(X)} & {H(Y)} & {H(Z)} & {H(TX)} & \cdots
+            \arrow["{H(-Tu)}", from=1-6, to=1-7]
+            \arrow["{H(w)}", from=1-5, to=1-6]
+            \arrow["{H(v)}", from=1-4, to=1-5]
+            \arrow["{H(u)}", from=1-3, to=1-4]
+            \arrow["{H(-T^{-1}w)}", from=1-2, to=1-3]
+            \arrow["{H(-T^{-1}v)}", from=1-1, to=1-2]
+        \end{tikzcd}.\]
+    $\mathcal C$ 到 $\mathcal A$ 的反变上同调函子等价于 $\mathcal C^{\mathrm{op}}$ 到 $\mathcal A$ 的上同调函子.
+\end{definition}
+
+\begin{example}
+    对任意 $M\in \mathsf{Ob}(\mathcal C)$, 函子 $\mathrm{Hom}_{\mathcal C}(M,-)$ 与 $\mathrm{Hom}_{\mathcal C}(-,M)$ 均是上同调函子. \par
+    对前者, 好三角 $\begin{tikzcd}
+            X & Y & Z & TX
+            \arrow["u", from=1-1, to=1-2]
+            \arrow["v", from=1-2, to=1-3]
+            \arrow["w", from=1-3, to=1-4]
+        \end{tikzcd}$ 给出链复形(任意 $d\in\mathbb Z$)
+    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXG1hdGhybXtIb219X3tcXG1hdGhjYWwgQ30oTSxYKSJdLFsyLDAsIlxcbWF0aHJte0hvbX1fe1xcbWF0aGNhbCBDfShNLFkpIl0sWzQsMCwiXFxtYXRocm17SG9tfV97XFxtYXRoY2FsIEN9KE0sWikiXSxbMCwxLCJcXG1hdGhybXtIb219X3tcXG1hdGhjYWwgQ30oTSx1KSJdLFsxLDIsIlxcbWF0aHJte0hvbX1fe1xcbWF0aGNhbCBDfShNLHYpIl1d
+    \[\begin{tikzcd}
+            {\mathrm{Hom}_{\mathcal C}(M,T^dX)} && {\mathrm{Hom}_{\mathcal C}(M,T^dY)} && {\mathrm{Hom}_{\mathcal C}(M,T^dZ)}
+            \arrow["{\mathrm{Hom}_{\mathcal C}(M,T^du)}", from=1-1, to=1-3]
+            \arrow["{\mathrm{Hom}_{\mathcal C}(M,T^dv)}", from=1-3, to=1-5]
+        \end{tikzcd}.\]
+    下证明 $T^dY$ 处正合性. 对任意 $g\in \ker \mathrm{Hom}_{\mathcal C}(M,T^dv)$, 总存在 $f$ 使得下图交换
+    % https://q.uiver.app/#q=WzAsOCxbMCwxLCJZIl0sWzEsMSwiWiJdLFsyLDEsIlRYIl0sWzMsMSwiVFkiXSxbMCwwLCJUXnstZH1NIl0sWzIsMCwiVF57MS1kfU0iXSxbMywwLCJUXnsxLWR9TSJdLFsxLDAsIjAiXSxbMCwxLCJ2Il0sWzEsMiwidyJdLFsyLDMsIi1UdSJdLFs1LDYsIlxcbWF0aHJte2lkfSJdLFs0LDddLFs3LDVdLFs0LDAsIlReey1kfWciLDJdLFs3LDFdLFs2LDMsIlReezEtZH1nIl0sWzUsMiwiZiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+    \[\begin{tikzcd}
+            {T^{-d}M} & 0 & {T^{1-d}M} & {T^{1-d}M} \\
+            Y & Z & TX & TY
+            \arrow["v", from=2-1, to=2-2]
+            \arrow["w", from=2-2, to=2-3]
+            \arrow["{-Tu}", from=2-3, to=2-4]
+            \arrow["{\mathrm{id}}", from=1-3, to=1-4]
+            \arrow[from=1-1, to=1-2]
+            \arrow[from=1-2, to=1-3]
+            \arrow["{T^{-d}g}"', from=1-1, to=2-1]
+            \arrow[from=1-2, to=2-2]
+            \arrow["{T^{1-d}g}", from=1-4, to=2-4]
+            \arrow["f", dashed, from=1-3, to=2-3]
+        \end{tikzcd}.\]
+    此时 $T^{1-d}g=-(Tu)f$. 故 $g=T^{d-1}(-(Tu)f)\in\mathrm{im\,} \mathrm{Hom}_{\mathcal C}(M,T^d u)$. 同理, $\mathrm{Hom}_{\mathcal C}(-,M)$ 是反变正合的.
+\end{example}
+
+\begin{proposition}
+    若好三角的态射中有两处映射为同构, 则第三处亦然. 这也直接证明了注 \ref{proof} 中的第二条.
+    \begin{proof}
+        考虑三角旋转, 不失一般性地设以下交换图中 $f$ 与 $g$ 是同构.
+        % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzAsMSwiWCciXSxbMSwwLCJZIl0sWzEsMSwiWSciXSxbMiwwLCJaIl0sWzMsMCwiVFgiXSxbMiwxLCJaJyJdLFszLDEsIlRYJyJdLFswLDIsInUiXSxbMSwzLCJ1JyIsMl0sWzAsMSwiZiIsMl0sWzIsMywiZyJdLFsyLDQsInYiXSxbNCw1LCJ3Il0sWzMsNiwidiciLDJdLFs2LDcsIncnIiwyXSxbNCw2LCJoIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzUsNywiVGYiXV0=
+        \[\begin{tikzcd}
+                X & Y & Z & TX \\
+                {X'} & {Y'} & {Z'} & {TX'}
+                \arrow["u", from=1-1, to=1-2]
+                \arrow["{u'}"', from=2-1, to=2-2]
+                \arrow["f"', from=1-1, to=2-1]
+                \arrow["g", from=1-2, to=2-2]
+                \arrow["v", from=1-2, to=1-3]
+                \arrow["w", from=1-3, to=1-4]
+                \arrow["{v'}"', from=2-2, to=2-3]
+                \arrow["{w'}"', from=2-3, to=2-4]
+                \arrow["h", dashed, from=1-3, to=2-3]
+                \arrow["Tf", from=1-4, to=2-4]
+            \end{tikzcd}.\]
+        记 $h^M:\mathcal C\to \mathrm{Ab}, X\mapsto \mathrm{Hom}_{\mathcal C}(M,X)$, 则有正合列间的交换图
+        % https://q.uiver.app/#q=WzAsMTAsWzAsMCwiaF9aKFgpIl0sWzAsMSwiaF9aKFgnKSJdLFsxLDAsImhfWihZKSJdLFsxLDEsImhfWihZJykiXSxbMiwwLCJoX1ooWikiXSxbMywwLCJoX1ooVFgpIl0sWzIsMSwiaF9aKFonKSJdLFszLDEsImhfWihUWCcpIl0sWzQsMCwiaF9aKFRZKSJdLFs0LDEsImhfWihUWScpIl0sWzIsMCwiaF9aKHUpIiwyXSxbMywxLCJoX1oodScpIl0sWzEsMCwiaF9aKGYpIl0sWzMsMiwiaF9aKGcpIiwyXSxbNCwyLCJoXloodikiLDJdLFs1LDQsImheWih3KSIsMl0sWzYsMywiaF9aKHYnKSJdLFs3LDYsImhfWih3JykiXSxbNiw0LCJoX1ooaCkiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNyw1LCJoX1ooVGYpIiwyXSxbOCw1LCJoX1ooLVR1KSIsMl0sWzksNywiaF9aKC1UdScpIl0sWzksOCwiaF9aKFRnKSIsMl1d
+        \[\begin{tikzcd}[column sep=large]
+                {h_Z(X)} & {h_Z(Y)} & {h_Z(Z)} & {h_Z(TX)} & {h_Z(TY)} \\
+                {h_Z(X')} & {h_Z(Y')} & {h_Z(Z')} & {h_Z(TX')} & {h_Z(TY')}
+                \arrow["{h_Z(u)}"', from=1-2, to=1-1]
+                \arrow["{h_Z(u')}", from=2-2, to=2-1]
+                \arrow["{h_Z(f)}", from=2-1, to=1-1]
+                \arrow["{h_Z(g)}"', from=2-2, to=1-2]
+                \arrow["{h^Z(v)}"', from=1-3, to=1-2]
+                \arrow["{h^Z(w)}"', from=1-4, to=1-3]
+                \arrow["{h_Z(v')}", from=2-3, to=2-2]
+                \arrow["{h_Z(w')}", from=2-4, to=2-3]
+                \arrow["{h_Z(h)}"', dashed, from=2-3, to=1-3]
+                \arrow["{h_Z(Tf)}"', from=2-4, to=1-4]
+                \arrow["{h_Z(-Tu)}"', from=1-5, to=1-4]
+                \arrow["{h_Z(-Tu')}", from=2-5, to=2-4]
+                \arrow["{h_Z(Tg)}"', from=2-5, to=1-5]
+            \end{tikzcd}.\]
+        此处 $\{h_Z(f),h_Z(g),h_Z(Tf),h_Z(Tg)\}$ 均为同构. 根据五引理, 中间处 $h_Z(h)$ 为同构. 显然存在 $h'\in \mathrm{Hom}_{\mathcal C}(Z',Z)$ 使得 $h'\circ h=\mathrm{id}_Z\in \mathrm{End}_{\mathcal C}(Z)$. 同理地, 将 $h_Z$ 换作 $h^{Z'}$ 可知 $h$ 有左逆与右逆, 从而 $h$ 与 $h'$ 为互逆的同构.
+    \end{proof}
+\end{proposition}
+
+\begin{remark}
+    仿照以上证明, 有``二推三''推论. 即, 若 $\{f,g,h\}$ 中任意两者为同构, 则第三者亦然.
+\end{remark}
+
+\section{好三角的可裂性}
+
+\begin{proposition}[直和保持好三角]
+    给定预三角范畴 $\mathcal C$, 则好三角的有限直和仍是好三角. 若范畴允许某种无穷直和, 则无穷个好三角的该种无穷直和仍是好三角.
+    \begin{proof}
+        考虑以下交换图
+        % https://q.uiver.app/#q=WzAsMTIsWzAsMCwiWCJdLFsyLDAsIlkiXSxbMywwLCJaIl0sWzQsMCwiVFgiXSxbMCwyLCJYJyJdLFsyLDIsIlknIl0sWzMsMiwiWiciXSxbNCwyLCJUWiciXSxbMCwxLCJYXFxvcGx1cyBYJyJdLFsyLDEsIllcXG9wbHVzIFknIl0sWzMsMSwiVyJdLFs0LDEsIlQoWFxcb3BsdXMgWCcpIl0sWzAsMSwidSJdLFsxLDIsInYiXSxbMiwzLCJ3Il0sWzQsNSwidSciLDJdLFs1LDYsInYnIiwyXSxbNiw3LCJ3JyIsMl0sWzAsOCwiXFxiaW5vbTEwIiwyXSxbNCw4LCJcXGJpbm9tMDEiXSxbMSw5LCJcXGJpbm9tMTAiXSxbNSw5LCJcXGJpbm9tMDEiLDJdLFsyLDEwLCJpIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzYsMTAsImoiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbOCw5LCJ1XFxvcGx1cyB1JyJdLFs5LDEwLCJnIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzEwLDExLCJoIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzMsMTEsIlRcXGJpbm9tMTAiXSxbNywxMSwiVFxcYmlub20wMSIsMl1d
+        \[\begin{tikzcd}
+                X && Y & Z & TX \\
+                {X\oplus X'} && {Y\oplus Y'} & W & {T(X\oplus X')} \\
+                {X'} && {Y'} & {Z'} & {TZ'}
+                \arrow["u", from=1-1, to=1-3]
+                \arrow["v", from=1-3, to=1-4]
+                \arrow["w", from=1-4, to=1-5]
+                \arrow["{u'}"', from=3-1, to=3-3]
+                \arrow["{v'}"', from=3-3, to=3-4]
+                \arrow["{w'}"', from=3-4, to=3-5]
+                \arrow["\binom10"', from=1-1, to=2-1]
+                \arrow["\binom01", from=3-1, to=2-1]
+                \arrow["\binom10", from=1-3, to=2-3]
+                \arrow["\binom01"', from=3-3, to=2-3]
+                \arrow["i", dashed, from=1-4, to=2-4]
+                \arrow["j"', dashed, from=3-4, to=2-4]
+                \arrow["{u\oplus u'}", from=2-1, to=2-3]
+                \arrow["g", dashed, from=2-3, to=2-4]
+                \arrow["h", dashed, from=2-4, to=2-5]
+                \arrow["T\binom10", from=1-5, to=2-5]
+                \arrow["T\binom01"', from=3-5, to=2-5]
+            \end{tikzcd}.\]
+        其中, $g$ 与 $h$ 为 $u\oplus u'$ 嵌入的某个好三角中的映射. 连接映射 $i$ 与 $j$ 由好三角间的同态给出. 依照``二推三''推论, 只需证明下交换图中 $(T\binom10,T\binom01)$ 为同构:
+        % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYXFxvcGx1cyBYJyJdLFswLDEsIlhcXG9wbHVzIFgnIl0sWzEsMCwiWVxcb3BsdXMgWSciXSxbMSwxLCJZXFxvcGx1cyBZJyJdLFsyLDAsIlpcXG9wbHVzIFonIl0sWzMsMCwiVFhcXG9wbHVzIFRYJyJdLFszLDEsIlQoWFxcb3BsdXMgWCcpIl0sWzIsMSwiVyJdLFswLDJdLFsyLDRdLFs0LDVdLFsxLDNdLFszLDcsImciLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNyw2LCJoIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzAsMSwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMiwzLCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs1LDYsIihUXFxiaW5vbTEwLFRcXGJpbm9tMDEpIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzQsNywiKGksaikiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+        \[\begin{tikzcd}
+                {X\oplus X'} & {Y\oplus Y'} & {Z\oplus Z'} & {TX\oplus TX'} \\
+                {X\oplus X'} & {Y\oplus Y'} & W & {T(X\oplus X')}
+                \arrow[from=1-1, to=1-2]
+                \arrow[from=1-2, to=1-3]
+                \arrow[from=1-3, to=1-4]
+                \arrow[from=2-1, to=2-2]
+                \arrow["g"', dashed, from=2-2, to=2-3]
+                \arrow["h"', dashed, from=2-3, to=2-4]
+                \arrow[Rightarrow, no head, from=1-1, to=2-1]
+                \arrow[Rightarrow, no head, from=1-2, to=2-2]
+                \arrow["{(T\binom10,T\binom01)}"', dashed, from=1-4, to=2-4]
+                \arrow["{(i,j)}"', dashed, from=1-3, to=2-3]
+            \end{tikzcd}.\]
+        这是显然的: 根据熟知结论, 加法范畴间的函子为加法函子当且仅当其保持有限余积. $\textcolor{red}{\text{无穷部分证明待补充.}}$
+    \end{proof}
+\end{proposition}
+
+\begin{example}
+    对预三角范畴 $\mathcal C$ 与任意 $X,Y\in \mathsf{Ob}(\mathcal C)$, 总有直和 $\begin{tikzcd}
+            X & {X\oplus Y} & Y & TX
+            \arrow["\binom10", from=1-1, to=1-2]
+            \arrow["{(0,1)}", from=1-2, to=1-3]
+            \arrow["0", from=1-3, to=1-4]
+        \end{tikzcd}$.
+\end{example}
+
+\begin{definition}[可裂单/满]
+    可裂单态射即存在左逆的态射, 可裂满态射即存在右逆的态射.
+\end{definition}
+
+\begin{proposition}
+    给定好三角 $\begin{tikzcd}
+            X & Y & Z & TX
+            \arrow["u", from=1-1, to=1-2]
+            \arrow["v", from=1-2, to=1-3]
+            \arrow["w", from=1-3, to=1-4]
+        \end{tikzcd}$, 则 $u$ 可裂单等价于 $v$ 可裂满, 亦等价于 $w=0$.
+    \begin{proof}
+        $w=0$ 时有以下交换图(三角同构)
+        % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWFxcb3BsdXMgWiJdLFsyLDAsIloiXSxbMywwLCJUWCJdLFswLDEsIlgiXSxbMSwxLCJZIl0sWzIsMSwiWiJdLFszLDEsIlRYIl0sWzAsMSwiXFxiaW5vbTEwIl0sWzEsMiwiKDAsMSkiXSxbMiwzLCIwIl0sWzAsNCwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMiw2LCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDcsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzYsNywidyIsMl0sWzUsNiwidiIsMl0sWzQsNSwidSIsMl0sWzEsNSwiKFxcdmFycGhpLFxccHNpKSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+        \[\begin{tikzcd}
+                X & {X\oplus Z} & Z & TX \\
+                X & Y & Z & TX
+                \arrow["\binom10", from=1-1, to=1-2]
+                \arrow["{(0,1)}", from=1-2, to=1-3]
+                \arrow["0", from=1-3, to=1-4]
+                \arrow[Rightarrow, no head, from=1-1, to=2-1]
+                \arrow[Rightarrow, no head, from=1-3, to=2-3]
+                \arrow[Rightarrow, no head, from=1-4, to=2-4]
+                \arrow["w"', from=2-3, to=2-4]
+                \arrow["v"', from=2-2, to=2-3]
+                \arrow["u"', from=2-1, to=2-2]
+                \arrow["{(\varphi,\psi)}", dashed, from=1-2, to=2-2]
+            \end{tikzcd}.\]
+        依照交换图, $\varphi=u$, 且 $\psi$ 是 $v$ 的右逆. 反之, 有交换图(三角同构)
+        % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWFxcb3BsdXMgWiJdLFsyLDAsIloiXSxbMywwLCJUWCJdLFswLDEsIlgiXSxbMSwxLCJZIl0sWzIsMSwiWiJdLFszLDEsIlRYIl0sWzAsMSwiXFxiaW5vbTEwIl0sWzEsMiwiKDAsMSkiXSxbMiwzLCIwIl0sWzAsNCwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMiw2LCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDcsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzYsNywidyIsMl0sWzUsNiwidiIsMl0sWzQsNSwidSIsMl0sWzEsNSwiKHUsdl9yXnstMX0pIiwyXV0=
+        \[\begin{tikzcd}
+                X & {X\oplus Z} & Z & TX \\
+                X & Y & Z & TX
+                \arrow["\binom10", from=1-1, to=1-2]
+                \arrow["{(0,1)}", from=1-2, to=1-3]
+                \arrow["0", from=1-3, to=1-4]
+                \arrow[Rightarrow, no head, from=1-1, to=2-1]
+                \arrow[Rightarrow, no head, from=1-3, to=2-3]
+                \arrow[Rightarrow, no head, from=1-4, to=2-4]
+                \arrow["w"', from=2-3, to=2-4]
+                \arrow["v"', from=2-2, to=2-3]
+                \arrow["u"', from=2-1, to=2-2]
+                \arrow["{(u,v_r^{-1})}"', from=1-2, to=2-2]
+            \end{tikzcd}.\]
+        其中 $v_r^{-1}$ 为 $v$ 的右逆, 从而只能有 $w=0$. 这表明 $w=0$ 与 $v$ 可裂满是等价的. \par
+        $w=0$ 时亦有如下交换图(三角同构)
+        % https://q.uiver.app/#q=WzAsOCxbMCwxLCJYIl0sWzEsMSwiWFxcb3BsdXMgWiJdLFsyLDEsIloiXSxbMywxLCJUWCJdLFswLDAsIlgiXSxbMSwwLCJZIl0sWzIsMCwiWiJdLFszLDAsIlRYIl0sWzAsMSwiXFxiaW5vbTEwIiwyXSxbMSwyLCIoMCwxKSIsMl0sWzIsMywiMCIsMl0sWzAsNCwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMiw2LCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDcsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzYsNywidyJdLFs1LDYsInYiXSxbNCw1LCJ1Il0sWzUsMSwiKFxcYWxwaGEsXFxiZXRhKSIsMl1d
+        \[\begin{tikzcd}
+                X & Y & Z & TX \\
+                X & {X\oplus Z} & Z & TX
+                \arrow["\binom10"', from=2-1, to=2-2]
+                \arrow["{(0,1)}"', from=2-2, to=2-3]
+                \arrow["0"', from=2-3, to=2-4]
+                \arrow[Rightarrow, no head, from=2-1, to=1-1]
+                \arrow[Rightarrow, no head, from=2-3, to=1-3]
+                \arrow[Rightarrow, no head, from=2-4, to=1-4]
+                \arrow["w", from=1-3, to=1-4]
+                \arrow["v", from=1-2, to=1-3]
+                \arrow["u", from=1-1, to=1-2]
+                \arrow["{(\alpha,\beta)}"', from=1-2, to=2-2]
+            \end{tikzcd}.\]
+        显然 $\beta =v$, $\alpha$ 是 $u$ 的左逆. 反之, 有交换图(三角同构)
+        % https://q.uiver.app/#q=WzAsOCxbMCwxLCJYIl0sWzEsMSwiWFxcb3BsdXMgWiJdLFsyLDEsIloiXSxbMywxLCJUWCJdLFswLDAsIlgiXSxbMSwwLCJZIl0sWzIsMCwiWiJdLFszLDAsIlRYIl0sWzAsMSwiXFxiaW5vbTEwIiwyXSxbMSwyLCIoMCwxKSIsMl0sWzIsMywiMCIsMl0sWzAsNCwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMiw2LCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDcsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzYsNywidyJdLFs1LDYsInYiXSxbNCw1LCJ1Il0sWzUsMSwiKHVfbF57LTF9LHYpIiwyXV0=
+        \[\begin{tikzcd}
+                X & Y & Z & TX \\
+                X & {X\oplus Z} & Z & TX
+                \arrow["\binom10"', from=2-1, to=2-2]
+                \arrow["{(0,1)}"', from=2-2, to=2-3]
+                \arrow["0"', from=2-3, to=2-4]
+                \arrow[Rightarrow, no head, from=2-1, to=1-1]
+                \arrow[Rightarrow, no head, from=2-3, to=1-3]
+                \arrow[Rightarrow, no head, from=2-4, to=1-4]
+                \arrow["w", from=1-3, to=1-4]
+                \arrow["v", from=1-2, to=1-3]
+                \arrow["u", from=1-1, to=1-2]
+                \arrow["{(u_l^{-1},v)}"', from=1-2, to=2-2]
+            \end{tikzcd}.\]
+        从而只能有 $w=0$. 这表明 $w=0$ 与 $u$ 可裂单是等价的.
+    \end{proof}
+\end{proposition}
+
+\begin{remark}
+    特别地, 若 $X\overset u\longrightarrow Y$ 是同构, 则有好三角的同构 $(X,Y,Z,u,v,w)\simeq (X,Y,0,u,0,0)$.
+\end{remark}
+
+\section{三角范畴}
+\begin{definition}[三角范畴]
+    称预三角范畴为三角范畴, 若满足以下命题.
+    \begin{itemize}
+        \item 将 $\begin{tikzcd}
+                      X & Y & Z
+                      \arrow["u", from=1-1, to=1-2]
+                      \arrow["v", from=1-2, to=1-3]
+                      \arrow["vu"', curve={height=12pt}, from=1-1, to=1-3]
+                  \end{tikzcd}$ 中映射 $\{u,v,uv\}$ 分别嵌入三个好三角, 则存在虚线处的好三角使得下图交换
+              % https://q.uiver.app/#q=WzAsOSxbMCwwLCJYIl0sWzAsMSwiWSJdLFsxLDMsIlonIl0sWzEsMSwiWiJdLFszLDEsIlgnIl0sWzQsMSwiVFkiXSxbMiwyLCJZJyJdLFszLDMsIlRYIl0sWzQsMCwiVFonIl0sWzAsMSwidSIsMix7ImNvbG91ciI6WzEyMCw2MCw2MF19LFsxMjAsNjAsNjAsMV1dLFsxLDIsImkiLDIseyJjb2xvdXIiOlsxMjAsNjAsNjBdfSxbMTIwLDYwLDYwLDFdXSxbMSwzLCJ2IiwyLHsiY29sb3VyIjpbMjQwLDYwLDYwXX0sWzI0MCw2MCw2MCwxXV0sWzMsNCwiaiIsMCx7ImNvbG91ciI6WzI0MCw2MCw2MF19LFsyNDAsNjAsNjAsMV1dLFs0LDUsImonIiwyLHsiY29sb3VyIjpbMjQwLDYwLDYwXX0sWzI0MCw2MCw2MCwxXV0sWzAsMywidnUiLDAseyJjb2xvdXIiOlswLDYwLDYwXX0sWzAsNjAsNjAsMV1dLFszLDYsImsiLDAseyJjb2xvdXIiOlswLDYwLDYwXX0sWzAsNjAsNjAsMV1dLFs2LDcsImsnIiwwLHsiY29sb3VyIjpbMCw2MCw2MF19LFswLDYwLDYwLDFdXSxbMiw2LCJmIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzYsNCwiZyIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs0LDgsImgiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNSw4LCJUaSIsMl0sWzcsNSwiVHUiLDJdLFsyLDcsImknIiwwLHsiY29sb3VyIjpbMTIwLDYwLDYwXX0sWzEyMCw2MCw2MCwxXV1d
+              \[\begin{tikzcd}
+                      X &&&& {TZ'} \\
+                      Y & Z && {X'} & TY \\
+                      && {Y'} \\
+                      & {Z'} && TX
+                      \arrow["u"', color={rgb,255:red,92;green,214;blue,92}, from=1-1, to=2-1]
+                      \arrow["i"', color={rgb,255:red,92;green,214;blue,92}, from=2-1, to=4-2]
+                      \arrow["v"', color={rgb,255:red,92;green,92;blue,214}, from=2-1, to=2-2]
+                      \arrow["j", color={rgb,255:red,92;green,92;blue,214}, from=2-2, to=2-4]
+                      \arrow["{j'}"', color={rgb,255:red,92;green,92;blue,214}, from=2-4, to=2-5]
+                      \arrow["vu", color={rgb,255:red,214;green,92;blue,92}, from=1-1, to=2-2]
+                      \arrow["k", color={rgb,255:red,214;green,92;blue,92}, from=2-2, to=3-3]
+                      \arrow["{k'}", color={rgb,255:red,214;green,92;blue,92}, from=3-3, to=4-4]
+                      \arrow["f", dashed, from=4-2, to=3-3]
+                      \arrow["g", dashed, from=3-3, to=2-4]
+                      \arrow["h", dashed, from=2-4, to=1-5]
+                      \arrow["Ti"', from=2-5, to=1-5]
+                      \arrow["Tu"', from=4-4, to=2-5]
+                      \arrow["{i'}", color={rgb,255:red,92;green,214;blue,92}, from=4-2, to=4-4]
+                  \end{tikzcd}.\]
+    \end{itemize}
+\end{definition}
+
+\begin{definition}[三角子范畴]
+    称三角范畴的子范畴 $\mathcal C'\subset \mathcal C$ 为三角子范畴, 若满足以下命题
+    \begin{enumerate}
+        \item 任取 $\mathcal C$ 中同构的好三角, 若一者为 $\mathcal C'$ 中的好三角, 则另一者亦然.
+        \item $T$ 也是范畴 $\mathcal C'$ 的自同构. 换言之, $\mathcal C'$ 是 $\mathcal C$ 的 $T$-不变子空间.
+        \item 给定 $\mathcal C$ 中好三角 $(X,Y,Z,u,v,w)$, 若 $X,Z\in \mathsf{Ob}(\mathcal C)$, 则 $Y\in \mathsf{Ob}(\mathcal C)$.
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}[三角函子]
+    称三角范畴间的加法函子 $F:\mathcal C\to \mathcal C'$ 为三角函子, 若存在自然同构 $\varphi: FT\simeq T'F$.
+\end{definition}
+
+\begin{remark}
+    依照范畴等价/同构, 定义三角函子(或三角范畴间)的同构/等价为三角同构/三角等价.
+\end{remark}
+
+\begin{remark}
+    也称好三角为正合列. 相应地, 三角函子也称作正合函子.
+\end{remark}
+
+\begin{example}
+    三角函子的核给出三角子范畴.
+\end{example}
+
+\begin{proposition}
+    三角函子 $F:\mathcal C\to \mathcal C'$ 对 $\mathsf{Ob}$ 保持单, 对 $\mathsf{Mor}$ 保持满, 则对 $\mathrm{Mor}$ 保持单(忠实).
+    \begin{proof}
+        任取 $v$ 使得 $Fv=0$, 下证明 $v=0$ 即可. 考虑如下好三角的交换图
+        % https://q.uiver.app/#q=WzAsOCxbMSwwLCJZIl0sWzIsMCwiWiJdLFswLDAsIlgiXSxbMywwLCJUWCJdLFswLDEsIkZYIl0sWzEsMSwiRlkiXSxbMiwxLCJGWiJdLFszLDEsIkZUWCJdLFswLDEsInYiXSxbMiwwLCJ1Il0sWzEsMywidyJdLFs0LDUsIkZ1IiwyXSxbNiw3LCJGdyIsMl0sWzIsNF0sWzAsNV0sWzEsNl0sWzMsN10sWzUsNiwiMCIsMl0sWzAsMiwidSciLDAseyJjdXJ2ZSI6LTIsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+        \[\begin{tikzcd}
+                X & Y & Z & TX \\
+                FX & FY & FZ & FTX
+                \arrow["v", from=1-2, to=1-3]
+                \arrow["u", from=1-1, to=1-2]
+                \arrow["w", from=1-3, to=1-4]
+                \arrow["Fu"', from=2-1, to=2-2]
+                \arrow["Fw"', from=2-3, to=2-4]
+                \arrow[from=1-1, to=2-1]
+                \arrow[from=1-2, to=2-2]
+                \arrow[from=1-3, to=2-3]
+                \arrow[from=1-4, to=2-4]
+                \arrow["0"', from=2-2, to=2-3]
+                \arrow["{u'}", curve={height=-12pt}, dashed, from=1-2, to=1-1]
+            \end{tikzcd}.\]
+        由题设知 $Fv=0$, 故 $Fu$ 可裂满. 由于 $F$ 对 $\mathsf{Mor}$ 保持满, 则存在 $u'$ 使得 $(Fu)(Fu')=F(uu')=\mathrm{id}_{FY}$. 此时考虑如下好三角的同态
+        % https://q.uiver.app/#q=WzAsOCxbMCwxLCJGWSJdLFsxLDEsIkZZIl0sWzIsMSwiMCJdLFszLDEsIlQnRlkiXSxbMCwwLCJZIl0sWzEsMCwiWSJdLFsyLDAsIlciXSxbMywwLCJUWSJdLFswLDEsIkYodXUnKSIsMl0sWzEsMl0sWzIsM10sWzQsNSwidXUnIl0sWzYsN10sWzUsNl0sWzQsMF0sWzUsMV0sWzYsMiwiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzcsM11d
+        \[\begin{tikzcd}
+                Y & Y & W & TY \\
+                FY & FY & 0 & {T'FY}
+                \arrow["{F(uu')}"', from=2-1, to=2-2]
+                \arrow[from=2-2, to=2-3]
+                \arrow[from=2-3, to=2-4]
+                \arrow["{uu'}", from=1-1, to=1-2]
+                \arrow[from=1-3, to=1-4]
+                \arrow[from=1-2, to=1-3]
+                \arrow[from=1-1, to=2-1]
+                \arrow[from=1-2, to=2-2]
+                \arrow[dashed, from=1-3, to=2-3]
+                \arrow[from=1-4, to=2-4]
+            \end{tikzcd}.\]
+        由于 $F$ 对 $\mathsf{Ob}$ 保持单, 且 $FW=0$, 故 $W=0$. 此时 $uu'$ 为 $Y$ 的自同构, 遂 $v=0$.
+    \end{proof}
+\end{proposition}
+
+\begin{proposition}
+    对三角范畴间的伴随对, 一者为三角函子当且仅当另一者为三角函子.
+    \begin{proof}
+        $\textcolor{red}{\text{待补充.}}$
+    \end{proof}
+\end{proposition}
+
+\begin{remark}
+    一般地, Abel 范畴间的正合函子仅有``左伴随右正合-右伴随左正合''一对应; 对三角范畴而言, 有``左伴随正合-右伴随正合''一对应.
+\end{remark}
 
 \end{document}

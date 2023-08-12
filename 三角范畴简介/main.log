@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.6.13)  1 AUG 2023 16:21
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.6.13)  12 AUG 2023 18:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1134,32 +1134,59 @@ Overfull \hbox (21.07874pt too wide) in paragraph at lines 49--49
 \tf@toc=\write6
 \openout6 = `main.toc'.
 
- [1
+LaTeX Font Info:    Trying to load font information for U+msa on input line 54.
+ (c:/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 54.
+ (c:/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 54.
+ (c:/texlive/2020/texmf-dist/tex/latex/jknapltx/ursfs.fd
+File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
+)
 
-]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 53.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 53.
+LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <10.53937> not available
+(Font)              size <10.95> substituted on input line 54.
+
+LaTeX Font Info:    Trying to load font information for U+eus on input line 54.
+(c:/texlive/2020/texmf-dist/tex/latex/amsfonts/ueus.fd
+File: ueus.fd 2013/01/14 v3.01 Euler Script
+)
+
+LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <7.52812> not available
+(Font)              size <8> substituted on input line 63.
+
+[1
+
+] [2]
+Overfull \hbox (6.32504pt too wide) in paragraph at lines 326--328
+\TU/SimSun(0)/m/n/10.53937 此 处 $\OMS/cmsy/m/n/10.53937 f\OML/cmm/m/it/10.53937 h[]\OT1/cmr/m/n/10.53937 (\OML/cmm/m/it/10.53937 f\OT1/cmr/m/n/10.53937 )\OML/cmm/m/it/10.53937 ; h[]\OT1/cmr/m/n/10.53937 (\OML/cmm/m/it/10.53937 g\OT1/cmr/m/n/10.53937 )\OML/cmm/m/it/10.53937 ; h[]\OT1/cmr/m/n/10.53937 (\OML/cmm/m/it/10.53937 Tf\OT1/cmr/m/n/10.53937 )\OML/cmm/m/it/10.53937 ; h[]\OT1/cmr/m/n/10.53937 (\OML/cmm/m/it/10.53937 Tg\OT1/cmr/m/n/10.53937 )\OMS/cmsy/m/n/10.53937 g$ \TU/SimSun(0)/m/n/10.53937 均 为 同 构\TU/lmr/m/n/10.53937 . \TU/SimSun(0)/m/n/10.53937 根 据 五 引 理\TU/lmr/m/n/10.53937 , \TU/SimSun(0)/m/n/10.53937 中 间 处 $\OML/cmm/m/it/10.53937 h[]\OT1/cmr/m/n/10.53937 (\OML/cmm/m/it/10.53937 h\OT1/cmr/m/n/10.53937 )$ \TU/SimSun(0)/m/n/10.53937 为 同 构\TU/lmr/m/n/10.53937 . \TU/SimSun(0)/m/n/10.53937 显 然 存 在 $\OML/cmm/m/it/10.53937 h[] \OMS/cmsy/m/n/10.53937 2 [][]\OT1/cmr/m/n/10.53937 (\OML/cmm/m/it/10.53937 Z[]; Z\OT1/cmr/m/n/10.53937 )$
+ []
+
+[3] [4] [5] [6]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 588.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 588.
  (./main.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 53.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 53.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 588.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 588.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 0EE6FD935B22604D10525F143BD8A2F8;257.
 
 
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 0.47188pt have occurred.
 
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: D41D8CD98F00B204E9800998ECF8427E;0
-(rerunfilecheck)             After:  9534070C232AA0A3F935CB7C3E3F8D46;35.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 53.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 588.
  ) 
 Here is how much of TeX's memory you used:
- 32786 strings out of 479418
- 667620 string characters out of 5888105
- 1025246 words of memory out of 5000000
- 49682 multiletter control sequences out of 15000+600000
- 532956 words of font info for 45 fonts, out of 8000000 for 9000
+ 35002 strings out of 479418
+ 724084 string characters out of 5888105
+ 1155765 words of memory out of 5000000
+ 51855 multiletter control sequences out of 15000+600000
+ 538909 words of font info for 83 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 73i,5n,90p,638b,326s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 73i,19n,90p,990b,1175s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (1 page).
+Output written on main.pdf (6 pages).
