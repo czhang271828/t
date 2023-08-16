@@ -50,6 +50,10 @@
 
 \section{预三角范畴}
 
+\begin{slogan}
+    以下谈论的范畴都是本质小的. 换言之, $\mathrm{Ob}$ 在同构下的等价类构成集合.
+\end{slogan}
+
 \begin{definition}[加法范畴的自等价]
     称 $T:\mathcal C\to \mathcal C$ 为范畴 $\mathcal C$ 到自身的范畴等价, 当且仅当
     \begin{enumerate}
@@ -63,7 +67,7 @@
     等价地, 存在函子 $S:\mathcal C\to \mathcal C$ 与函子的自然同构 $TS\simeq \mathrm{id}_{\mathcal C}\simeq ST$. 不妨直接假定 $S^{-1}=T$\footnote{$\textcolor{red}{\text{待补充???}}$}.
 \end{remark}
 
-\begin{definition}[三角及其间态射]
+\begin{definition}[三角与三角射]
     称 $(\mathcal C, T)$ 中的三角为六元组 $(X,Y,Z,u,v,w)$, 即如下态射序列
     % https://q.uiver.app/#q=WzAsNCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJUWCJdLFswLDEsInUiXSxbMSwyLCJ2Il0sWzIsMywidyJdXQ==
     \[\begin{tikzcd}
@@ -72,7 +76,7 @@
             \arrow["v", from=1-2, to=1-3]
             \arrow["w", from=1-3, to=1-4]
         \end{tikzcd}.\]
-    三角间的态射对应态射范畴的三角. 即, 使得下图交换的三元组 $(f,g,h)$.
+    三角间的态射(下称``三角射'')对应态射范畴的三角. 即, 使得下图交换的三元组 $(f,g,h)$.
     % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJUWCJdLFswLDEsIlgnIl0sWzEsMSwiWSciXSxbMiwxLCJaJyJdLFszLDEsIlRYJyJdLFswLDEsInUiXSxbMSwyLCJ2Il0sWzIsMywidyJdLFswLDQsImYnIiwyXSxbMSw1LCJnJyIsMl0sWzIsNiwiaCciLDJdLFszLDcsIlRmJyJdLFs0LDUsInUnIiwyXSxbNSw2LCJ2JyIsMl0sWzYsNywidyciLDJdXQ==
     \[\begin{tikzcd}
             X & Y & Z & TX \\
@@ -332,6 +336,30 @@
     仿照以上证明, 有``二推三''推论. 即, 若 $\{f,g,h\}$ 中任意两者为同构, 则第三者亦然.
 \end{remark}
 
+\section{同调核与同调余核}
+
+\begin{definition}[同调核, 同调余核]
+    预三角范畴中, 对好三角导出的映射链 $\begin{tikzcd}
+            \cdots & {T^{-1}Z} & X & Y & Z & TX & TY & \cdots
+            \arrow[from=1-1, to=1-2]
+            \arrow["u", from=1-3, to=1-4]
+            \arrow["v", from=1-4, to=1-5]
+            \arrow["w", from=1-5, to=1-6]
+            \arrow["{-T^{-1}w}", from=1-2, to=1-3]
+            \arrow["{-Tu}", from=1-6, to=1-7]
+            \arrow[from=1-7, to=1-8]
+        \end{tikzcd}$, 定义前一态射是后一态射的同调核, 后一态射是前一态射的同调余核.
+\end{definition}
+
+\begin{remark}
+    依照预三角范畴之定义及若干推论, 不难有以下结论.
+    \begin{enumerate}
+        \item 恒等映射的同调核与同调余核均为 $0$;
+        \item 任意态射均有同调核与同调余核, 且在同构意义下唯一;
+        \item 同调核的同调余核即同调余核的同调核, 亦即映射本身.
+    \end{enumerate}
+\end{remark}
+
 \section{好三角的可裂性}
 
 \begin{proposition}[直和保持好三角]
@@ -377,7 +405,7 @@
                 \arrow["{(T\binom10,T\binom01)}"', dashed, from=1-4, to=2-4]
                 \arrow["{(i,j)}"', dashed, from=1-3, to=2-3]
             \end{tikzcd}.\]
-        这是显然的: 根据熟知结论, 加法范畴间的函子为加法函子当且仅当其保持有限余积. $\textcolor{red}{\text{无穷部分证明待补充.}}$
+        这是显然的: 根据熟知结论, 加法范畴间的函子为加法函子当且仅当其保持有限余积. 对无穷情形, 由于 $T$ 是自同构, 从而与极限交换.
     \end{proof}
 \end{proposition}
 
@@ -476,7 +504,7 @@
 \end{remark}
 
 \section{三角范畴}
-\begin{definition}[三角范畴]
+\begin{definition}[三角范畴]\label{triangular}
     称预三角范畴为三角范畴, 若满足以下命题.
     \begin{itemize}
         \item 将 $\begin{tikzcd}
@@ -485,26 +513,28 @@
                       \arrow["v", from=1-2, to=1-3]
                       \arrow["vu"', curve={height=12pt}, from=1-1, to=1-3]
                   \end{tikzcd}$ 中映射 $\{u,v,uv\}$ 分别嵌入三个好三角, 则存在虚线处的好三角使得下图交换
-              % https://q.uiver.app/#q=WzAsOSxbMCwwLCJYIl0sWzAsMSwiWSJdLFsxLDMsIlonIl0sWzEsMSwiWiJdLFszLDEsIlgnIl0sWzQsMSwiVFkiXSxbMiwyLCJZJyJdLFszLDMsIlRYIl0sWzQsMCwiVFonIl0sWzAsMSwidSIsMix7ImNvbG91ciI6WzEyMCw2MCw2MF19LFsxMjAsNjAsNjAsMV1dLFsxLDIsImkiLDIseyJjb2xvdXIiOlsxMjAsNjAsNjBdfSxbMTIwLDYwLDYwLDFdXSxbMSwzLCJ2IiwyLHsiY29sb3VyIjpbMjQwLDYwLDYwXX0sWzI0MCw2MCw2MCwxXV0sWzMsNCwiaiIsMCx7ImNvbG91ciI6WzI0MCw2MCw2MF19LFsyNDAsNjAsNjAsMV1dLFs0LDUsImonIiwyLHsiY29sb3VyIjpbMjQwLDYwLDYwXX0sWzI0MCw2MCw2MCwxXV0sWzAsMywidnUiLDAseyJjb2xvdXIiOlswLDYwLDYwXX0sWzAsNjAsNjAsMV1dLFszLDYsImsiLDAseyJjb2xvdXIiOlswLDYwLDYwXX0sWzAsNjAsNjAsMV1dLFs2LDcsImsnIiwwLHsiY29sb3VyIjpbMCw2MCw2MF19LFswLDYwLDYwLDFdXSxbMiw2LCJmIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzYsNCwiZyIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs0LDgsImgiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNSw4LCJUaSIsMl0sWzcsNSwiVHUiLDJdLFsyLDcsImknIiwwLHsiY29sb3VyIjpbMTIwLDYwLDYwXX0sWzEyMCw2MCw2MCwxXV1d
+              % https://q.uiver.app/#q=WzAsMTAsWzQsMCwiWCJdLFszLDEsIlkiXSxbMSwzLCJaJyJdLFs0LDIsIloiXSxbNSwzLCJYJyJdLFs2LDQsIlRZIl0sWzQsMywiWSciXSxbNCw0LCJUWCJdLFs2LDMsIlRaJyJdLFswLDQsIlRYIl0sWzAsMSwidSIsMix7ImNvbG91ciI6WzEyMCw2MCw2MF19LFsxMjAsNjAsNjAsMV1dLFsxLDIsImkiLDIseyJjb2xvdXIiOlsxMjAsNjAsNjBdfSxbMTIwLDYwLDYwLDFdXSxbMSwzLCJ2IiwyLHsiY29sb3VyIjpbMjQwLDYwLDYwXX0sWzI0MCw2MCw2MCwxXV0sWzMsNCwiaiIsMCx7ImNvbG91ciI6WzI0MCw2MCw2MF19LFsyNDAsNjAsNjAsMV1dLFs0LDUsImonIiwyLHsiY29sb3VyIjpbMjQwLDYwLDYwXX0sWzI0MCw2MCw2MCwxXV0sWzAsMywidnUiLDAseyJjb2xvdXIiOlswLDYwLDYwXX0sWzAsNjAsNjAsMV1dLFszLDYsImsiLDAseyJjb2xvdXIiOlswLDYwLDYwXX0sWzAsNjAsNjAsMV1dLFs2LDcsImsnIiwwLHsiY29sb3VyIjpbMCw2MCw2MF19LFswLDYwLDYwLDFdXSxbMiw2LCJmIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzYsNCwiZyIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs0LDgsImgiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNSw4LCJUaSIsMl0sWzcsNSwiVHUiLDJdLFsyLDksImknIiwwLHsiY29sb3VyIjpbMTIwLDYwLDYwXX0sWzEyMCw2MCw2MCwxXV0sWzksNywiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
               \[\begin{tikzcd}
-                      X &&&& {TZ'} \\
-                      Y & Z && {X'} & TY \\
-                      && {Y'} \\
-                      & {Z'} && TX
-                      \arrow["u"', color={rgb,255:red,92;green,214;blue,92}, from=1-1, to=2-1]
-                      \arrow["i"', color={rgb,255:red,92;green,214;blue,92}, from=2-1, to=4-2]
-                      \arrow["v"', color={rgb,255:red,92;green,92;blue,214}, from=2-1, to=2-2]
-                      \arrow["j", color={rgb,255:red,92;green,92;blue,214}, from=2-2, to=2-4]
-                      \arrow["{j'}"', color={rgb,255:red,92;green,92;blue,214}, from=2-4, to=2-5]
-                      \arrow["vu", color={rgb,255:red,214;green,92;blue,92}, from=1-1, to=2-2]
-                      \arrow["k", color={rgb,255:red,214;green,92;blue,92}, from=2-2, to=3-3]
-                      \arrow["{k'}", color={rgb,255:red,214;green,92;blue,92}, from=3-3, to=4-4]
-                      \arrow["f", dashed, from=4-2, to=3-3]
-                      \arrow["g", dashed, from=3-3, to=2-4]
-                      \arrow["h", dashed, from=2-4, to=1-5]
-                      \arrow["Ti"', from=2-5, to=1-5]
-                      \arrow["Tu"', from=4-4, to=2-5]
-                      \arrow["{i'}", color={rgb,255:red,92;green,214;blue,92}, from=4-2, to=4-4]
+                      &&&& X \\
+                      &&& Y \\
+                      &&&& Z \\
+                      & {Z'} &&& {Y'} & {X'} & {TZ'} \\
+                      TX &&&& TX && TY
+                      \arrow["u"', color={rgb,255:red,92;green,214;blue,92}, from=1-5, to=2-4]
+                      \arrow["i"', color={rgb,255:red,92;green,214;blue,92}, from=2-4, to=4-2]
+                      \arrow["v"', color={rgb,255:red,92;green,92;blue,214}, from=2-4, to=3-5]
+                      \arrow["j", color={rgb,255:red,92;green,92;blue,214}, from=3-5, to=4-6]
+                      \arrow["{j'}"', color={rgb,255:red,92;green,92;blue,214}, from=4-6, to=5-7]
+                      \arrow["vu", color={rgb,255:red,214;green,92;blue,92}, from=1-5, to=3-5]
+                      \arrow["k", color={rgb,255:red,214;green,92;blue,92}, from=3-5, to=4-5]
+                      \arrow["{k'}", color={rgb,255:red,214;green,92;blue,92}, from=4-5, to=5-5]
+                      \arrow["f", dashed, from=4-2, to=4-5]
+                      \arrow["g", dashed, from=4-5, to=4-6]
+                      \arrow["h", dashed, from=4-6, to=4-7]
+                      \arrow["Ti"', from=5-7, to=4-7]
+                      \arrow["Tu"', from=5-5, to=5-7]
+                      \arrow["{i'}", color={rgb,255:red,92;green,214;blue,92}, from=4-2, to=5-1]
+                      \arrow[Rightarrow, no head, from=5-1, to=5-5]
                   \end{tikzcd}.\]
     \end{itemize}
 \end{definition}
@@ -584,5 +614,437 @@
 \begin{remark}
     一般地, Abel 范畴间的正合函子仅有``左伴随右正合-右伴随左正合''一对应; 对三角范畴而言, 有``左伴随正合-右伴随正合''一对应.
 \end{remark}
+
+\section{基变换}
+
+\begin{definition}[八面体公理]
+    将定义 \ref{triangular} 中的命题改写如下: 对任意映射链 $\begin{tikzcd}
+            X & Y & Z
+            \arrow["{u_1}", from=1-1, to=1-2]
+            \arrow["{u_2}", from=1-2, to=1-3]
+        \end{tikzcd}$, 存在如下交换图使得前两行与中间两列为好三角.
+    % https://q.uiver.app/#q=WzAsMTMsWzAsMCwiWCJdLFsxLDAsIlkiXSxbMSwxLCJaIl0sWzAsMSwiWCJdLFsyLDAsIlonIl0sWzIsMSwiWSciXSxbMywwLCJUWCJdLFsyLDIsIlgnIl0sWzEsMiwiWCciXSxbMSwzLCJUWSJdLFsyLDMsIlRaJyJdLFszLDEsIlRYIl0sWzMsMiwiVFkiXSxbMCwxLCJ1XzEiXSxbMSwyLCJ1XzIiLDJdLFswLDMsIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzMsMiwidV8zIl0sWzEsNCwidl8xIl0sWzIsNSwidl8zIl0sWzQsNiwid18xIl0sWzQsNSwiXFxhbHBoYSJdLFs4LDcsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzIsOCwidl8yIiwyXSxbNSw3LCJcXGJldGEiXSxbOCw5LCJ3XzIiLDJdLFs5LDEwLCJUdl8xIl0sWzYsMTEsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzUsMTEsIndfMyJdLFs3LDEwLCJcXGdhbW1hIl0sWzcsMTIsIndfMiJdLFsxMSwxMiwiVHVfMSJdXQ==
+    \[\begin{tikzcd}
+            X & Y & {Z'} & TX \\
+            X & Z & {Y'} & TX \\
+            & {X'} & {X'} & TY \\
+            & TY & {TZ'}
+            \arrow["{u_1}", from=1-1, to=1-2]
+            \arrow["{u_2}"', from=1-2, to=2-2]
+            \arrow[Rightarrow, no head, from=1-1, to=2-1]
+            \arrow["{u_3}", from=2-1, to=2-2]
+            \arrow["{v_1}", from=1-2, to=1-3]
+            \arrow["{v_3}", from=2-2, to=2-3]
+            \arrow["{w_1}", from=1-3, to=1-4]
+            \arrow["\alpha", from=1-3, to=2-3]
+            \arrow[Rightarrow, no head, from=3-2, to=3-3]
+            \arrow["{v_2}"', from=2-2, to=3-2]
+            \arrow["\beta", from=2-3, to=3-3]
+            \arrow["{w_2}"', from=3-2, to=4-2]
+            \arrow["{Tv_1}", from=4-2, to=4-3]
+            \arrow[Rightarrow, no head, from=1-4, to=2-4]
+            \arrow["{w_3}", from=2-3, to=2-4]
+            \arrow["\gamma", from=3-3, to=4-3]
+            \arrow["{w_2}", from=3-3, to=3-4]
+            \arrow["{Tu_1}", from=2-4, to=3-4]
+        \end{tikzcd}.\]
+    称该命题为``八面体公理''.
+\end{definition}
+
+\begin{proposition}[基变换]
+    八面体公理等价于如下命题: 对好三角 $(X,Y,Z,u_1,v_1,w_1)$ 与态射 $Z'\overset\varepsilon\longrightarrow Z$, 有交换图
+    % https://q.uiver.app/#q=WzAsMTMsWzAsMiwiWCJdLFsxLDIsIlkiXSxbMiwyLCJaIl0sWzMsMiwiVFgiXSxbMiwxLCJaJyJdLFswLDEsIlgiXSxbMywxLCJUWCJdLFsxLDEsIlknIl0sWzEsMCwiRSJdLFsyLDAsIkUiXSxbMiwzLCJURSJdLFsxLDMsIlRFIl0sWzMsMywiVFknIl0sWzAsMSwidV8xIl0sWzEsMiwidl8xIl0sWzIsMywid18xIl0sWzUsNywidV8yIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzcsNCwidl8yIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzQsNiwid18yIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzQsMiwiXFx2YXJlcHNpbG9uIl0sWzYsMywiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzUsMCwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzcsMSwiXFxiZXRhIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzgsOSwiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzgsNywiXFxhbHBoYSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs5LDQsIlxcZGVsdGEiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMSwxMSwiXFxnYW1tYSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsyLDEwLCJcXGV0YSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsxMSwxMCwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEwLDEyLCJUXFxhbHBoYSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFszLDEyLCJUdV8yIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+    \[\begin{tikzcd}
+            & E & E \\
+            X & {Y'} & {Z'} & TX \\
+            X & Y & Z & TX \\
+            & TE & TE & {TY'}
+            \arrow["{u_1}", from=3-1, to=3-2]
+            \arrow["{v_1}", from=3-2, to=3-3]
+            \arrow["{w_1}", from=3-3, to=3-4]
+            \arrow["{u_2}", dashed, from=2-1, to=2-2]
+            \arrow["{v_2}", dashed, from=2-2, to=2-3]
+            \arrow["{w_2}", dashed, from=2-3, to=2-4]
+            \arrow["\varepsilon", from=2-3, to=3-3]
+            \arrow[Rightarrow, dashed, no head, from=2-4, to=3-4]
+            \arrow[Rightarrow, dashed, no head, from=2-1, to=3-1]
+            \arrow["\beta"', dashed, from=2-2, to=3-2]
+            \arrow[Rightarrow, dashed, no head, from=1-2, to=1-3]
+            \arrow["\alpha"', dashed, from=1-2, to=2-2]
+            \arrow["\delta", dashed, from=1-3, to=2-3]
+            \arrow["\gamma"', dashed, from=3-2, to=4-2]
+            \arrow["\eta", dashed, from=3-3, to=4-3]
+            \arrow[Rightarrow, dashed, no head, from=4-2, to=4-3]
+            \arrow["T\alpha", dashed, from=4-3, to=4-4]
+            \arrow["{Tu_2}", dashed, from=3-4, to=4-4]
+        \end{tikzcd}.\]
+    \begin{proof}
+        由八面体公理推得基变换: 依照八面体公理补全 $\begin{tikzcd}
+                {Z'} & Z \\
+                {Z'} & TX
+                \arrow["\varepsilon", from=1-1, to=1-2]
+                \arrow["{w_1}", from=1-2, to=2-2]
+                \arrow[Rightarrow, no head, from=1-1, to=2-1]
+                \arrow[from=2-1, to=2-2]
+            \end{tikzcd}$ 即可; 反之, 任意映射链 $\begin{tikzcd}
+                X & Y & Z
+                \arrow["{u}", from=1-1, to=1-2]
+                \arrow["{v}", from=1-2, to=1-3]
+            \end{tikzcd}$ 总能嵌入好三角 $\begin{tikzcd}
+                && X \\
+                {T^{-1}Z} & {X'} & Y & Z
+                \arrow["v", from=2-3, to=2-4]
+                \arrow["{T^{-1}w'}", from=2-1, to=2-2]
+                \arrow["{u'}", from=2-2, to=2-3]
+                \arrow["u", from=1-3, to=2-3]
+            \end{tikzcd}$, 而后应用基变换定理即得八面体公理.
+    \end{proof}
+\end{proposition}
+
+\begin{definition}[余基变换]
+    八面体公理等价于如下命题: 对好三角 $(X,Y,Z,u_1,v_1,w_1)$ 与态射 $X\overset \delta\longrightarrow X'$, 有交换图
+    % https://q.uiver.app/#q=WzAsMTMsWzIsMSwiWCJdLFszLDEsIlkiXSxbNCwxLCJaIl0sWzIsMiwiWCciXSxbMywyLCJZJyJdLFs0LDIsIloiXSxbMCwyLCJUXnstMX1aIl0sWzAsMSwiVF57LTF9WiJdLFsyLDMsIlRGIl0sWzMsMCwiRiJdLFsyLDAsIkYiXSxbMywzLCJURiJdLFs0LDMsIlRYIl0sWzcsMCwiLVReey0xfXdfMiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFswLDEsInVfMiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsxLDIsInZfMiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs2LDMsIi1UXnstMX13XzEiXSxbMyw0LCJ1XzEiXSxbNCw1LCJ2XzEiXSxbNyw2LCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMiw1LCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCwzLCJcXGRlbHRhIiwyXSxbMSw0LCJcXGJldGEiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMTAsOSwiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEwLDAsIlxcZXRhIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzksMSwiXFxhbHBoYSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs0LDExLCJcXGdhbW1hIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzgsMTEsIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDgsIlxcdmFyZXBzaWxvbiIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsxMSwxMiwiLVRcXGV0YSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs1LDEyLCItd18yIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+    \[\begin{tikzcd}
+            && F & F \\
+            {T^{-1}Z} && X & Y & Z \\
+            {T^{-1}Z} && {X'} & {Y'} & Z \\
+            && TF & TF & TX
+            \arrow["{-T^{-1}w_2}", dashed, from=2-1, to=2-3]
+            \arrow["{u_2}", dashed, from=2-3, to=2-4]
+            \arrow["{v_2}", dashed, from=2-4, to=2-5]
+            \arrow["{-T^{-1}w_1}", from=3-1, to=3-3]
+            \arrow["{u_1}", from=3-3, to=3-4]
+            \arrow["{v_1}", from=3-4, to=3-5]
+            \arrow[Rightarrow, dashed, no head, from=2-1, to=3-1]
+            \arrow[Rightarrow, dashed, no head, from=2-5, to=3-5]
+            \arrow["\delta"', from=2-3, to=3-3]
+            \arrow["\beta"', dashed, from=2-4, to=3-4]
+            \arrow[Rightarrow, dashed, no head, from=1-3, to=1-4]
+            \arrow["\eta"', dashed, from=1-3, to=2-3]
+            \arrow["\alpha"', dashed, from=1-4, to=2-4]
+            \arrow["\gamma"', dashed, from=3-4, to=4-4]
+            \arrow[Rightarrow, dashed, no head, from=4-3, to=4-4]
+            \arrow["\varepsilon"', dashed, from=3-3, to=4-3]
+            \arrow["{-T\eta}", dashed, from=4-4, to=4-5]
+            \arrow["{-w_2}"', dashed, from=3-5, to=4-5]
+        \end{tikzcd}.\]
+\end{definition}
+
+\begin{remark}
+    余基变换, 基变换, 以及八面体公理彼此等价.
+\end{remark}
+
+\begin{proposition}[$4\times 4$ 引理]
+    交换图 $\begin{tikzcd}
+            {X_1} & {X_2} \\
+            {Y_1} & {Y_2}
+            \arrow["{\alpha_1}", from=1-1, to=1-2]
+            \arrow["{\alpha_2}", from=2-1, to=2-2]
+            \arrow["{u_1}", from=1-1, to=2-1]
+            \arrow["{u_2}", from=1-2, to=2-2]
+        \end{tikzcd}$ 总能补全作如下四行四列的好三角
+    % https://q.uiver.app/#q=WzAsMTYsWzAsMCwiWF8xIl0sWzEsMCwiWF8yIl0sWzIsMCwiWF8zIl0sWzMsMCwiVFhfMSJdLFswLDEsIllfMSJdLFsxLDEsIllfMiJdLFsyLDEsIllfMyJdLFszLDEsIlRZXzIiXSxbMCwyLCJaXzEiXSxbMSwyLCJaXzIiXSxbMiwyLCJaXzMiXSxbMywyLCJUWl8xIl0sWzAsMywiVFhfMSJdLFsxLDMsIlRYXzIiXSxbMiwzLCJUWF8zIl0sWzMsMywiVF4yWF8xIl0sWzAsMSwiXFxhbHBoYV8xIl0sWzEsMiwiXFxiZXRhXzEiXSxbMiwzLCJcXGdhbW1hXzEiXSxbNCw1LCJcXGFscGhhXzIiXSxbOCw5LCJcXGFscGhhXzMiXSxbMTIsMTMsIlRcXGFscGhhXzEiXSxbNSw2LCJcXGJldGFfMiJdLFs5LDEwLCJcXGJldGFfMyJdLFsxMywxNCwiVFxcYmV0YV8xIl0sWzYsNywiXFxnYW1tYV8yIl0sWzEwLDExLCJcXGdhbW1hXzMiXSxbMTQsMTUsIi1UXFxnYW1tYV8xIl0sWzAsNCwidV8xIl0sWzEsNSwidV8yIl0sWzIsNiwidV8zIl0sWzMsNywiVHVfMSJdLFs0LDgsInZfMSJdLFs1LDksInZfMiJdLFs2LDEwLCJ2XzMiXSxbNywxMSwiVHZfMSJdLFs4LDEyLCJ3XzEiXSxbOSwxMywid18yIl0sWzEwLDE0LCJ3XzMiXSxbMTEsMTUsIi1Ud18xIl1d
+    \[\begin{tikzcd}
+            {X_1} & {X_2} & {X_3} & {TX_1} \\
+            {Y_1} & {Y_2} & {Y_3} & {TY_1} \\
+            {Z_1} & {Z_2} & {Z_3} & {TZ_1} \\
+            {TX_1} & {TX_2} & {TX_3} & {T^2X_1}
+            \arrow["{\alpha_1}", from=1-1, to=1-2]
+            \arrow["{\beta_1}", from=1-2, to=1-3]
+            \arrow["{\gamma_1}", from=1-3, to=1-4]
+            \arrow["{\alpha_2}", from=2-1, to=2-2]
+            \arrow["{\alpha_3}", from=3-1, to=3-2]
+            \arrow["{T\alpha_1}", from=4-1, to=4-2]
+            \arrow["{\beta_2}", from=2-2, to=2-3]
+            \arrow["{\beta_3}", from=3-2, to=3-3]
+            \arrow["{T\beta_1}", from=4-2, to=4-3]
+            \arrow["{\gamma_2}", from=2-3, to=2-4]
+            \arrow["{\gamma_3}", from=3-3, to=3-4]
+            \arrow["{-T\gamma_1}", from=4-3, to=4-4]
+            \arrow["{u_1}", from=1-1, to=2-1]
+            \arrow["{u_2}", from=1-2, to=2-2]
+            \arrow["{u_3}", from=1-3, to=2-3]
+            \arrow["{Tu_1}", from=1-4, to=2-4]
+            \arrow["{v_1}", from=2-1, to=3-1]
+            \arrow["{v_2}", from=2-2, to=3-2]
+            \arrow["{v_3}", from=2-3, to=3-3]
+            \arrow["{Tv_1}", from=2-4, to=3-4]
+            \arrow["{w_1}", from=3-1, to=4-1]
+            \arrow["{w_2}", from=3-2, to=4-2]
+            \arrow["{w_3}", from=3-3, to=4-3]
+            \arrow["{-Tw_1}", from=3-4, to=4-4]
+        \end{tikzcd}.\]
+    其中, 右下角方块反交换, 其余方块交换.
+    \begin{proof}
+        注意到如下交换图
+        % https://q.uiver.app/#q=WzAsMjYsWzAsMCwiWF8xIixbMCw2MCw2MCwxXV0sWzEsMCwiWF8yIixbMCw2MCw2MCwxXV0sWzEsMSwiWV8yIixbMCw2MCw2MCwxXV0sWzAsMSwiWF8xIl0sWzIsMCwiWF8zIixbMCw2MCw2MCwxXV0sWzMsMCwiVFhfMSIsWzAsNjAsNjAsMV1dLFsxLDIsIlpfMiIsWzAsNjAsNjAsMV1dLFsxLDMsIlRYXzIiLFswLDYwLDYwLDFdXSxbMiwxLCJXIl0sWzMsMSwiVFhfMSJdLFsyLDIsIlpfMiJdLFsyLDMsIlRYXzMiLFswLDYwLDYwLDFdXSxbMywyLCJUWF8yIl0sWzQsMCwiWF8xIixbMCw2MCw2MCwxXV0sWzUsMCwiWF8xIl0sWzQsMSwiWV8xIixbMCw2MCw2MCwxXV0sWzQsMiwiWl8xIixbMCw2MCw2MCwxXV0sWzQsMywiVFhfMSIsWzAsNjAsNjAsMV1dLFs1LDEsIllfMiIsWzAsNjAsNjAsMV1dLFs1LDIsIlciXSxbNiwxLCJZXzMiLFswLDYwLDYwLDFdXSxbNSwzLCJUWF8xIl0sWzcsMSwiVFlfMSIsWzAsNjAsNjAsMV1dLFs2LDIsIllfMyJdLFs3LDIsIlRaXzEiLFswLDYwLDYwLDFdXSxbNiwzLCJUWV8xIl0sWzAsMSwiXFxhbHBoYV8xIl0sWzEsMiwidV8yIiwyXSxbMCwzLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDJdLFsxLDQsIlxcYmV0YV8xIl0sWzQsNSwiXFxnYW1tYV8xIl0sWzIsNiwidl8yIiwyXSxbNiw3LCJ3XzIiLDJdLFsyLDhdLFs0LDhdLFs1LDksIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzgsOV0sWzYsMTAsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzgsMTBdLFs3LDExLCJUXFxiZXRhXzEiXSxbMTAsMTFdLFsxMCwxMiwid18yIl0sWzksMTIsIlRcXGFscGhhXzEiXSxbMTMsMTQsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEzLDE1LCJ1XzEiLDJdLFsxNSwxNiwidl8xIiwyXSxbMTYsMTcsIndfMSIsMl0sWzE1LDE4LCJcXGFscGhhXzIiXSxbMTQsMThdLFsxOCwyMCwiXFxiZXRhXzIiXSxbMTgsMTldLFsxOSwyMV0sWzE2LDE5XSxbMTcsMjEsIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzIwLDIyLCJcXGdhbW1hXzIiXSxbMjAsMjMsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzE5LDIzXSxbMjMsMjRdLFsyMiwyNCwiVHZfMSJdLFsyMSwyNSwiVHVfMSJdLFsyMywyNSwiXFxnYW1tYV8yIl1d
+        \[\begin{tikzcd}
+                \textcolor{rgb,255:red,214;green,92;blue,92}{X_1} & \textcolor{rgb,255:red,214;green,92;blue,92}{X_2} & \textcolor{rgb,255:red,214;green,92;blue,92}{X_3} & \textcolor{rgb,255:red,214;green,92;blue,92}{TX_1} & \textcolor{rgb,255:red,214;green,92;blue,92}{X_1} & {X_1} \\
+                {X_1} & \textcolor{rgb,255:red,214;green,92;blue,92}{Y_2} & W & {TX_1} & \textcolor{rgb,255:red,214;green,92;blue,92}{Y_1} & \textcolor{rgb,255:red,214;green,92;blue,92}{Y_2} & \textcolor{rgb,255:red,214;green,92;blue,92}{Y_3} & \textcolor{rgb,255:red,214;green,92;blue,92}{TY_1} \\
+                & \textcolor{rgb,255:red,214;green,92;blue,92}{Z_2} & {Z_2} & {TX_2} & \textcolor{rgb,255:red,214;green,92;blue,92}{Z_1} & W & {Y_3} & \textcolor{rgb,255:red,214;green,92;blue,92}{TZ_1} \\
+                & \textcolor{rgb,255:red,214;green,92;blue,92}{TX_2} & \textcolor{rgb,255:red,214;green,92;blue,92}{TX_3} && \textcolor{rgb,255:red,214;green,92;blue,92}{TX_1} & {TX_1} & {TY_1}
+                \arrow["{\alpha_1}", from=1-1, to=1-2]
+                \arrow["{u_2}"', from=1-2, to=2-2]
+                \arrow[Rightarrow, no head, from=1-1, to=2-1]
+                \arrow[from=2-1, to=2-2]
+                \arrow["{\beta_1}", from=1-2, to=1-3]
+                \arrow["{\gamma_1}", from=1-3, to=1-4]
+                \arrow["{v_2}"', from=2-2, to=3-2]
+                \arrow["{w_2}"', from=3-2, to=4-2]
+                \arrow[from=2-2, to=2-3]
+                \arrow[from=1-3, to=2-3]
+                \arrow[Rightarrow, no head, from=1-4, to=2-4]
+                \arrow[from=2-3, to=2-4]
+                \arrow[Rightarrow, no head, from=3-2, to=3-3]
+                \arrow[from=2-3, to=3-3]
+                \arrow["{T\beta_1}", from=4-2, to=4-3]
+                \arrow[from=3-3, to=4-3]
+                \arrow["{w_2}", from=3-3, to=3-4]
+                \arrow["{T\alpha_1}", from=2-4, to=3-4]
+                \arrow[Rightarrow, no head, from=1-5, to=1-6]
+                \arrow["{u_1}"', from=1-5, to=2-5]
+                \arrow["{v_1}"', from=2-5, to=3-5]
+                \arrow["{w_1}"', from=3-5, to=4-5]
+                \arrow["{\alpha_2}", from=2-5, to=2-6]
+                \arrow[from=1-6, to=2-6]
+                \arrow["{\beta_2}", from=2-6, to=2-7]
+                \arrow[from=2-6, to=3-6]
+                \arrow[from=3-6, to=4-6]
+                \arrow[from=3-5, to=3-6]
+                \arrow[Rightarrow, no head, from=4-5, to=4-6]
+                \arrow["{\gamma_2}", from=2-7, to=2-8]
+                \arrow[Rightarrow, no head, from=2-7, to=3-7]
+                \arrow[from=3-6, to=3-7]
+                \arrow[from=3-7, to=3-8]
+                \arrow["{Tv_1}", from=2-8, to=3-8]
+                \arrow["{Tu_1}", from=4-6, to=4-7]
+                \arrow["{\gamma_2}", from=3-7, to=4-7]
+            \end{tikzcd}.\]
+        $\textcolor{red}{\text{未完待续.}}$
+    \end{proof}
+\end{proposition}
+
+\section{第一章习题}
+
+\begin{problem}
+设 $u:X\longrightarrow Y$ 是预三角范畴 $\mathcal C$ 的态射. 则 $u$ 是同构当且仅当 $\begin{tikzcd}
+        X & Y & 0 & TX
+        \arrow["u", from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+    \end{tikzcd}$ 是好三角.
+\begin{proof}
+    $u$ 是同构当且仅当以下两条同时成立
+    \begin{itemize}
+        \item $u$ 可裂单, 即, 任意好三角 $\begin{tikzcd}
+                      X & Y & Z & TX
+                      \arrow["u", from=1-1, to=1-2]
+                      \arrow["w", from=1-3, to=1-4]
+                      \arrow["v", from=1-2, to=1-3]
+                  \end{tikzcd}$ 中 $w=0$;
+        \item $u$ 可裂满, 即, 任意好三角 $\begin{tikzcd}
+                      X & Y & Z & TX
+                      \arrow["u", from=1-1, to=1-2]
+                      \arrow["w", from=1-3, to=1-4]
+                      \arrow["v", from=1-2, to=1-3]
+                  \end{tikzcd}$ 中 $v=0$.
+    \end{itemize}
+    从而 $u$ 是同构当且仅当 $\begin{tikzcd}
+            X & Y & 0 & TX
+            \arrow["u", from=1-1, to=1-2]
+            \arrow[from=1-2, to=1-3]
+            \arrow[from=1-3, to=1-4]
+        \end{tikzcd}$ 是好三角.
+\end{proof}
+
+\end{problem}
+
+\begin{problem}
+设 $\mathcal C$ 是预三角范畴. 若 $(X,Y,Z,0,v,w)$ 是好三角, 则 $Z\simeq T(X)\oplus Y$. 反之, $(X,Y,T(X)\oplus Y,0,\binom01,(-1,0))$ 是好三角.
+\begin{proof}
+    前一问依照``三推二''法则, 遂有同构 $\varphi$ 使得下图交换
+    % https://q.uiver.app/#q=WzAsOCxbMCwwLCJZIl0sWzEsMCwiWiJdLFsyLDAsIlRYIl0sWzEsMSwiVChYKVxcb3BsdXMgWSJdLFswLDEsIlkiXSxbMiwxLCJUWCJdLFszLDAsIlRZIl0sWzMsMSwiVFkiXSxbMSwyLCJ3Il0sWzAsMSwidiJdLFsyLDYsIi1UdSJdLFswLDQsIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzYsNywiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMiw1LCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxLDMsIlxcdmFycGhpIl0sWzUsNywiMCIsMl0sWzMsNSwiKC0xLDApIiwyXSxbNCwzLCJcXGJpbm9tMDEiLDJdXQ==
+    \[\begin{tikzcd}
+            Y & Z & TX & TY \\
+            Y & {T(X)\oplus Y} & TX & TY
+            \arrow["w", from=1-2, to=1-3]
+            \arrow["v", from=1-1, to=1-2]
+            \arrow["{-Tu}", from=1-3, to=1-4]
+            \arrow[Rightarrow, no head, from=1-1, to=2-1]
+            \arrow[Rightarrow, no head, from=1-4, to=2-4]
+            \arrow[Rightarrow, no head, from=1-3, to=2-3]
+            \arrow["\varphi", from=1-2, to=2-2]
+            \arrow["0"', from=2-3, to=2-4]
+            \arrow["{(-1,0)}"', from=2-2, to=2-3]
+            \arrow["\binom01"', from=2-1, to=2-2]
+        \end{tikzcd}.\]
+    其中, 第二行是两个基本好三角的直和. 后一问显然.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+设 $(\mathcal C,T)$ 是预三角范畴, $\mathcal A$ 是 Abel 范畴. 设 $\mathrm H:\mathcal C\longrightarrow \mathcal A$ 是上同调函子. 则对于 $\mathcal C$ 中的好三角之间的三角射
+% https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJUWCJdLFswLDEsIlgnIl0sWzEsMSwiWSciXSxbMiwxLCJaJyJdLFszLDEsIlRYJyJdLFswLDEsInUiXSxbMSwyLCJ2Il0sWzIsMywidyJdLFs0LDUsInUnIl0sWzUsNiwidiciXSxbNiw3LCJ3JyJdLFswLDQsImYiLDJdLFsxLDUsImciLDJdLFsyLDYsImgiLDJdLFszLDcsIlRmIiwyXV0=
+\[\begin{tikzcd}
+        X & Y & Z & TX \\
+        {X'} & {Y'} & {Z'} & {TX'}
+        \arrow["u", from=1-1, to=1-2]
+        \arrow["v", from=1-2, to=1-3]
+        \arrow["w", from=1-3, to=1-4]
+        \arrow["{u'}", from=2-1, to=2-2]
+        \arrow["{v'}", from=2-2, to=2-3]
+        \arrow["{w'}", from=2-3, to=2-4]
+        \arrow["f"', from=1-1, to=2-1]
+        \arrow["g"', from=1-2, to=2-2]
+        \arrow["h"', from=1-3, to=2-3]
+        \arrow["Tf"', from=1-4, to=2-4]
+    \end{tikzcd}\]
+有 $\mathcal A$ 中长正合列的交换图
+% https://q.uiver.app/#q=WzAsMTIsWzAsMCwiXFxjZG90cyJdLFswLDEsIlxcY2RvdHMiXSxbMSwwLCJcXG1hdGhybSBIXm4oWCkiXSxbMSwxLCJcXG1hdGhybSBIXm4oWCcpIl0sWzIsMCwiXFxtYXRocm0gSF5uKFkpIl0sWzIsMSwiXFxtYXRocm0gSF5uKFknKSJdLFszLDAsIlxcbWF0aHJtIEhebihaKSJdLFszLDEsIlxcbWF0aHJtIEhebihaJykiXSxbNCwwLCJcXG1hdGhybSBIXntuKzF9KFgpIl0sWzQsMSwiXFxtYXRocm0gSF57bisxfShYJykiXSxbNSwwLCJcXGNkb3RzIl0sWzUsMSwiXFxjZG90cyJdLFswLDJdLFsyLDQsIlxcbWF0aHJtIEhebih1KSJdLFs0LDYsIlxcbWF0aHJtIEhebih2KSJdLFs2LDgsIlxcbWF0aHJtIEhebih3KSJdLFszLDUsIlxcbWF0aHJtIEhebih1JykiXSxbNSw3LCJcXG1hdGhybSBIXm4odicpIl0sWzcsOSwiXFxtYXRocm0gSF5uKHcnKSJdLFs5LDExXSxbOCwxMF0sWzIsMywiXFxtYXRocm0gSF5uKGYpIl0sWzQsNSwiXFxtYXRocm0gSF5uKGcpIl0sWzYsNywiXFxtYXRocm0gSF5uKGgpIl0sWzgsOSwiXFxtYXRocm0gSF57bisxfShmKSJdLFsxLDNdXQ==
+\[\begin{tikzcd}
+        \cdots & {\mathrm H^n(X)} & {\mathrm H^n(Y)} & {\mathrm H^n(Z)} & {\mathrm H^{n+1}(X)} & \cdots \\
+        \cdots & {\mathrm H^n(X')} & {\mathrm H^n(Y')} & {\mathrm H^n(Z')} & {\mathrm H^{n+1}(X')} & \cdots
+        \arrow[from=1-1, to=1-2]
+        \arrow["{\mathrm H^n(u)}", from=1-2, to=1-3]
+        \arrow["{\mathrm H^n(v)}", from=1-3, to=1-4]
+        \arrow["{\mathrm H^n(w)}", from=1-4, to=1-5]
+        \arrow["{\mathrm H^n(u')}", from=2-2, to=2-3]
+        \arrow["{\mathrm H^n(v')}", from=2-3, to=2-4]
+        \arrow["{\mathrm H^n(w')}", from=2-4, to=2-5]
+        \arrow[from=2-5, to=2-6]
+        \arrow[from=1-5, to=1-6]
+        \arrow["{\mathrm H^n(f)}", from=1-2, to=2-2]
+        \arrow["{\mathrm H^n(g)}", from=1-3, to=2-3]
+        \arrow["{\mathrm H^n(h)}", from=1-4, to=2-4]
+        \arrow["{\mathrm H^{n+1}(f)}", from=1-5, to=2-5]
+        \arrow[from=2-1, to=2-2]
+    \end{tikzcd}\]
+这里 $\mathrm H^i(X):=\mathrm H(T^iX)$, $\mathrm H^i(u):=\mathrm H(T^iu)$. 换言之, 预三角范畴的上同调函子的连接态射是自然的.
+\begin{proof}
+    证明预三角范畴的态射范畴为预三角范畴即可. 关键步骤是证明态射范畴的态射范畴之态射也可补全作三角. 换言之, 任取态射范畴的态射范畴中的对象 $\begin{tikzcd}
+            X & Y \\
+            {X'} & {Y'}
+            \arrow[from=1-1, to=1-2]
+            \arrow[from=2-1, to=2-2]
+            \arrow[from=1-1, to=2-1]
+            \arrow[from=1-2, to=2-2]
+        \end{tikzcd}$ 与 $\begin{tikzcd}
+            A & B \\
+            {A'} & {B'}
+            \arrow[from=1-1, to=1-2]
+            \arrow[from=1-2, to=2-2]
+            \arrow[from=1-1, to=2-1]
+            \arrow[from=2-1, to=2-2]
+        \end{tikzcd}$, 其间的任意态射可嵌入好三角. 换言之, 存在交换图 $\begin{tikzcd}
+            P & Q \\
+            {P'} & {Q'}
+            \arrow["3"{description}, from=1-2, to=2-2]
+            \arrow["2"{description}, from=1-1, to=2-1]
+            \arrow["4"{description}, from=2-1, to=2-2]
+            \arrow["1"{description}, from=1-1, to=1-2]
+        \end{tikzcd}$ 下图交换
+    % https://q.uiver.app/#q=WzAsMTIsWzAsMiwiWCJdLFsyLDIsIlkiXSxbMCw0LCJYJyJdLFsyLDQsIlknIl0sWzMsMywiQSciXSxbNSwzLCJCJyJdLFszLDEsIkEiXSxbNSwxLCJCIl0sWzYsMCwiUCJdLFs4LDAsIlEiXSxbNiwyLCJQJyJdLFs4LDIsIlEnIl0sWzAsMV0sWzIsM10sWzAsMl0sWzEsM10sWzYsNF0sWzcsNV0sWzQsNV0sWzYsN10sWzAsNl0sWzIsNF0sWzEsN10sWzMsNV0sWzYsOCwiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzQsMTAsIiIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs1LDExLCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNyw5LCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbOCw5LCIxIiwxXSxbOCwxMCwiMiIsMV0sWzksMTEsIjMiLDFdLFsxMCwxMSwiNCIsMV0sWzAsMywiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoic3F1aWdnbHkifX19XSxbNiw1LCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJzcXVpZ2dseSJ9fX1dLFs4LDExLCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJzcXVpZ2dseSJ9fX1dXQ==
+    \[\begin{tikzcd}
+            &&&&&& P && Q \\
+            &&& A && B \\
+            X && Y &&&& {P'} && {Q'} \\
+            &&& {A'} && {B'} \\
+            {X'} && {Y'}
+            \arrow[from=3-1, to=3-3]
+            \arrow[from=5-1, to=5-3]
+            \arrow[from=3-1, to=5-1]
+            \arrow[from=3-3, to=5-3]
+            \arrow[from=2-4, to=4-4]
+            \arrow[from=2-6, to=4-6]
+            \arrow[from=4-4, to=4-6]
+            \arrow[from=2-4, to=2-6]
+            \arrow[from=3-1, to=2-4]
+            \arrow[from=5-1, to=4-4]
+            \arrow[from=3-3, to=2-6]
+            \arrow[from=5-3, to=4-6]
+            \arrow[dashed, from=2-4, to=1-7]
+            \arrow[dashed, from=4-4, to=3-7]
+            \arrow[dashed, from=4-6, to=3-9]
+            \arrow[dashed, from=2-6, to=1-9]
+            \arrow["1"{description}, from=1-7, to=1-9]
+            \arrow["2"{description}, from=1-7, to=3-7]
+            \arrow["3"{description}, from=1-9, to=3-9]
+            \arrow["4"{description}, from=3-7, to=3-9]
+            \arrow[squiggly, from=3-1, to=5-3]
+            \arrow[squiggly, from=2-4, to=4-6]
+            \arrow[squiggly, from=1-7, to=3-9]
+        \end{tikzcd}.\]
+    实际上, 可通过上, 下, 左, 右侧构造态射 $\{1,2,3,4\}$. 依照对角面(波浪线处)构造态射 $P\curvearrowright Q'$, 从而检验 $3\circ 1=4\circ 2$.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+设 $\mathcal D$ 是三角范畴 $\mathcal C=(\mathcal C,T,\mathcal E)$ 的全子加法范畴. 设 $\mathcal D$ 对于同构封闭, 并且 $T$ 是 $\mathcal D$ 的自同构. 则 $\mathcal D$ 是 $\mathcal C$ 的三角子范畴当且仅当
+\begin{quote}
+    若好三角 $\begin{tikzcd}
+            X & Y & Z & TX
+            \arrow[from=1-1, to=1-2]
+            \arrow[from=1-2, to=1-3]
+            \arrow[from=1-3, to=1-4]
+        \end{tikzcd}$ 中 $X$ 和 $Y$ 属于 $\mathcal D$, 则 $Z\in \mathcal D$;
+\end{quote}
+也当且仅当
+\begin{quote}
+    若好三角 $\begin{tikzcd}
+            X & Y & Z & TX
+            \arrow[from=1-1, to=1-2]
+            \arrow[from=1-2, to=1-3]
+            \arrow[from=1-3, to=1-4]
+        \end{tikzcd}$ 中 $Y$ 和 $Z$ 属于 $\mathcal D$, 则 $X\in \mathcal D$.
+\end{quote}
+\begin{proof}
+    考虑顺时针旋转与逆时针旋转即可转化之为等价命题.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+三角范畴 $\mathcal C=(\mathcal C,T,\mathcal E)$ 的一个全子范畴 $\mathcal D$ 是 $\mathcal C$ 的三角子范畴当且仅当 $\mathcal D$ 对于同构封闭, 并且 $(\mathcal D, T,\mathcal E\cap \mathcal D)$ 是三角范畴, 其中 $\mathcal E\cap \mathcal D$ 是指三项均在 $\mathcal D$ 中的 $\mathcal E$ 中的三角作成的类.
+\begin{proof}
+    显然.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+设 $\mathcal C$ 是预三角范畴, $\begin{tikzcd}
+        X & Y & Z & TX
+        \arrow["u", from=1-1, to=1-2]
+        \arrow["v", from=1-2, to=1-3]
+        \arrow["w", from=1-3, to=1-4]
+    \end{tikzcd}$ 是好三角, $f:W\longrightarrow Z$. 则 $wf=0$ 当且仅当存在 $f':W\longrightarrow Y$ 使得 $vf'=f$.
+\begin{proof}
+    若 $wf=0$, 则补全好三角间的同态
+    % https://q.uiver.app/#q=WzAsOCxbMCwxLCJYIl0sWzEsMSwiWSJdLFsyLDEsIloiXSxbMywxLCJUWCJdLFsyLDAsIlciXSxbMywwLCJUWCJdLFswLDAsIlgiXSxbMSwwLCJYXFxvcGx1cyBXIl0sWzAsMSwidSIsMl0sWzEsMiwidiIsMl0sWzIsMywidyIsMl0sWzQsMiwiZiIsMl0sWzQsNSwiMCJdLFs1LDMsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzYsNywiZV8xIl0sWzcsNCwicF8yIl0sWzYsMCwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNywxLCJcXHZhcnBoaSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+    \[\begin{tikzcd}
+            X & {X\oplus W} & W & TX \\
+            X & Y & Z & TX
+            \arrow["u"', from=2-1, to=2-2]
+            \arrow["v"', from=2-2, to=2-3]
+            \arrow["w"', from=2-3, to=2-4]
+            \arrow["f"', from=1-3, to=2-3]
+            \arrow["0", from=1-3, to=1-4]
+            \arrow[Rightarrow, no head, from=1-4, to=2-4]
+            \arrow["{e_1}", from=1-1, to=1-2]
+            \arrow["{p_2}", from=1-2, to=1-3]
+            \arrow[Rightarrow, no head, from=1-1, to=2-1]
+            \arrow["\varphi"', dashed, from=1-2, to=2-2]
+        \end{tikzcd}.\]
+    其中 $\{e_i,p_i\}_{i=1,2}$ 是结构态射. 根据满态射的右消去性, 有 $v\varphi e_2=f$. 取 $f'=\varphi e_2$ 即可. 若存在 $f'$ 使得 $vf'=f$, 则 $wf=(wv)f'=0$.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+设 $\mathcal C$ 是预三角范畴, $(X,Y,Z,u,v,w)$, $(X',Y',Z',u',v',w')$ 是好三角, $g:Y\longrightarrow Y'$. 则 $v'gu=0$ 当且仅当存在丛第一个三角到第二个三角的三角射 $(f,g,h)$.
+\begin{quote}
+    此时若 $\mathrm{Hom}_{\mathcal C}(X,T^{-1}Z')=0$, 则 $f$, $h$ 由 $g$ 唯一确定.
+\end{quote}
+\begin{proof}
+    若存在三角射 $(f,g,h)$, 则 $v'gu=huv=h0=0$. 反之,
+\end{proof}
+\end{problem}
 
 \end{document}
