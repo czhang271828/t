@@ -51,7 +51,7 @@
 \section{预三角范畴}
 
 \begin{slogan}
-    以下谈论的范畴都是本质小的. 换言之, $\mathrm{Ob}$ 在同构下的等价类构成集合.
+    以下谈论的范畴都是本质小的. 换言之, $\mathsf{Ob}$ 在同构下的等价类构成集合.
 \end{slogan}
 
 \begin{definition}[加法范畴的自等价]
@@ -242,6 +242,77 @@
     \end{proof}
 \end{proposition}
 
+\section{同调核与同调余核}
+
+\begin{definition}[同调核, 同调余核]
+    预三角范畴中, 对好三角导出的映射链 、\[\begin{tikzcd}
+            \cdots & {T^{-1}Z} & X & Y & Z & TX & TY & \cdots
+            \arrow[from=1-1, to=1-2]
+            \arrow["u", from=1-3, to=1-4]
+            \arrow["v", from=1-4, to=1-5]
+            \arrow["w", from=1-5, to=1-6]
+            \arrow["{-T^{-1}w}", from=1-2, to=1-3]
+            \arrow["{-Tu}", from=1-6, to=1-7]
+            \arrow[from=1-7, to=1-8]
+        \end{tikzcd},\]
+    定义前一态射是后一态射的同调核, 后一态射是前一态射的同调余核.
+\end{definition}
+
+\begin{remark}
+    依照预三角范畴之定义及若干推论, 不难有以下结论.
+    \begin{enumerate}
+        \item 恒等映射的同调核与同调余核均为 $0$;
+        \item 任意态射均有同调核与同调余核, 且在同构意义下唯一;
+        \item 同调核的同调余核即同调余核的同调核, 亦即映射本身.
+    \end{enumerate}
+\end{remark}
+
+\begin{proposition}[同调余核的分解原理]
+    给定好三角 $(X,Y,Z,u,v,w)$, $Y\overset\alpha\longrightarrow M$ 被 $v$ 分解当且仅当 $\alpha u=0$.
+    \begin{proof}
+        若存在 $\varphi$ 使得 $\varphi v=\alpha$, 考虑交换图 % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJUWCJdLFsxLDEsIk0iXSxbMiwxLCJNIl0sWzMsMSwiMCJdLFswLDEsIjAiXSxbMCwxLCJ1Il0sWzEsMiwidiJdLFsyLDMsInciXSxbMSw0LCJcXGFscGhhIiwyXSxbNCw1LCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs3LDRdLFs1LDZdLFsyLDUsIlxcdmFycGhpIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+        \[\begin{tikzcd}
+                X & Y & Z & TX \\
+                0 & M & M & 0
+                \arrow["u", from=1-1, to=1-2]
+                \arrow["v", from=1-2, to=1-3]
+                \arrow["w", from=1-3, to=1-4]
+                \arrow["\alpha"', from=1-2, to=2-2]
+                \arrow[Rightarrow, no head, from=2-2, to=2-3]
+                \arrow[from=2-1, to=2-2]
+                \arrow[from=2-3, to=2-4]
+                \arrow["\varphi"', dashed, from=1-3, to=2-3]
+            \end{tikzcd}.\]
+        根据``二推三''补全左侧正方形, 得 $\alpha u=0$. 反之, 若 $\alpha u=0$, 则有正合列间的交换图% https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJUWCJdLFsxLDEsIk0iXSxbMiwxLCJNIl0sWzMsMSwiMCJdLFswLDEsIjAiXSxbMCwxLCJ1Il0sWzEsMiwidiJdLFsyLDMsInciXSxbMSw0LCJcXGFscGhhIiwyXSxbNCw1LCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs3LDRdLFs1LDZdLFswLDddLFszLDZdLFsyLDUsIlxcdmFycGhpICIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+        \[\begin{tikzcd}
+                X & Y & Z & TX \\
+                0 & M & M & 0
+                \arrow["u", from=1-1, to=1-2]
+                \arrow["v", from=1-2, to=1-3]
+                \arrow["w", from=1-3, to=1-4]
+                \arrow["\alpha"', from=1-2, to=2-2]
+                \arrow[Rightarrow, no head, from=2-2, to=2-3]
+                \arrow[from=2-1, to=2-2]
+                \arrow[from=2-3, to=2-4]
+                \arrow[from=1-1, to=2-1]
+                \arrow[from=1-4, to=2-4]
+                \arrow["{\varphi }", dashed, from=1-3, to=2-3]
+            \end{tikzcd}.\]
+        依照``二推三''补全的 $\varphi$ 给出分解 $\varphi v=\alpha$.
+    \end{proof}
+\end{proposition}
+
+\begin{remark}
+    等价地, 好三角的交换图 $\begin{tikzcd}
+            & N \\
+            X & Y & Z & TX
+            \arrow["u"', from=2-1, to=2-2]
+            \arrow["v"', from=2-2, to=2-3]
+            \arrow["w"', from=2-3, to=2-4]
+            \arrow["\psi"', from=1-2, to=2-2]
+        \end{tikzcd}$ 中, $\psi$ 被 $u$ 分解当且仅当 $v\psi =0$.
+\end{remark}
+
 \begin{definition}[上同调函子]
     称预三角范畴 $\mathcal C$ 到 Abel 范畴 $\mathcal A$ 上的加法函子 $H$ 是上同调函子, 当且仅当 $H$ 在好三角上的作用导出长正合列
     % https://q.uiver.app/#q=WzAsNyxbMiwwLCJIKFgpIl0sWzMsMCwiSChZKSJdLFs0LDAsIkgoWikiXSxbNSwwLCJIKFRYKSJdLFsxLDAsIkgoVF57LTF9WikiXSxbMCwwLCJcXGNkb3RzIl0sWzYsMCwiXFxjZG90cyJdLFszLDYsIkgoLVR1KSJdLFsyLDMsIkgodykiXSxbMSwyLCJIKHYpIl0sWzAsMSwiSCh1KSJdLFs0LDAsIkgoLVReey0xfXcpIl0sWzUsNCwiSCgtVF57LTF9dikiXV0=
@@ -336,29 +407,26 @@
     仿照以上证明, 有``二推三''推论. 即, 若 $\{f,g,h\}$ 中任意两者为同构, 则第三者亦然.
 \end{remark}
 
-\section{同调核与同调余核}
+\begin{slogan}
+    若无特殊说明, 默认范畴中的决出极限(余极限)的定向系统是小的.
+\end{slogan}
 
-\begin{definition}[同调核, 同调余核]
-    预三角范畴中, 对好三角导出的映射链 $\begin{tikzcd}
-            \cdots & {T^{-1}Z} & X & Y & Z & TX & TY & \cdots
-            \arrow[from=1-1, to=1-2]
-            \arrow["u", from=1-3, to=1-4]
-            \arrow["v", from=1-4, to=1-5]
-            \arrow["w", from=1-5, to=1-6]
-            \arrow["{-T^{-1}w}", from=1-2, to=1-3]
-            \arrow["{-Tu}", from=1-6, to=1-7]
-            \arrow[from=1-7, to=1-8]
-        \end{tikzcd}$, 定义前一态射是后一态射的同调核, 后一态射是前一态射的同调余核.
+\begin{definition}[下降]
+    记 $\mathcal A$ 是容许极限的 Abel 范畴. 称预三角范畴到 Abel 范畴的同调函子 $H:\mathcal C\to \mathcal A$ 为下降, 若其保持积.
 \end{definition}
 
-\begin{remark}
-    依照预三角范畴之定义及若干推论, 不难有以下结论.
-    \begin{enumerate}
-        \item 恒等映射的同调核与同调余核均为 $0$;
-        \item 任意态射均有同调核与同调余核, 且在同构意义下唯一;
-        \item 同调核的同调余核即同调余核的同调核, 亦即映射本身.
-    \end{enumerate}
-\end{remark}
+\begin{example}
+    对任意 $M\in \mathsf{Ob}(\mathcal C)$, 形如 $h^M$ 的同调函子均为下降.
+\end{example}
+
+\begin{definition}[预三角]
+    预三角即在一切同调函子下正合的三角. 预三角包括好三角.
+\end{definition}
+
+\begin{proposition}
+    预三角之积仍为预三角. 考虑任意下降即可.
+\end{proposition}
+
 
 \section{好三角的可裂性}
 
@@ -502,6 +570,68 @@
 \begin{remark}
     特别地, 若 $X\overset u\longrightarrow Y$ 是同构, 则有好三角的同构 $(X,Y,Z,u,v,w)\simeq (X,Y,0,u,0,0)$.
 \end{remark}
+
+\begin{proposition}
+    给定好三角 $\begin{tikzcd}
+            X & Y & Z & TX
+            \arrow["u", from=1-1, to=1-2]
+            \arrow["v", from=1-2, to=1-3]
+            \arrow["w", from=1-3, to=1-4]
+        \end{tikzcd}$, 则 $u$ 可裂单等价于 $u$ 是单态射.
+    \begin{proof}
+        仅证明单态射可裂. 若 $u$ 单, 则根据好三角中相邻态射复合为零知 $w=0$. 此时存在 $\varphi$ 使得下图交换
+        % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJUWCJdLFswLDEsIlgiXSxbMSwxLCJYIl0sWzIsMSwiMCJdLFszLDEsIlRYIl0sWzAsMSwidSJdLFsxLDIsInYiXSxbMiwzLCIwIl0sWzMsNywiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNiw3XSxbMiw2XSxbNSw2XSxbNCw1LCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFswLDQsIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsNSwiXFx2YXJwaGkgIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+        \[\begin{tikzcd}
+                X & Y & Z & TX \\
+                X & X & 0 & TX
+                \arrow["u", from=1-1, to=1-2]
+                \arrow["v", from=1-2, to=1-3]
+                \arrow["0", from=1-3, to=1-4]
+                \arrow[Rightarrow, no head, from=1-4, to=2-4]
+                \arrow[from=2-3, to=2-4]
+                \arrow[from=1-3, to=2-3]
+                \arrow[from=2-2, to=2-3]
+                \arrow[Rightarrow, no head, from=2-1, to=2-2]
+                \arrow[Rightarrow, no head, from=1-1, to=2-1]
+                \arrow["{\varphi }", dashed, from=1-2, to=2-2]
+            \end{tikzcd}.\]
+        此时 $\varphi$ 为 $u$ 的左逆, 因此 $u$ 可裂单.
+    \end{proof}
+\end{proposition}
+
+\begin{remark}
+    同理, 好三角中的满态射与可裂满等价. 从而好三角中以下条件等价:
+    \begin{align*}
+        u \text{ 单}\Longleftrightarrow u \text{ 可裂单}\Longleftrightarrow w=0\Longleftrightarrow v \text{ 满}\Longleftrightarrow v \text{ 可裂满}.
+    \end{align*}
+\end{remark}
+
+\begin{proposition}[``二推三''的唯一性条件]\label{unique 2->3}
+    给定好三角的交换图(实线处)
+    % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJUWCJdLFswLDEsIlgnIl0sWzEsMSwiWSciXSxbMiwxLCJaJyJdLFszLDEsIlRYJyJdLFswLDEsInUiXSxbMSwyLCJ2Il0sWzYsNywidyciLDJdLFs1LDYsInYnIiwyXSxbMSw1LCJnIiwyXSxbMCw0LCJmIiwyXSxbMyw3LCJUZiJdLFsyLDMsInciXSxbNCw1LCJ1JyIsMl0sWzIsNiwiaCIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsyLDUsIiIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRvdHRlZCJ9fX1dLFszLDYsIiIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRvdHRlZCJ9fX1dXQ==
+    \[\begin{tikzcd}
+            X & Y & Z & TX \\
+            {X'} & {Y'} & {Z'} & {TX'}
+            \arrow["u", from=1-1, to=1-2]
+            \arrow["v", from=1-2, to=1-3]
+            \arrow["{w'}"', from=2-3, to=2-4]
+            \arrow["{v'}"', from=2-2, to=2-3]
+            \arrow["g"', from=1-2, to=2-2]
+            \arrow["f"', from=1-1, to=2-1]
+            \arrow["Tf", from=1-4, to=2-4]
+            \arrow["w", from=1-3, to=1-4]
+            \arrow["{u'}"', from=2-1, to=2-2]
+            \arrow["h", dashed, from=1-3, to=2-3]
+            \arrow[dotted, from=1-3, to=2-2]
+            \arrow[dotted, from=1-4, to=2-3]
+        \end{tikzcd}\]
+    依定义知存在 $h$ 使得上图交换. 若 $\mathrm{Hom}_{\mathcal C}(TX,Z')=0$ 或 $\mathrm{Hom}_{\mathcal C}(Z,Y')=0$, 则 $h$ 唯一.
+    \begin{proof}
+        若存在 $h,h'\in \mathrm{Hom}_{\mathcal C}(Z,Z')$ 使得上图交换, 则 $(h-h')v=0=w'(h-h')$. 若 $\mathrm{Hom}_{\mathcal C}(TX,Z')=0$ 或 $\mathrm{Hom}_{\mathcal C}(Z,Y')=0$, 依分解定理知 $h-h'=0$.
+    \end{proof}
+\end{proposition}
+
+
 
 \section{三角范畴}
 \begin{definition}[三角范畴]\label{triangular}
@@ -1043,8 +1173,35 @@
     此时若 $\mathrm{Hom}_{\mathcal C}(X,T^{-1}Z')=0$, 则 $f$, $h$ 由 $g$ 唯一确定.
 \end{quote}
 \begin{proof}
-    若存在三角射 $(f,g,h)$, 则 $v'gu=huv=h0=0$. 反之,
+    一方面, $v'gv=0$ 表明 $v'g$ 通过 $X'$ 分解, 从而构造 $f$. 依照``二推三''得三角射. 反之显然. 唯一性间\ref{unique 2->3}.
 \end{proof}
 \end{problem}
+
+\begin{problem}
+设 $\mathcal C$ 是预三角范畴, $(X,Y,Z,u,v,w)$ 是好三角. 若 $\mathrm{Hom}_{\mathcal C}(TX,Z)=0$, 则 $w$ 是唯一的态射使得 $(X,Y,Z,u,v,w)$ 是好三角.
+\begin{proof}
+    依照 \ref{unique 2->3}, 下图虚线处的态射 $\varphi$ 是唯一的
+    % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIloiXSxbMywwLCJUWCJdLFswLDEsIlgiXSxbMSwxLCJZIl0sWzIsMSwiWiJdLFszLDEsIlRYIl0sWzAsMSwidSJdLFsxLDIsInYiXSxbMiwzLCJ3Il0sWzYsNywidyciLDJdLFs0LDUsInUiLDJdLFs1LDYsInYiLDJdLFszLDcsIlRcXHZhcnBoaSAiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMSw1LCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsyLDYsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzAsNCwiXFx2YXJwaGkiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+    \[\begin{tikzcd}
+            X & Y & Z & TX \\
+            X & Y & Z & TX
+            \arrow["u", from=1-1, to=1-2]
+            \arrow["v", from=1-2, to=1-3]
+            \arrow["w", from=1-3, to=1-4]
+            \arrow["{w'}"', from=2-3, to=2-4]
+            \arrow["u"', from=2-1, to=2-2]
+            \arrow["v"', from=2-2, to=2-3]
+            \arrow["{T\varphi }", dashed, from=1-4, to=2-4]
+            \arrow[Rightarrow, no head, from=1-2, to=2-2]
+            \arrow[Rightarrow, no head, from=1-3, to=2-3]
+            \arrow["\varphi"', dashed, from=1-1, to=2-1]
+        \end{tikzcd}.\]
+    显然 $\varphi=\mathrm{id}_X$, 从而 $w=w'$.
+\end{proof}
+\end{problem}
+
+\begin{example}
+    例子 $\sqrt 2$.
+\end{example}
 
 \end{document}

@@ -1,0 +1,6 @@
+\contentsline {section}{\numberline {1}预三角范畴}{1}{section.1}%
+\contentsline {section}{\numberline {2}同调核与同调余核}{3}{section.2}%
+\contentsline {section}{\numberline {3}好三角的可裂性}{5}{section.3}%
+\contentsline {section}{\numberline {4}三角范畴}{7}{section.4}%
+\contentsline {section}{\numberline {5}基变换}{8}{section.5}%
+\contentsline {section}{\numberline {6}第一章习题}{9}{section.6}%
