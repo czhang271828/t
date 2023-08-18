@@ -695,7 +695,7 @@
 \end{example}
 
 \begin{proposition}
-    三角函子 $F:\mathcal C\to \mathcal C'$ 对 $\mathsf{Ob}$ 保持单, 对 $\mathsf{Mor}$ 保持满, 则对 $\mathrm{Mor}$ 保持单(忠实).
+    三角函子 $F:\mathcal C\to \mathcal C'$ 对 $\mathsf{Ob}$ 保持单, 对 $\mathsf{Mor}$ 保持满, 则对 $\mathsf{Mor}$ 保持单(忠实).
     \begin{proof}
         任取 $v$ 使得 $Fv=0$, 下证明 $v=0$ 即可. 考虑如下好三角的交换图
         % https://q.uiver.app/#q=WzAsOCxbMSwwLCJZIl0sWzIsMCwiWiJdLFswLDAsIlgiXSxbMywwLCJUWCJdLFswLDEsIkZYIl0sWzEsMSwiRlkiXSxbMiwxLCJGWiJdLFszLDEsIkZUWCJdLFswLDEsInYiXSxbMiwwLCJ1Il0sWzEsMywidyJdLFs0LDUsIkZ1IiwyXSxbNiw3LCJGdyIsMl0sWzIsNF0sWzAsNV0sWzEsNl0sWzMsN10sWzUsNiwiMCIsMl0sWzAsMiwidSciLDAseyJjdXJ2ZSI6LTIsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
@@ -1196,12 +1196,126 @@
             \arrow[Rightarrow, no head, from=1-3, to=2-3]
             \arrow["\varphi"', dashed, from=1-1, to=2-1]
         \end{tikzcd}.\]
-    显然 $\varphi=\mathrm{id}_X$, 从而 $w=w'$.
+    下仅需证明 $\varphi=\mathrm{id}_X$. 由于 $u(\mathrm{id}_X-\varphi)=0$, 故 $(\mathrm{id}_X-\varphi)$ 通过 $T^{-1}w$ 分解. 依照 $\mathrm{Hom}_{\mathcal C}(TX,Z)=0$ 知 $\varphi =\mathrm{id}_X$.
 \end{proof}
 \end{problem}
 
-\begin{example}
-    例子 $\sqrt 2$.
-\end{example}
+\begin{problem}
+从预三角范畴 $\mathcal C$ 到 Abel 范畴 $\mathcal A$ 的一个加法函子 $F:\mathcal C\to \mathcal A$ 是上同调函子当且仅当对任一好三角 $\begin{tikzcd}
+        X & Y & Z & TX
+        \arrow["u", from=1-1, to=1-2]
+        \arrow["v", from=1-2, to=1-3]
+        \arrow["w", from=1-3, to=1-4]
+    \end{tikzcd}$ 和任意 $i$, $\begin{tikzcd}
+        {H(T^iX)} & {H(T^iY)} & {H(T^iZ)}
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+    \end{tikzcd}$ 正合.
+\begin{proof}
+    置 $X'=T^iX$, $Y'=T^iY$, $Z'=T^iZ$ 即可.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+设 $F:\mathcal C\to \mathcal C'$ 是三角函子. 则 $\mathrm{ker\,}F=\{X\in \mathcal C\mid F(X)\simeq 0\}$ 是 $\mathcal C$ 的三角子范畴.
+\begin{proof}
+    易观察到 $\mathrm{Ker\,}F$ 关于同构封闭, 与 $T$ 交换. 若 $\begin{tikzcd}
+            X & Y & Z & TX
+            \arrow["u", from=1-1, to=1-2]
+            \arrow["v", from=1-2, to=1-3]
+            \arrow["w", from=1-3, to=1-4]
+        \end{tikzcd}$ 中 $X,Z\in \mathrm{Ker\,}F$, 则好三角 $\begin{tikzcd}
+            FX & FY & FZ & F(TX)
+            \arrow["Fu", from=1-1, to=1-2]
+            \arrow["Fv", from=1-2, to=1-3]
+            \arrow["Fw", from=1-3, to=1-4]
+        \end{tikzcd}$ 中 $Fu=Fv=Fw=0$, 因此 $FY\simeq FX\simeq 0$. 从而 $Y\in \mathrm{Ker\,}F$.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+设 $\mathcal C$ 是预三角范畴. 则 $T^2:\mathcal C\to \mathcal C$ 是三角自同构.
+\begin{proof}
+    $T^2$ 即顺时针旋转六次, 自然是 $\mathcal C$ 的三角自同构.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+对任意三角范畴 $(\mathcal C,T)$, $(T,-\mathrm{Id}_{T^2})$ 是 $\mathcal C$ 到自己的三角同构, 其中 $-\mathrm{Id}_{T^2}:T^2\to T^2$ 是下述的自然同构: 对于任一 $X\in \mathcal C$, $-\mathrm{Id}_{T^2}(X)$ 定义为 $-\mathrm{Id}_{T^2X}$.
+\begin{proof}
+    三角范畴 $T:(\mathcal C,T)\to (\mathcal C,T)$, 其中自然同构 $(-\mathrm{Id}_{T^2})_X:T^2X\overset\sim \to -T^2X$. $T$ 良定义. 注意到 $\begin{tikzcd}
+            X & Y & Z & TX
+            \arrow["u", from=1-1, to=1-2]
+            \arrow["v", from=1-2, to=1-3]
+            \arrow["w", from=1-3, to=1-4]
+        \end{tikzcd}$ 是 $\mathcal C$ 中好三角当且仅当 $\begin{tikzcd}
+            {-TX} & {-TY} & {-TZ} & {-T^2X}
+            \arrow["{-Tu}", from=1-1, to=1-2]
+            \arrow["{-Tv}", from=1-2, to=1-3]
+            \arrow["{-Tw}", from=1-3, to=1-4]
+        \end{tikzcd}$ 亦然, 其态射范畴同理.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+对三角范畴 $(\mathcal C,[1])$ 和整数 $n$, $([n],(-1)^n\mathrm{Id}_{[n+1]}):\mathcal C\to \mathcal C$ 是三角同构.
+\begin{proof}
+    即上题之推广. 证明略.
+\end{proof}
+\end{problem}
+
+\begin{problem}
+\begin{proof}
+
+\end{proof}
+\end{problem}
+
+\begin{problem}
+\begin{proof}
+
+\end{proof}
+\end{problem}
+
+\begin{problem}
+\begin{proof}
+
+\end{proof}
+\end{problem}
+
+\begin{problem}
+\begin{proof}
+
+\end{proof}
+\end{problem}
+
+\begin{problem}
+\begin{proof}
+
+\end{proof}
+\end{problem}
+
+\begin{problem}
+\begin{proof}
+
+\end{proof}
+\end{problem}
+
+\begin{problem}
+\begin{proof}
+
+\end{proof}
+\end{problem}
+
+\begin{problem}
+\begin{proof}
+
+\end{proof}
+\end{problem}
+
+\begin{problem}
+\begin{proof}
+
+\end{proof}
+\end{problem}
 
 \end{document}
