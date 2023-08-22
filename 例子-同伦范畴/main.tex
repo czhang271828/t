@@ -324,7 +324,7 @@
     \end{enumerate}
 \end{example}
 
-\section{映射锥}
+\section{复形同伦范畴是三角范畴}
 
 \begin{definition}[映射锥]
     对加法范畴上的复形间态射 $X\overset u\longrightarrow Y$, 定义映射锥 $\mathrm{cone}(u)$ 为如下复形
@@ -431,6 +431,7 @@
                   总有虚线处的同伦等价使得上图交换;
             \item 八面体公理成立.
         \end{enumerate}
+        为书写方便, 下省略 $d$, $u$, $1$ 等同态的角标. 若明确同态的来源与去向, 如此省略不会引起混淆.
         \begin{enumerate}
             \item 作如下 $K(\mathcal A)$ 中的交换图
                   % https://q.uiver.app/#q=WzAsOCxbMSwxLCJYIl0sWzIsMSwiXFxtYXRocm17Y29uZX0oXFxtYXRocm17aWR9X1gpIl0sWzMsMSwiWFsxXSJdLFswLDEsIlgiXSxbMCwwLCJYIl0sWzEsMCwiWCJdLFszLDAsIlhbMV0iXSxbMiwwLCIwIl0sWzAsMSwiXFxiaW5vbTAxIiwyXSxbMSwyLCIoMCwxKSIsMl0sWzQsNSwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNCwzLCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs2LDIsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzMsMCwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNSwwLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs1LDddLFs3LDZdLFs3LDFdXQ==
@@ -519,10 +520,141 @@
                           \arrow["{\left(\substack{-u[1]\\1\\0}\right)}"', dashed, from=1-3, to=2-3]
                       \end{tikzcd}.\]
                   \begin{enumerate}
-                      \item 先证明上图在 $K(\mathcal A)$ 中交换. 实际上,
+                      \item 先证明上图在 $K(\mathcal A)$ 中交换. 仅需验证中间方块的交换性. 等价地, 证明 $\begin{pmatrix}u[1]&0\\0&0\\0&1\end{pmatrix}: X[1]\oplus Y\longrightarrow Y[1]\oplus X[1]\oplus Y$ 是零伦的. 注意到
+                            % https://q.uiver.app/#q=WzAsMTAsWzMsMCwiWF57bisxfVxcb3BsdXMgWV5uIl0sWzUsMCwiWF57bisyfVxcb3BsdXMgWV57bisxfSJdLFszLDIsIllee24rMX1cXG9wbHVzIFhee24rMX1cXG9wbHVzIFlebiJdLFsxLDIsIllee259XFxvcGx1cyBYXntufVxcb3BsdXMgWV57bi0xfSJdLFsxLDAsIlhee259XFxvcGx1cyBZXntuLTF9Il0sWzUsMiwiWV57bisyfVxcb3BsdXMgWF57bisyfVxcb3BsdXMgWV57bisxfSJdLFswLDAsIlxcY2RvdHMiXSxbMCwyLCJcXGNkb3RzIl0sWzYsMCwiXFxjZG90cyJdLFs2LDIsIlxcY2RvdHMiXSxbMCwxLCJcXGJpbm9tey1kXFwsXFwsXFwsXFwsXFwsXFwsXFwsfXt1XFwsXFwsXFwsZH0iXSxbMywyLCJcXGxlZnQoXFxzdWJzdGFja3stZFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcXFxcXCxcXCxcXCwtZFxcLFxcLFxcLFxcLFxcLFxcXFwxXFwsXFwsXFwsXFwsdVxcLFxcLFxcLFxcLGR9XFxyaWdodCkiLDJdLFs0LDAsIlxcYmlub217LWRcXCxcXCxcXCxcXCxcXCxcXCxcXCx9e3VcXCxcXCxcXCxkfSJdLFsyLDUsIlxcbGVmdChcXHN1YnN0YWNrey1kXFwsXFwsXFwsXFwsXFwsXFwsXFwsXFwsXFwsXFwsXFwsXFwsXFwsXFwsXFwsXFwsXFxcXFxcLFxcLFxcLC1kXFwsXFwsXFwsXFwsXFwsXFxcXDFcXCxcXCxcXCxcXCx1XFwsXFwsXFwsXFwsZH1cXHJpZ2h0KSIsMl0sWzAsMiwiXFxsZWZ0KFxcc3Vic3RhY2t7dVxcLFxcLFxcLFxcXFxcXCxcXCxcXFxcXFwsXFwsXFwsXFwsMX1cXHJpZ2h0KSJdLFswLDMsIlxcbGVmdChcXHN1YnN0YWNre1xcLFxcLFxcLDFcXFxcXFwsXFwsXFxcXFxcLFxcLFxcLFxcLH1cXHJpZ2h0KSIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsxLDIsIlxcbGVmdChcXHN1YnN0YWNre1xcLFxcLFxcLDFcXFxcXFwsXFwsXFxcXFxcLFxcLFxcLFxcLH1cXHJpZ2h0KSIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs0LDMsIlxcbGVmdChcXHN1YnN0YWNre3VcXCxcXCxcXCxcXFxcXFwsXFwsXFxcXFxcLFxcLFxcLFxcLDF9XFxyaWdodCkiXSxbMSw1LCJcXGxlZnQoXFxzdWJzdGFja3t1XFwsXFwsXFwsXFxcXFxcLFxcLFxcXFxcXCxcXCxcXCxcXCwxfVxccmlnaHQpIl0sWzYsNF0sWzcsM10sWzEsOF0sWzUsOV1d
+                            \[\begin{tikzcd}
+                                    \cdots & {X^{n}\oplus Y^{n-1}} && {X^{n+1}\oplus Y^n} && {X^{n+2}\oplus Y^{n+1}} & \cdots \\
+                                    \\
+                                    \cdots & {Y^{n}\oplus X^{n}\oplus Y^{n-1}} && {Y^{n+1}\oplus X^{n+1}\oplus Y^n} && {Y^{n+2}\oplus X^{n+2}\oplus Y^{n+1}} & \cdots
+                                    \arrow["{\binom{-d\,\,\,\,\,\,\,}{u\,\,\,d}}", from=1-4, to=1-6]
+                                    \arrow["{\left(\substack{-d\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\\\,\,\,-d\,\,\,\,\,\\1\,\,\,\,u\,\,\,\,d}\right)}"', from=3-2, to=3-4]
+                                    \arrow["{\binom{-d\,\,\,\,\,\,\,}{u\,\,\,d}}", from=1-2, to=1-4]
+                                    \arrow["{\left(\substack{-d\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\\\,\,\,-d\,\,\,\,\,\\1\,\,\,\,u\,\,\,\,d}\right)}"', from=3-4, to=3-6]
+                                    \arrow["{\left(\substack{u\,\,\,\\\,\,\\\,\,\,\,1}\right)}", from=1-4, to=3-4]
+                                    \arrow["{\left(\substack{\,\,\,1\\\,\,\\\,\,\,\,}\right)}"{description}, dashed, from=1-4, to=3-2]
+                                    \arrow["{\left(\substack{\,\,\,1\\\,\,\\\,\,\,\,}\right)}"{description}, dashed, from=1-6, to=3-4]
+                                    \arrow["{\left(\substack{u\,\,\,\\\,\,\\\,\,\,\,1}\right)}", from=1-2, to=3-2]
+                                    \arrow["{\left(\substack{u\,\,\,\\\,\,\\\,\,\,\,1}\right)}", from=1-6, to=3-6]
+                                    \arrow[from=1-1, to=1-2]
+                                    \arrow[from=3-1, to=3-2]
+                                    \arrow[from=1-6, to=1-7]
+                                    \arrow[from=3-6, to=3-7]
+                                \end{tikzcd}.\]
+                      \item 继而证明 $\begin{pmatrix}-u[1]\\1\\0\end{pmatrix}$ 是同伦等价. 考虑映射 $(0,1,0)$, 下证明 $\begin{pmatrix}-u[1]\\1\\0\end{pmatrix}(0,1,0)=\begin{pmatrix}0&-u&0\\0&1&0\\0&0&0\end{pmatrix}$, $(0,1,0)\begin{pmatrix}-u[1]\\1\\0\end{pmatrix}=1$ 均与单位矩阵同伦. 后者显然, 前者由如下零伦关系给出
+                            % https://q.uiver.app/#q=WzAsMTAsWzUsMCwiWV57bisyfVxcb3BsdXMgWF57bisyfVxcb3BsdXMgWV57bisxfSJdLFs1LDIsIllee24rMn1cXG9wbHVzIFhee24rMn1cXG9wbHVzIFlee24rMX0iXSxbNiwwLCJcXGNkb3RzIl0sWzYsMiwiXFxjZG90cyJdLFszLDAsIllee24rMX1cXG9wbHVzIFhee24rMX1cXG9wbHVzIFlebiJdLFsxLDAsIllee259XFxvcGx1cyBYXntufVxcb3BsdXMgWV57bi0xfSJdLFszLDIsIllee24rMX1cXG9wbHVzIFhee24rMX1cXG9wbHVzIFlebiJdLFsxLDIsIllee259XFxvcGx1cyBYXntufVxcb3BsdXMgWV57bi0xfSJdLFswLDAsIlxcY2RvdHMiXSxbMCwyLCJcXGNkb3RzIl0sWzAsMSwiXFxsZWZ0KFxcc3Vic3RhY2t7MVxcLFxcLFxcLHVcXCxcXCxcXCxcXCxcXCxcXFxcXFxcXFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLDF9XFxyaWdodCkiXSxbNCwwLCJcXGxlZnQoXFxzdWJzdGFja3stZFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcXFxcXCxcXCxcXCwtZFxcLFxcLFxcLFxcLFxcLFxcXFwxXFwsXFwsXFwsXFwsdVxcLFxcLFxcLFxcLGR9XFxyaWdodCkiXSxbNSw0LCJcXGxlZnQoXFxzdWJzdGFja3stZFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcXFxcXCxcXCxcXCwtZFxcLFxcLFxcLFxcLFxcLFxcXFwxXFwsXFwsXFwsXFwsdVxcLFxcLFxcLFxcLGR9XFxyaWdodCkiXSxbNiwxLCJcXGxlZnQoXFxzdWJzdGFja3stZFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcXFxcXCxcXCxcXCwtZFxcLFxcLFxcLFxcLFxcLFxcXFwxXFwsXFwsXFwsXFwsdVxcLFxcLFxcLFxcLGR9XFxyaWdodCkiLDJdLFs3LDYsIlxcbGVmdChcXHN1YnN0YWNrey1kXFwsXFwsXFwsXFwsXFwsXFwsXFwsXFwsXFwsXFwsXFwsXFwsXFwsXFwsXFwsXFwsXFxcXFxcLFxcLFxcLC1kXFwsXFwsXFwsXFwsXFwsXFxcXDFcXCxcXCxcXCxcXCx1XFwsXFwsXFwsXFwsZH1cXHJpZ2h0KSIsMl0sWzQsNywiXFxsZWZ0KFxcc3Vic3RhY2t7XFwsXFwsXFwsXFwsXFwsXFwsXFwsXFwsMVxcXFxcXFxcXFxcXH1cXHJpZ2h0KSIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs1LDcsIlxcbGVmdChcXHN1YnN0YWNrezFcXCxcXCxcXCx1XFwsXFwsXFwsXFwsXFwsXFxcXFxcXFxcXCxcXCxcXCxcXCxcXCxcXCxcXCxcXCxcXCwxfVxccmlnaHQpIl0sWzgsNV0sWzksN10sWzAsMl0sWzEsM10sWzQsNiwiXFxsZWZ0KFxcc3Vic3RhY2t7MVxcLFxcLFxcLHVcXCxcXCxcXCxcXCxcXCxcXFxcXFxcXFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLDF9XFxyaWdodCkiXSxbMCw2LCJcXGxlZnQoXFxzdWJzdGFja3tcXCxcXCxcXCxcXCxcXCxcXCxcXCxcXCwxXFxcXFxcXFxcXFxcfVxccmlnaHQpIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+                            \[\begin{tikzcd}
+                                    \cdots & {Y^{n}\oplus X^{n}\oplus Y^{n-1}} && {Y^{n+1}\oplus X^{n+1}\oplus Y^n} && {Y^{n+2}\oplus X^{n+2}\oplus Y^{n+1}} & \cdots \\
+                                    \\
+                                    \cdots & {Y^{n}\oplus X^{n}\oplus Y^{n-1}} && {Y^{n+1}\oplus X^{n+1}\oplus Y^n} && {Y^{n+2}\oplus X^{n+2}\oplus Y^{n+1}} & \cdots
+                                    \arrow["{\left(\substack{1\,\,\,u\,\,\,\,\,\\\\\,\,\,\,\,\,\,\,\,1}\right)}", from=1-6, to=3-6]
+                                    \arrow["{\left(\substack{-d\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\\\,\,\,-d\,\,\,\,\,\\1\,\,\,\,u\,\,\,\,d}\right)}", from=1-4, to=1-6]
+                                    \arrow["{\left(\substack{-d\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\\\,\,\,-d\,\,\,\,\,\\1\,\,\,\,u\,\,\,\,d}\right)}", from=1-2, to=1-4]
+                                    \arrow["{\left(\substack{-d\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\\\,\,\,-d\,\,\,\,\,\\1\,\,\,\,u\,\,\,\,d}\right)}"', from=3-4, to=3-6]
+                                    \arrow["{\left(\substack{-d\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\\\,\,\,-d\,\,\,\,\,\\1\,\,\,\,u\,\,\,\,d}\right)}"', from=3-2, to=3-4]
+                                    \arrow["{\left(\substack{\,\,\,\,\,\,\,\,1\\\\\\}\right)}"{description}, dashed, from=1-4, to=3-2]
+                                    \arrow["{\left(\substack{1\,\,\,u\,\,\,\,\,\\\\\,\,\,\,\,\,\,\,\,1}\right)}", from=1-2, to=3-2]
+                                    \arrow[from=1-1, to=1-2]
+                                    \arrow[from=3-1, to=3-2]
+                                    \arrow[from=1-6, to=1-7]
+                                    \arrow[from=3-6, to=3-7]
+                                    \arrow["{\left(\substack{1\,\,\,u\,\,\,\,\,\\\\\,\,\,\,\,\,\,\,\,1}\right)}", from=1-4, to=3-4]
+                                    \arrow["{\left(\substack{\,\,\,\,\,\,\,\,1\\\\\\}\right)}"{description}, dashed, from=1-6, to=3-4]
+                                \end{tikzcd}.\]
                   \end{enumerate}
+            \item 取虚线处同伦等价为 $f[1]\oplus g$ 即可.
+            \item 给定映射链 $\begin{tikzcd}
+                          X & Y & Z
+                          \arrow["u", from=1-1, to=1-2]
+                          \arrow["v", from=1-2, to=1-3]
+                      \end{tikzcd}$, 八面体公理由如下 $C(\mathcal A)$ 中的交换图给出
+                  % https://q.uiver.app/#q=WzAsMTMsWzAsMCwiWCJdLFsxLDAsIlkiXSxbMSwxLCJaIl0sWzAsMSwiWCJdLFsyLDAsIlxcbWF0aHJte2NvbmV9KHUpIl0sWzMsMCwiWFsxXSJdLFsyLDEsIlxcbWF0aHJte2NvbmV9KHZ1KSJdLFszLDEsIlhbMV0iXSxbMSwyLCJcXG1hdGhybXtjb25lfSh2KSJdLFsxLDMsIllbMV0iXSxbMiwyLCJcXG1hdGhybXtjb25lfSh2KSJdLFsyLDMsIlxcbWF0aHJte2NvbmV9KHUpWzFdIl0sWzMsMiwiWVsxXSJdLFswLDEsInUiXSxbMSwyLCJ2Il0sWzAsMywiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMywyLCJ2dSJdLFsxLDQsIlxcYmlub20wMSJdLFs0LDUsIigxLDApIl0sWzIsNiwiXFxiaW5vbTAxIl0sWzUsNywiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNiw3LCIoMSwwKSIsMl0sWzQsNiwiXFxiaW5vbXsxXFwsXFwsXFwsXFwsXFwsXFwsfXtcXCxcXCxcXCxcXCxcXCxcXCx2fSJdLFsyLDgsIlxcYmlub20wMSIsMl0sWzgsOSwiKDEsMCkiLDJdLFs4LDEwLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs2LDEwLCJcXGJpbm9te3VbMV1cXCxcXCxcXCxcXCxcXCx9e1xcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLHZ9IiwyXSxbMTAsMTEsIlxcYmlub217fXsxXFwsXFwsXFwsXFwsXFwsfSIsMl0sWzksMTEsIlxcYmlub20wMSIsMl0sWzcsMTIsInVbMV0iXSxbMTAsMTIsIigxLDApIiwyXV0=
+                  \[\begin{tikzcd}
+                          X & Y & {\mathrm{cone}(u)} & {X[1]} \\
+                          X & Z & {\mathrm{cone}(vu)} & {X[1]} \\
+                          & {\mathrm{cone}(v)} & {\mathrm{cone}(v)} & {Y[1]} \\
+                          & {Y[1]} & {\mathrm{cone}(u)[1]}
+                          \arrow["u", from=1-1, to=1-2]
+                          \arrow["v", from=1-2, to=2-2]
+                          \arrow[Rightarrow, no head, from=1-1, to=2-1]
+                          \arrow["vu", from=2-1, to=2-2]
+                          \arrow["\binom01", from=1-2, to=1-3]
+                          \arrow["{(1,0)}", from=1-3, to=1-4]
+                          \arrow["\binom01", from=2-2, to=2-3]
+                          \arrow[Rightarrow, no head, from=1-4, to=2-4]
+                          \arrow["{(1,0)}"', from=2-3, to=2-4]
+                          \arrow["{\binom{1\,\,\,\,\,\,}{\,\,\,\,\,\,v}}", from=1-3, to=2-3]
+                          \arrow["\binom01"', from=2-2, to=3-2]
+                          \arrow["{(1,0)}"', from=3-2, to=4-2]
+                          \arrow[Rightarrow, no head, from=3-2, to=3-3]
+                          \arrow["{\binom{u[1]\,\,\,\,\,}{\,\,\,\,\,\,\,\,\,\,v}}"', from=2-3, to=3-3]
+                          \arrow["{\binom{}{1\,\,\,\,\,}}"', from=3-3, to=4-3]
+                          \arrow["\binom01"', from=4-2, to=4-3]
+                          \arrow["{u[1]}", from=2-4, to=3-4]
+                          \arrow["{(1,0)}"', from=3-3, to=3-4]
+                      \end{tikzcd}.\]
+                  下仍需验证第三列为三角. 作 $K(\mathcal A)$ 中交换图
+                  % https://q.uiver.app/#q=WzAsMTYsWzAsMCwiXFxtYXRocm17Y29uZX0odSkiXSxbMiwwLCJcXG1hdGhybXtjb25lfSh2dSkiXSxbNCwwLCJcXG1hdGhybXtjb25lfSh2KSJdLFs2LDAsIlxcbWF0aHJte2NvbmV9KHUpWzFdIl0sWzAsMSwiWFsxXVxcb3BsdXMgWSJdLFsyLDEsIlhbMV1cXG9wbHVzIFoiXSxbNCwxLCJZWzFdXFxvcGx1cyBaIl0sWzYsMSwiWFsyXVxcb3BsdXMgWVsxXSJdLFswLDMsIlhbMV1cXG9wbHVzIFkiXSxbMiwzLCJYWzFdXFxvcGx1cyBaIl0sWzYsMywiWFsyXVxcb3BsdXMgWVsxXSJdLFs0LDMsIlhbMl1cXG9wbHVzIFlbMV1cXG9wbHVzIFhbMV1cXG9wbHVzIFoiXSxbNiw0LCJcXG1hdGhybXtjb25lfSh1KVsxXSJdLFs0LDQsIlxcbWF0aHJte2NvbmV9KFxcYmlub217MVxcLFxcLFxcLFxcLFxcLFxcLH17XFwsXFwsXFwsXFwsXFwsXFwsdn0pIl0sWzIsNCwiXFxtYXRocm17Y29uZX0odikiXSxbMCw0LCJcXG1hdGhybXtjb25lfSh1KSJdLFs0LDUsIlxcYmlub217MVxcLFxcLFxcLFxcLFxcLFxcLH17XFwsXFwsXFwsXFwsXFwsXFwsdn0iXSxbNSw2LCJcXGJpbm9te3VbMV1cXCxcXCxcXCxcXCxcXCx9e1xcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLDF9Il0sWzYsNywiXFxiaW5vbXt9ezFcXCxcXCxcXCxcXCxcXCx9Il0sWzQsOCwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNSw5LCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs3LDEwLCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs4LDksIlxcYmlub217MVxcLFxcLFxcLFxcLFxcLFxcLH17XFwsXFwsXFwsXFwsXFwsXFwsdn0iLDJdLFswLDQsIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsNSwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMiw2LCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDcsIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzksMTEsIlxcYmlub217T197MlxcdGltZXMyfX17SV97MlxcdGltZXMgMn19IiwyXSxbNiwxMSwiRV97MiwxfStFX3s0LDJ9IiwyXSxbMTAsMTIsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzExLDEzLCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs5LDE0LCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs4LDE1LCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxMSwxMCwiKElfezJcXHRpbWVzIDJ9LE9fezJcXHRpbWVzIDJ9KSIsMl1d
+                  \[\begin{tikzcd}
+                          {\mathrm{cone}(u)} && {\mathrm{cone}(vu)} && {\mathrm{cone}(v)} && {\mathrm{cone}(u)[1]} \\
+                          {X[1]\oplus Y} && {X[1]\oplus Z} && {Y[1]\oplus Z} && {X[2]\oplus Y[1]} \\
+                          \\
+                          {X[1]\oplus Y} && {X[1]\oplus Z} && {X[2]\oplus Y[1]\oplus X[1]\oplus Z} && {X[2]\oplus Y[1]} \\
+                          {\mathrm{cone}(u)} && {\mathrm{cone}(v)} && {\mathrm{cone}(\binom{1\,\,\,\,\,\,}{\,\,\,\,\,\,v})} && {\mathrm{cone}(u)[1]}
+                          \arrow["{\binom{1\,\,\,\,\,\,}{\,\,\,\,\,\,v}}", from=2-1, to=2-3]
+                          \arrow["{\binom{u[1]\,\,\,\,\,}{\,\,\,\,\,\,\,\,\,\,1}}", from=2-3, to=2-5]
+                          \arrow["{\binom{}{1\,\,\,\,\,}}", from=2-5, to=2-7]
+                          \arrow[Rightarrow, no head, from=2-1, to=4-1]
+                          \arrow[Rightarrow, no head, from=2-3, to=4-3]
+                          \arrow[Rightarrow, no head, from=2-7, to=4-7]
+                          \arrow["{\binom{1\,\,\,\,\,\,}{\,\,\,\,\,\,v}}"', from=4-1, to=4-3]
+                          \arrow[Rightarrow, no head, from=1-1, to=2-1]
+                          \arrow[Rightarrow, no head, from=1-3, to=2-3]
+                          \arrow[Rightarrow, no head, from=1-5, to=2-5]
+                          \arrow[Rightarrow, no head, from=1-7, to=2-7]
+                          \arrow["{\binom{O_{2\times2}}{I_{2\times 2}}}"', from=4-3, to=4-5]
+                          \arrow["{E_{2,1}+E_{4,2}}"', from=2-5, to=4-5]
+                          \arrow[Rightarrow, no head, from=4-7, to=5-7]
+                          \arrow[Rightarrow, no head, from=4-5, to=5-5]
+                          \arrow[Rightarrow, no head, from=4-3, to=5-3]
+                          \arrow[Rightarrow, no head, from=4-1, to=5-1]
+                          \arrow["{(I_{2\times 2},O_{2\times 2})}"', from=4-5, to=4-7]
+                      \end{tikzcd}.\]
+                  其中, 左侧与右侧方块可换. 为证明中间方块交换, 只需证明以下为零伦映射
+                  \begin{align*}
+                      u[1]\cdot E_{2,1}-E_{3,1}=\begin{pmatrix}0&0\\u[1]&0\\-1&0\\0&0\end{pmatrix}:X[1]\oplus Z\mapsto X[2]\oplus Y[1]\oplus X[1]\oplus Z.
+                  \end{align*}
+                  注意到零伦关系
+                  % https://q.uiver.app/#q=WzAsMTAsWzIsMiwiWF57bisyfVxcb3BsdXMgWV57bisxfVxcb3BsdXMgWF57bisxfVxcb3BsdXMgWl5uIl0sWzEsMiwiWF57bisxfVxcb3BsdXMgWV57bn1cXG9wbHVzIFhee259XFxvcGx1cyBaXntuLTF9Il0sWzIsMCwiWF57bisxfVxcb3BsdXMgWl5uIl0sWzMsMiwiWF57biszfVxcb3BsdXMgWV57bisyfVxcb3BsdXMgWF57bisyfVxcb3BsdXMgWl57bisxfSJdLFsxLDAsIlheblxcb3BsdXMgWl57bi0xfSJdLFszLDAsIlhee24rMn1cXG9wbHVzIFpee24rMX0iXSxbMCwwLCJcXGNkb3RzIl0sWzAsMiwiXFxjZG90cyJdLFs0LDAsIlxcY2RvdHMiXSxbNCwyLCJcXGNkb3RzIl0sWzQsMiwiXFxiaW5vbXstZFxcLFxcLFxcLFxcLFxcLFxcLFxcLH17XFwsXFwsZFxcLFxcLFxcLFxcLFxcLDF9Il0sWzIsNSwiXFxiaW5vbXstZFxcLFxcLFxcLFxcLFxcLFxcLFxcLH17XFwsXFwsZFxcLFxcLFxcLFxcLFxcLDF9Il0sWzEsMCwiXFxhc3QiXSxbMCwzLCJcXGFzdCJdLFsyLDAsInVcXGNkb3QgRV97MiwxfS1FX3szLDF9IiwxXSxbNCwxLCJ1XFxjZG90IEVfezIsMX0tRV97MywxfSIsMV0sWzUsMywidVxcY2RvdCBFX3syLDF9LUVfezMsMX0iLDFdLFsyLDEsIi1FX3sxLDF9IiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzUsMCwiLUVfezEsMX0iLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNiw0XSxbNywxXSxbNSw4XSxbMyw5XV0=
+                  \[\begin{tikzcd}[column sep=scriptsize]
+                          \cdots & {X^n\oplus Z^{n-1}} & {X^{n+1}\oplus Z^n} & {X^{n+2}\oplus Z^{n+1}} & \cdots \\
+                          \\
+                          \cdots & {X^{n+1}\oplus Y^{n}\oplus X^{n}\oplus Z^{n-1}} & {X^{n+2}\oplus Y^{n+1}\oplus X^{n+1}\oplus Z^n} & {X^{n+3}\oplus Y^{n+2}\oplus X^{n+2}\oplus Z^{n+1}} & \cdots
+                          \arrow["{\binom{-d\,\,\,\,\,\,\,}{\,\,d\,\,\,\,\,1}}", from=1-2, to=1-3]
+                          \arrow["{\binom{-d\,\,\,\,\,\,\,}{\,\,d\,\,\,\,\,1}}", from=1-3, to=1-4]
+                          \arrow["\ast", from=3-2, to=3-3]
+                          \arrow["\ast", from=3-3, to=3-4]
+                          \arrow["{u\cdot E_{2,1}-E_{3,1}}"{description}, from=1-3, to=3-3]
+                          \arrow["{u\cdot E_{2,1}-E_{3,1}}"{description}, from=1-2, to=3-2]
+                          \arrow["{u\cdot E_{2,1}-E_{3,1}}"{description}, from=1-4, to=3-4]
+                          \arrow["{-E_{1,1}}"{description}, dashed, from=1-3, to=3-2]
+                          \arrow["{-E_{1,1}}"{description}, dashed, from=1-4, to=3-3]
+                          \arrow[from=1-1, to=1-2]
+                          \arrow[from=3-1, to=3-2]
+                          \arrow[from=1-4, to=1-5]
+                          \arrow[from=3-4, to=3-5]
+                      \end{tikzcd}.\]
+                  其中 $\ast:=\begin{pmatrix}d\\-u&-d\\1&&-d\\&v&vu&d\end{pmatrix}$.
+                  最后证明 $E_{2,1}+E_{4,2}:X[1]\oplus Z\longrightarrow X[2]\oplus Y[1]\oplus X[1]\oplus Z$ 是同伦等价. 作左逆同态 $E_{1,2}+u\cdot E_{1,3}+E_{2,4}$, 下仅需证明
+                  \begin{align*}
+                      (E_{2,1}+u\cdot E_{1,3}+E_{4,2})(E_{1,2}+E_{2,4})=E_{2,2}+u\cdot E_{2,3}+E_{4,4}\in \mathrm{End}_{C(\mathcal A)}(X[2]\oplus Y[1]\oplus X[1]\oplus Z)
+                  \end{align*}
+                  同伦于恒等映射. 实际上, $-E_{1,3}$, 给出 $\begin{pmatrix}-1\\&&u\\&&-1\\&&&\end{pmatrix}\sim O$.
         \end{enumerate}
     \end{proof}
 \end{proposition}
+
+
+\section{映射筒}
+
 
 \end{document}
