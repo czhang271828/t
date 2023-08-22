@@ -124,6 +124,405 @@
     \end{proof}
 \end{proposition}
 
+\begin{definition}[零伦]
+    称 $X\overset h\longrightarrow Y$ 为复形间的零伦映射, 若存在一组映射 $(s^n:X^n\to Y^{n-1})_{n\in \mathbb Z}$ 使得下图中
+    % https://q.uiver.app/#q=WzAsMTAsWzAsMCwiXFxjZG90cyJdLFswLDEsIlxcY2RvdHMiXSxbMSwwLCJYXntuLTF9Il0sWzIsMCwiWF5uIl0sWzMsMCwiWF57bisxfSJdLFs0LDAsIlxcY2RvdHMiXSxbMSwxLCJZXntuLTF9Il0sWzIsMSwiWV5uIl0sWzMsMSwiWV57bisxfSJdLFs0LDEsIlxcY2RvdHMiXSxbMCwyXSxbMiwzLCJkX1hee24tMX0iXSxbMSw2XSxbNiw3LCJkX1lee24tMX0iLDJdLFs3LDgsImRfWV5uIiwyXSxbOCw5XSxbNCw1XSxbMiw2LCJoXntuLTF9IiwxXSxbMyw3LCJoXm4iLDFdLFs0LDgsImhee24rMX0iLDFdLFszLDQsImRfWF5uIl0sWzMsNiwic15uIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzQsNywic157bisxfSIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+    \[\begin{tikzcd}
+            \cdots & {X^{n-1}} & {X^n} & {X^{n+1}} & \cdots \\
+            \cdots & {Y^{n-1}} & {Y^n} & {Y^{n+1}} & \cdots
+            \arrow[from=1-1, to=1-2]
+            \arrow["{d_X^{n-1}}", from=1-2, to=1-3]
+            \arrow[from=2-1, to=2-2]
+            \arrow["{d_Y^{n-1}}"', from=2-2, to=2-3]
+            \arrow["{d_Y^n}"', from=2-3, to=2-4]
+            \arrow[from=2-4, to=2-5]
+            \arrow[from=1-4, to=1-5]
+            \arrow["{h^{n-1}}"{description}, from=1-2, to=2-2]
+            \arrow["{h^n}"{description}, from=1-3, to=2-3]
+            \arrow["{h^{n+1}}"{description}, from=1-4, to=2-4]
+            \arrow["{d_X^n}", from=1-3, to=1-4]
+            \arrow["{s^n}"{description}, dashed, from=1-3, to=2-2]
+            \arrow["{s^{n+1}}"{description}, dashed, from=1-4, to=2-3]
+        \end{tikzcd}\]
+    $h^n=d_Y^{n-1}s^n+s^{n+1}d_X^n$ 恒成立.
+\end{definition}
 
+\begin{definition}[同伦]
+    若存在复形同态 $f,g:X\to Y$ 使得 $f-g$ 关于某组 $(s^n:X^n\to Y^{n-1})_{n\in \mathbb Z}$ 零伦, 则称 $f$ 与 $g$ 关于 $s$ 同伦. 记作 $f\overset s\sim g$ 或 $s:f\sim g$. 一般地, 表述映射同伦时不强调 $s$.
+\end{definition}
+
+\begin{remark}
+    $\mathrm{Hom}_{C(\mathcal A)}(X,Y)$ 关于同伦关系划分作等价类.
+\end{remark}
+
+\begin{definition}[同伦范畴]
+    复形范畴 $C(\mathcal A)$ 的同伦范畴 $K(\mathcal A)$ 定义如下加法范畴:
+    \begin{itemize}
+        \item $\mathsf{Ob}(C(\mathcal A))=\mathsf{Ob}(K(\mathcal A))$ 为加法范畴 $\mathcal A$ 上的复形全体;
+        \item $\mathrm{Hom}_{K(\mathcal A)}(X,Y):=\dfrac{\mathrm{Hom}_{C(\mathcal A)}(X,Y)}{\mathrm{Htp}(X,Y)}$ 为商 Abel 群, 其中, 子群 $\mathrm{Htp}(X,Y)$ 由 $\mathrm{Hom}_{C(\mathcal A)}(X,Y)$ 中的零伦映射全体组成.
+    \end{itemize}
+\end{definition}
+
+\begin{definition}[同伦等价]
+    定义两个复形在 $C(\mathcal A)$ 范畴中的同伦等价为其在 $K(\mathcal A)$ 范畴中的同构.
+\end{definition}
+
+\begin{definition}[可缩复形]
+    可缩复形为 $K(\mathcal A)$ 范畴中的零对象.
+\end{definition}
+
+\begin{definition}[上同调对象]
+    复形 $X$ 的 $n$ 次上同调(协变)函子为
+    \begin{align*}
+        \mathrm H^n:C(\mathcal A)\longrightarrow \mathrm{Ab},\quad X \longmapsto \dfrac{\mathrm{ker}(d^n_X)}{\mathrm{im}(d^{n-1}_X)}.
+    \end{align*}
+    可检验对任意 $n\in \mathbb Z$, $\mathrm H^n$ 是加法函子.
+\end{definition}
+
+\begin{definition}[无环复形]
+    无环复形即(长)正合列.
+\end{definition}
+
+\begin{definition}[可裂复形]
+    称 $X$ 是可裂复形, 当且仅当存在一列 $s^n:X^n\to X^{n-1}$ 使得 $d^ns^{n+1}d^n=d^n$. 形象地, ``右左右等于右''.
+\end{definition}
+
+\begin{proposition}
+    无环复形未必可缩. Abel 范畴中, 可缩复形即可裂的无环复形.
+    \begin{proof}
+        首先证明无环复形未必可缩. 例如下图第一行的短正合列即无环复形
+        % https://q.uiver.app/#q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIlxcbWF0aGJiIFoiXSxbMiwwLCJcXG1hdGhiYiBaIl0sWzMsMCwiXFxtYXRoYmIgWi8yXFxtYXRoYmIgWiJdLFs0LDAsIjAiXSxbMSwxLCJcXG1hdGhiYiBaIl0sWzIsMSwiXFxtYXRoYmIgWiJdLFszLDEsIlxcbWF0aGJiIFovMlxcbWF0aGJiIFoiXSxbMCwxLCIwIl0sWzQsMSwiMCJdLFswLDFdLFsxLDIsIlxcY2RvdCAyIl0sWzIsM10sWzMsNF0sWzgsNV0sWzUsNiwiXFxjZG90IDIiLDJdLFs2LDddLFs3LDldLFsxLDUsIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzIsNiwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMyw3LCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsyLDUsInNeMSIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFszLDYsInNeMiIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFswLDgsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzQsOSwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
+        \[\begin{tikzcd}
+                0 & {\mathbb Z} & {\mathbb Z} & {\mathbb Z/2\mathbb Z} & 0 \\
+                0 & {\mathbb Z} & {\mathbb Z} & {\mathbb Z/2\mathbb Z} & 0
+                \arrow[from=1-1, to=1-2]
+                \arrow["{\cdot 2}", from=1-2, to=1-3]
+                \arrow[from=1-3, to=1-4]
+                \arrow[from=1-4, to=1-5]
+                \arrow[from=2-1, to=2-2]
+                \arrow["{\cdot 2}"', from=2-2, to=2-3]
+                \arrow[from=2-3, to=2-4]
+                \arrow[from=2-4, to=2-5]
+                \arrow[Rightarrow, no head, from=1-2, to=2-2]
+                \arrow[Rightarrow, no head, from=1-3, to=2-3]
+                \arrow[Rightarrow, no head, from=1-4, to=2-4]
+                \arrow["{s^1}"{description}, dashed, from=1-3, to=2-2]
+                \arrow["{s^2}"{description}, dashed, from=1-4, to=2-3]
+                \arrow[Rightarrow, no head, from=1-1, to=2-1]
+                \arrow[Rightarrow, no head, from=1-5, to=2-5]
+            \end{tikzcd},\]
+        但其恒等映射非零伦. 若不然, 记恒等映射关于 $s$ 零伦, 则 $s^2=0$, 此时 $s^1$ 不存在. 矛盾. \par
+        下证明 Abel 范畴中可裂无环复形等价于可缩复形. 一方面, 若 $X$ 可缩, 则 $\mathrm{id}_X\sim 0$. 此时存在一列 $s^n:X^n\to X^{n-1}$ 使得 $\mathrm{id}_{X^n}= d^{n-1}s^n+s^{n+1}d^n$. 对上式右侧复合 $d^{n-1}$ 即得 $d^{n-1}=d^{n-1}s^nd^{n-1}$. \par
+        反之, 若 $X$ 是可裂无环复形, 则存在幂等映射 $\varphi_n:=(s^{n+1}d^n):X^n\to X^n$. 此时有交换图
+        % https://q.uiver.app/#q=WzAsNSxbMCwxLCJYXm4iXSxbMSwxLCJYXm4iXSxbMCwwLCJcXG1hdGhybXtpbX0oXFx2YXJwaGlfbikiXSxbMiwxLCJYXm4iXSxbMiwwLCJcXG1hdGhybXtpbX0oXFx2YXJwaGlfbikiXSxbMCwxLCJcXHZhcnBoaV9uIiwyXSxbMCwyLCJcXHdpZGV0aWxkZXtcXHZhcnBoaV9ufSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFsyLDEsIm1fe1xcdmFycGhpX259IiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMSwzLCJcXHZhcnBoaV9uIiwyXSxbMSw0LCJcXHdpZGV0aWxkZXtcXHZhcnBoaV9ufSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFs0LDMsIm1fe1xcdmFycGhpX259IiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiw0LCJcXG1hdGhybXtpZH1fe1xcbWF0aHJte2ltfShcXHZhcnBoaV9uKX0iLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+        \[\begin{tikzcd}
+                {\mathrm{im}(\varphi_n)} && {\mathrm{im}(\varphi_n)} \\
+                {X^n} & {X^n} & {X^n}
+                \arrow["{\varphi_n}"', from=2-1, to=2-2]
+                \arrow["{\widetilde{\varphi_n}}", two heads, from=2-1, to=1-1]
+                \arrow["{m_{\varphi_n}}", hook, from=1-1, to=2-2]
+                \arrow["{\varphi_n}"', from=2-2, to=2-3]
+                \arrow["{\widetilde{\varphi_n}}", two heads, from=2-2, to=1-3]
+                \arrow["{m_{\varphi_n}}", hook, from=1-3, to=2-3]
+                \arrow["{\mathrm{id}_{\mathrm{im}(\varphi_n)}}", dashed, from=1-1, to=1-3]
+            \end{tikzcd}.\]
+        其中, 根据 Abel 范畴中满-单分解的在同构意义下的唯一性, 不妨记虚线处为恒等映射. 此时短正合列
+        % https://q.uiver.app/#q=WzAsNSxbMiwwLCJYXm4iXSxbMSwwLCJcXG1hdGhybXtrZXJ9KFxcdmFycGhpX24pIl0sWzMsMCwiXFxtYXRocm17aW19KFxcdmFycGhpX24pIl0sWzAsMCwiMCJdLFs0LDAsIjAiXSxbMCwyLCJcXHdpZGV0aWxkZXtcXHZhcnBoaV9ufSJdLFsxLDAsIlxcaW90YV9uIl0sWzMsMV0sWzIsNF1d
+        \[\begin{tikzcd}
+                0 & {\mathrm{ker}(\varphi_n)} & {X^n} & {\mathrm{im}(\varphi_n)} & 0
+                \arrow["{\widetilde{\varphi_n}}", from=1-3, to=1-4]
+                \arrow["{\iota_n}", from=1-2, to=1-3]
+                \arrow[from=1-1, to=1-2]
+                \arrow[from=1-4, to=1-5]
+            \end{tikzcd}\]
+        可裂($\widetilde{\varphi^n}$ 可裂满). 因此, $X$ 同构于可缩复形的直和
+        \begin{align*}
+            X\simeq \bigoplus_{n\in \mathbb Z}\left[\cdots \longrightarrow 0\longrightarrow \mathrm{ker}(\varphi_n)\overset{d^n}\longrightarrow \mathrm{im}(\varphi_n)\longrightarrow 0\longrightarrow \cdots\right].
+        \end{align*}
+    \end{proof}
+\end{proposition}
+
+\begin{proposition}[正合范畴的强形式蛇引理(章-荣引理)]
+    略.
+\end{proposition}
+
+\begin{remark}[同调代数基本定理]
+    以上命题的推论是同调代数基本定理: 对任意 Abel 范畴的短正合列
+    % https://q.uiver.app/#q=WzAsNSxbMCwwLCIwIl0sWzEsMCwiWCJdLFsyLDAsIlkiXSxbMywwLCJaIl0sWzQsMCwiMCJdLFswLDFdLFsxLDIsIlxcaW90YSJdLFsyLDMsIlxccGkiXSxbMyw0XV0=
+    \[\begin{tikzcd}
+            0 & X & Y & Z & 0
+            \arrow[from=1-1, to=1-2]
+            \arrow["\iota", from=1-2, to=1-3]
+            \arrow["\pi", from=1-3, to=1-4]
+            \arrow[from=1-4, to=1-5]
+        \end{tikzcd},\]
+    总有长正合列
+    % https://q.uiver.app/#q=WzAsNyxbMiwwLCJcXG1hdGhybSBIXm4oWCkiXSxbMywwLCJcXG1hdGhybSBIXm4oWSkiXSxbNCwwLCJcXG1hdGhybSBIXm4oWikiXSxbMSwwLCJcXG1hdGhybSBIXntuLTF9KFopIl0sWzUsMCwiXFxtYXRocm0gSF57bisxfShYKSJdLFswLDAsIlxcY2RvdHMiXSxbNiwwLCJcXGNkb3RzIl0sWzMsMCwiXFxwYXJ0aWFsIF57bi0xfSJdLFswLDEsIlxcbWF0aHJtIEhebihcXGlvdGEpIl0sWzEsMiwiXFxtYXRocm0gSF5uKFxccGkpIl0sWzIsNCwiXFxwYXJ0aWFsXm4iXSxbNSwzXSxbNCw2XV0=
+    \[\begin{tikzcd}
+            \cdots & {\mathrm H^{n-1}(Z)} & {\mathrm H^n(X)} & {\mathrm H^n(Y)} & {\mathrm H^n(Z)} & {\mathrm H^{n+1}(X)} & \cdots
+            \arrow["{\partial ^{n-1}}", from=1-2, to=1-3]
+            \arrow["{\mathrm H^n(\iota)}", from=1-3, to=1-4]
+            \arrow["{\mathrm H^n(\pi)}", from=1-4, to=1-5]
+            \arrow["{\partial^n}", from=1-5, to=1-6]
+            \arrow[from=1-1, to=1-2]
+            \arrow[from=1-6, to=1-7]
+        \end{tikzcd}.\]
+    对态射范畴使用蛇引理, 易知连接态射 $\partial$ 自然.
+\end{remark}
+
+\begin{definition}[拟同构]
+    称 $X\overset f\longrightarrow Y$ 为拟同构, 若对一切 $n\in \mathbb Z$, $\mathrm H^n(f)$ 均给出 Abel 群的同构.
+\end{definition}
+
+\begin{example}
+    注意以下相似命题.
+    \begin{enumerate}
+        \item ``可缩复形''``无环复形''用于描述单个复形的性质. Abel 范畴中, 可缩复形即可裂的无环复形.
+        \item  ``同构''``同伦等价''``拟同构''用于描述两个复形对象的关系. 其中,
+              % https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXHRleHR75ZCM5p6EfSJdLFsyLDAsIlxcdGV4dHvlkIzkvKbnrYnku7d9Il0sWzQsMCwiXFx0ZXh0e+aLn+WQjOaehH0iXSxbMCwxLCJcXHRleHR75Lil5qC85by65LqOfSJdLFsxLDIsIlxcdGV4dHvkuKXmoLzlvLrkuo59Il1d
+              \[\begin{tikzcd}
+                      {\text{同构}} && {\text{同伦等价}} && {\text{拟同构}}
+                      \arrow["{\text{严格强于}}", from=1-1, to=1-3]
+                      \arrow["{\text{严格强于}}", from=1-3, to=1-5]
+                  \end{tikzcd}.\]
+        \item ``零伦''用于描述两个复形对象间的某一态射.
+        \item ``映射相等''``映射同伦''``映射诱导相同的上同调态射''用于描述复形对象间的两个态射. 其中,
+              % https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXHRleHR75pig5bCE55u4562JfSJdLFsyLDAsIlxcdGV4dHvmmKDlsITlkIzkvKZ9Il0sWzQsMCwiXFx0ZXh0e+aYoOWwhOivseWvvOebuOWQjOeahOS4iuWQjOiwg+aAgeWwhH0iXSxbMCwxLCJcXHRleHR75Lil5qC85by65LqOfSJdLFsxLDIsIlxcdGV4dHvkuKXmoLzlvLrkuo59Il1d
+              \[\begin{tikzcd}
+                      {\text{映射相等}} && {\text{映射同伦}} && {\text{映射诱导相同的上同调态射}}
+                      \arrow["{\text{严格强于}}", from=1-1, to=1-3]
+                      \arrow["{\text{严格强于}}", from=1-3, to=1-5]
+                  \end{tikzcd}\]
+    \end{enumerate}
+    对第二点说明如下.
+    \begin{itemize}
+        \item 拟同构而非同伦等价的例子如下:
+              % https://q.uiver.app/#q=WzAsOCxbMCwwLCIwIl0sWzEsMCwiWCJdLFsxLDEsIlhcXG9wbHVzIFgiXSxbMywwLCIwIl0sWzAsMSwiMCJdLFsyLDAsIjAiXSxbMywxLCIwIl0sWzIsMSwiWCJdLFswLDFdLFsxLDIsIlxcYmlub20xMCIsMl0sWzUsN10sWzcsNl0sWzEsNV0sWzAsNF0sWzMsNl0sWzUsM10sWzQsMl0sWzIsNywiKDAsMSkiLDJdLFsxLDQsInNeMSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs1LDIsInNeMiIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+              \[\begin{tikzcd}
+                      0 & X & 0 & 0 \\
+                      0 & {X\oplus X} & X & 0
+                      \arrow[from=1-1, to=1-2]
+                      \arrow["\binom10"', from=1-2, to=2-2]
+                      \arrow[from=1-3, to=2-3]
+                      \arrow[from=2-3, to=2-4]
+                      \arrow[from=1-2, to=1-3]
+                      \arrow[from=1-1, to=2-1]
+                      \arrow[from=1-4, to=2-4]
+                      \arrow[from=1-3, to=1-4]
+                      \arrow[from=2-1, to=2-2]
+                      \arrow["{(0,1)}"', from=2-2, to=2-3]
+                      \arrow["{s^1}"', dashed, from=1-2, to=2-1]
+                      \arrow["{s^2}"', dashed, from=1-3, to=2-2]
+                  \end{tikzcd}.\]
+              上图中, 链复形的上同调对象均同构; 但不存在 $s^1$ 与 $s^2$ 使得 $\binom 10$ 是零伦映射.
+        \item 同伦等价而非同构的例子如非零可缩复形与零复形.
+    \end{itemize}
+    对第四点说明如下.
+    \begin{enumerate}
+        \item 诱导相同的上同调态射未必同伦, 例如取无环但不可裂的复形 $X$, 则 $0$ 和 $\mathrm{id}_X$ 诱导了相同的上同调态射但不同伦.
+        \item 同伦而非相等的例子如零伦映射与零映射.
+    \end{enumerate}
+\end{example}
+
+\section{映射锥}
+
+\begin{definition}[映射锥]
+    对加法范畴上的复形间态射 $X\overset u\longrightarrow Y$, 定义映射锥 $\mathrm{cone}(u)$ 为如下复形
+    % https://q.uiver.app/#q=WzAsNSxbMywwLCJYXntuKzF9XFxvcGx1cyBZXm4iXSxbNSwwLCJYXntuKzJ9XFxvcGx1cyBZXntuKzF9Il0sWzEsMCwiWF5uXFxvcGx1cyBZXntuLTF9Il0sWzAsMCwiXFxjZG90cyJdLFs2LDAsIlxcY2RvdHMiXSxbMywyXSxbMiwwLCJcXGJpbm9tey1kX1heblxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLFxcLH17XFwsXFwsdV57bn1cXCxcXCxcXCxcXCxkX1lee24tMX19Il0sWzAsMSwiXFxiaW5vbXstZF9YXntuKzF9XFwsXFwsXFwsXFwsXFwsXFwsXFwsXFwsXFwsXFwsfXtcXCxcXCx1XntuKzF9XFwsXFwsXFwsXFwsZF9ZXntufX0iXSxbMSw0XV0=
+    \[\begin{tikzcd}
+            \cdots & {X^n\oplus Y^{n-1}} && {X^{n+1}\oplus Y^n} && {X^{n+2}\oplus Y^{n+1}} & \cdots
+            \arrow[from=1-1, to=1-2]
+            \arrow["{\binom{-d_X^n\,\,\,\,\,\,\,\,\,\,\,\,\,}{\,\,u^{n}\,\,\,\,d_Y^{n-1}}}", from=1-2, to=1-4]
+            \arrow["{\binom{-d_X^{n+1}\,\,\,\,\,\,\,\,\,\,}{\,\,u^{n+1}\,\,\,\,d_Y^{n}}}", from=1-4, to=1-6]
+            \arrow[from=1-6, to=1-7]
+        \end{tikzcd}.\]
+\end{definition}
+
+\begin{slogan}
+    定义后移运算 $[1]:(X^n,d^n_X)_{n\in \mathbb Z}\to (X^{n+1},d^{n+1}_X)_{n\in \mathbb Z}$ 为 $C(\mathcal A)$ (相应地, $K(\mathcal A)$)的自同构函子.
+\end{slogan}
+
+\begin{proposition}
+    映射锥 $X\overset u\longrightarrow Y$ 确定 $C(\mathcal A)$ 中的态射序列
+    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIlxcbWF0aHJte2NvbmV9KHUpIl0sWzMsMCwiWFsxXSJdLFswLDEsInUiXSxbMSwyLCJcXGJpbm9tMDEiXSxbMiwzLCIoMSwwKSJdXQ==
+    \[\begin{tikzcd}
+            X & Y & {\mathrm{cone}(u)} & {X[1]}
+            \arrow["u", from=1-1, to=1-2]
+            \arrow["\binom01", from=1-2, to=1-3]
+            \arrow["{(1,0)}", from=1-3, to=1-4]
+        \end{tikzcd}.\]
+    记 $[f]$ 为 $f$ 在 $K(\mathcal A)$ 中的像, 则 $[u]$ 给出良定义的 $K(\mathcal A)$ 中态射序列.
+    \begin{proof}
+        考虑 $C(\mathcal A)$ 范畴. 今仅需证明对同伦的映射 $s:u\sim v$, 总有同伦的交换图
+        % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYIl0sWzEsMCwiWSJdLFsyLDAsIlxcbWF0aHJte2NvbmV9KHUpIl0sWzMsMCwiWFsxXSJdLFswLDEsIlgiXSxbMSwxLCJZIl0sWzIsMSwiXFxtYXRocm17Y29uZX0odikiXSxbMywxLCJYWzFdIl0sWzAsMSwidSJdLFsxLDIsIlxcYmlub20wMSJdLFsyLDMsIigxLDApIl0sWzQsNSwidiIsMl0sWzUsNiwiXFxiaW5vbTAxIiwyXSxbNiw3LCIoMSwwKSIsMl0sWzAsNCwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMSw1LCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDcsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzIsNiwiXFx2YXJwaGkiLDJdXQ==
+        \[\begin{tikzcd}
+                X & Y & {\mathrm{cone}(u)} & {X[1]} \\
+                X & Y & {\mathrm{cone}(v)} & {X[1]}
+                \arrow["u", from=1-1, to=1-2]
+                \arrow["\binom01", from=1-2, to=1-3]
+                \arrow["{(1,0)}", from=1-3, to=1-4]
+                \arrow["v"', from=2-1, to=2-2]
+                \arrow["\binom01"', from=2-2, to=2-3]
+                \arrow["{(1,0)}"', from=2-3, to=2-4]
+                \arrow[Rightarrow, no head, from=1-1, to=2-1]
+                \arrow[Rightarrow, no head, from=1-2, to=2-2]
+                \arrow[Rightarrow, no head, from=1-4, to=2-4]
+                \arrow["\varphi"', from=1-3, to=2-3]
+            \end{tikzcd}.\]
+        注意到
+        \begin{align*}
+            \begin{pmatrix}\mathrm{id}_{X^{n+2}}&0\\s^n&\mathrm{id}_{Y^{n+1}}\end{pmatrix}\cdot \begin{pmatrix}-d_X^{n+1}&0\\u^{n+1}&d_Y^n\end{pmatrix} & =\begin{pmatrix}-d_X^{n+1}&0\\u^{n+1}-s^nd_X^{n+1}&d_Y^n\end{pmatrix}, \\
+            \begin{pmatrix}-d_X^{n+1}&0\\v^{n+1}&d_Y^n\end{pmatrix}\cdot \begin{pmatrix}\mathrm{id}_{X^{n+1}}&0\\s^{n-1}&\mathrm{id}_{Y^{n}}\end{pmatrix} & =\begin{pmatrix}-d_X^{n+1} & 0 \\v^{n+1}+d_Y^{n}s^{n-1}&d_Y^n
+            \end{pmatrix}.
+        \end{align*}
+        因此, $s:u\sim v$ 当且仅当 $\varphi:\begin{pmatrix}\mathrm{id}&\\s&\mathrm{id}\end{pmatrix}:\mathrm{cone}(u)\to \mathrm{cone}(v)$ 使得上图交换. 此时 $\varphi\sim \mathrm{id}_{X[1]\oplus Y}$.
+    \end{proof}
+\end{proposition}
+
+\begin{proposition}[复形同伦范畴为三角范畴]
+    记 $\mathcal E$ 为映射锥诱导的三角类, 即, 对任意三角 $\begin{tikzcd}
+            {X'} & {Y'} & {Z'} & {X'[1]}
+            \arrow["u", from=1-1, to=1-2]
+            \arrow["v", from=1-2, to=1-3]
+            \arrow["w", from=1-3, to=1-4]
+        \end{tikzcd}$, 总存在复形 $X,Y$, 态射 $u$, 以及同伦等价 $f,g,h$, 使得下图交换.
+    % https://q.uiver.app/#q=WzAsOCxbMCwwLCJYJyJdLFsxLDAsIlknIl0sWzIsMCwiWiciXSxbMywwLCJYJ1sxXSJdLFswLDEsIlgiXSxbMSwxLCJZIl0sWzIsMSwiXFxtYXRocm17Y29uZX0odSkiXSxbMywxLCJYWzFdIl0sWzAsMSwidSJdLFsxLDIsInYiXSxbMiwzLCJ3Il0sWzQsNSwidSIsMl0sWzUsNiwiXFxiaW5vbTAxIiwyXSxbNiw3LCIoMSwwKSIsMl0sWzAsNCwiZiIsMl0sWzEsNSwiZyIsMl0sWzIsNiwiaCJdLFszLDcsImZbMV0iXV0=
+    \[\begin{tikzcd}
+            {X'} & {Y'} & {Z'} & {X'[1]} \\
+            X & Y & {\mathrm{cone}(u)} & {X[1]}
+            \arrow["u", from=1-1, to=1-2]
+            \arrow["v", from=1-2, to=1-3]
+            \arrow["w", from=1-3, to=1-4]
+            \arrow["u"', from=2-1, to=2-2]
+            \arrow["\binom01"', from=2-2, to=2-3]
+            \arrow["{(1,0)}"', from=2-3, to=2-4]
+            \arrow["f"', from=1-1, to=2-1]
+            \arrow["g"', from=1-2, to=2-2]
+            \arrow["h", from=1-3, to=2-3]
+            \arrow["{f[1]}", from=1-4, to=2-4]
+        \end{tikzcd}.\]
+    则 $(K(\mathcal A),[1],\mathcal E)$ 为三角范畴.
+    \begin{proof}
+        下依次验证如下几条:
+        \begin{enumerate}
+            \item $(X,X,0,\mathrm{id}_X,0,0)\in \mathcal E$;
+            \item $\mathcal E$ 关于``顺时针旋转''封闭, 即, $\begin{tikzcd}
+                          Y & {\mathrm{cone}(u)} & {X[1]} & {Y[1]}
+                          \arrow["\binom01", from=1-1, to=1-2]
+                          \arrow["{(0,1)}", from=1-2, to=1-3]
+                          \arrow["{-u[1]}", from=1-3, to=1-4]
+                      \end{tikzcd}\in \mathcal E$;
+            \item ``二推三''成立, 即, 给定任意同伦交换图($f,g$ 为同伦等价)
+                  % https://q.uiver.app/#q=WzAsOCxbMSwwLCJZIl0sWzIsMCwiXFxtYXRocm17Y29uZX0odSkiXSxbMywwLCJYWzFdIl0sWzAsMCwiWCJdLFswLDEsIlgnIl0sWzEsMSwiWSciXSxbMiwxLCJcXG1hdGhybXtjb25lfSh1JykiXSxbMywxLCJYJ1sxXSJdLFswLDEsIlxcYmlub20wMSJdLFsxLDIsIigwLDEpIl0sWzMsMCwidSJdLFs0LDUsInUnIiwyXSxbMyw0LCJmIiwyXSxbMCw1LCJnIiwyXSxbNiw3LCIoMCwxKSIsMl0sWzUsNiwiXFxiaW5vbTAxIiwyXSxbMiw3LCJmWzFdIl0sWzEsNiwiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+                  \[\begin{tikzcd}
+                          X & Y & {\mathrm{cone}(u)} & {X[1]} \\
+                          {X'} & {Y'} & {\mathrm{cone}(u')} & {X'[1]}
+                          \arrow["\binom01", from=1-2, to=1-3]
+                          \arrow["{(0,1)}", from=1-3, to=1-4]
+                          \arrow["u", from=1-1, to=1-2]
+                          \arrow["{u'}"', from=2-1, to=2-2]
+                          \arrow["f"', from=1-1, to=2-1]
+                          \arrow["g"', from=1-2, to=2-2]
+                          \arrow["{(0,1)}"', from=2-3, to=2-4]
+                          \arrow["\binom01"', from=2-2, to=2-3]
+                          \arrow["{f[1]}", from=1-4, to=2-4]
+                          \arrow[dashed, from=1-3, to=2-3]
+                      \end{tikzcd},\]
+                  总有虚线处的同伦等价使得上图交换;
+            \item 八面体公理成立.
+        \end{enumerate}
+        \begin{enumerate}
+            \item 作如下 $K(\mathcal A)$ 中的交换图
+                  % https://q.uiver.app/#q=WzAsOCxbMSwxLCJYIl0sWzIsMSwiXFxtYXRocm17Y29uZX0oXFxtYXRocm17aWR9X1gpIl0sWzMsMSwiWFsxXSJdLFswLDEsIlgiXSxbMCwwLCJYIl0sWzEsMCwiWCJdLFszLDAsIlhbMV0iXSxbMiwwLCIwIl0sWzAsMSwiXFxiaW5vbTAxIiwyXSxbMSwyLCIoMCwxKSIsMl0sWzQsNSwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNCwzLCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs2LDIsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzMsMCwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNSwwLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs1LDddLFs3LDZdLFs3LDFdXQ==
+                  \[\begin{tikzcd}
+                          X & X & 0 & {X[1]} \\
+                          X & X & {\mathrm{cone}(\mathrm{id}_X)} & {X[1]}
+                          \arrow["\binom01"', from=2-2, to=2-3]
+                          \arrow["{(0,1)}"', from=2-3, to=2-4]
+                          \arrow[Rightarrow, no head, from=1-1, to=1-2]
+                          \arrow[Rightarrow, no head, from=1-1, to=2-1]
+                          \arrow[Rightarrow, no head, from=1-4, to=2-4]
+                          \arrow[Rightarrow, no head, from=2-1, to=2-2]
+                          \arrow[Rightarrow, no head, from=1-2, to=2-2]
+                          \arrow[from=1-2, to=1-3]
+                          \arrow[from=1-3, to=1-4]
+                          \arrow[from=1-3, to=2-3]
+                      \end{tikzcd}.\]
+                  下证明 $\binom01:X\to \mathrm{cone}(\mathrm{id}_X)$ 是零伦的. 注意到下图即可
+                  % https://q.uiver.app/#q=WzAsMTAsWzMsMCwiWF5uIl0sWzUsMCwiWF57bisxfSJdLFsxLDAsIlhee24tMX0iXSxbNiwwLCJcXGNkb3RzIl0sWzAsMCwiXFxjZG90cyJdLFsxLDEsIlhee259XFxvcGx1cyBYXntuLTF9Il0sWzMsMSwiWF57bisxfVxcb3BsdXMgWF5uIl0sWzUsMSwiWF57bisyfVxcb3BsdXMgWF57bisxfSJdLFswLDEsIlxcY2RvdHMiXSxbNiwxLCJcXGNkb3RzIl0sWzIsMCwiZF9YXntuLTF9Il0sWzAsMSwiZF9YXntufSJdLFs0LDJdLFsxLDNdLFs4LDVdLFs3LDldLFsyLDUsIlxcYmlub20wMSIsMl0sWzAsNiwiXFxiaW5vbTAxIiwyXSxbMSw3LCJcXGJpbm9tMDEiLDJdLFs1LDYsIlxcYmlub217LWRcXCxcXCxcXCxcXCwwXFwsXFwsXFwsfXsxXFwsXFwsXFwsXFwsXFwsZH0iLDJdLFs2LDcsIlxcYmlub217LWRcXCxcXCxcXCxcXCwwXFwsXFwsXFwsfXsxXFwsXFwsXFwsXFwsXFwsZH0iLDJdLFswLDUsIlxcYmlub20xMCIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsxLDYsIlxcYmlub20xMCIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+                  \[\begin{tikzcd}
+                          \cdots & {X^{n-1}} && {X^n} && {X^{n+1}} & \cdots \\
+                          \cdots & {X^{n}\oplus X^{n-1}} && {X^{n+1}\oplus X^n} && {X^{n+2}\oplus X^{n+1}} & \cdots
+                          \arrow["{d_X^{n-1}}", from=1-2, to=1-4]
+                          \arrow["{d_X^{n}}", from=1-4, to=1-6]
+                          \arrow[from=1-1, to=1-2]
+                          \arrow[from=1-6, to=1-7]
+                          \arrow[from=2-1, to=2-2]
+                          \arrow[from=2-6, to=2-7]
+                          \arrow["\binom01"', from=1-2, to=2-2]
+                          \arrow["\binom01"', from=1-4, to=2-4]
+                          \arrow["\binom01"', from=1-6, to=2-6]
+                          \arrow["{\binom{-d\,\,\,\,0\,\,\,}{1\,\,\,\,\,d}}"', from=2-2, to=2-4]
+                          \arrow["{\binom{-d\,\,\,\,0\,\,\,}{1\,\,\,\,\,d}}"', from=2-4, to=2-6]
+                          \arrow["\binom10"{description}, dashed, from=1-4, to=2-2]
+                          \arrow["\binom10"{description}, dashed, from=1-6, to=2-4]
+                      \end{tikzcd}.\]
+                  最后验证 $0\to \mathrm{cone}(\mathrm{id}_X)$ 是同伦等价, 即, $\mathrm{cone}(\mathrm{id}_X)$ 是可缩复形. 事实上, 有下图
+                  % https://q.uiver.app/#q=WzAsMTAsWzEsMCwiWF57bn1cXG9wbHVzIFhee24tMX0iXSxbMywwLCJYXntuKzF9XFxvcGx1cyBYXntufSJdLFs1LDAsIlhee24rMn1cXG9wbHVzIFhee24rMX0iXSxbMSwxLCJYXntufVxcb3BsdXMgWF57bi0xfSJdLFszLDEsIlhee24rMX1cXG9wbHVzIFhee259Il0sWzUsMSwiWF57bisyfVxcb3BsdXMgWF57bisxfSJdLFswLDAsIlxcY2RvdHMiXSxbMCwxLCJcXGNkb3RzIl0sWzYsMCwiXFxjZG90cyJdLFs2LDEsIlxcY2RvdHMiXSxbNiwwXSxbMCwxLCJcXGJpbm9tey1kXFwsXFwsXFwsXFwsXFwsXFwsXFwsfXsxXFwsXFwsXFwsXFwsZH0iXSxbMSwyLCJcXGJpbm9tey1kXFwsXFwsXFwsXFwsXFwsXFwsXFwsfXsxXFwsXFwsXFwsXFwsZH0iXSxbMiw4XSxbNywzXSxbMyw0LCJcXGJpbm9tey1kXFwsXFwsXFwsXFwsXFwsXFwsXFwsfXsxXFwsXFwsXFwsXFwsZH0iLDJdLFs0LDUsIlxcYmlub217LWRcXCxcXCxcXCxcXCxcXCxcXCxcXCx9ezFcXCxcXCxcXCxcXCxkfSIsMl0sWzUsOV0sWzAsMywiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMSw0LCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsyLDUsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsMywiXFxiaW5vbXtcXCxcXCxcXCxcXCxcXCxcXCwxfXtcXCxcXCxcXCxcXCx9IiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzIsNCwiXFxiaW5vbXtcXCxcXCxcXCxcXCxcXCxcXCwxfXtcXCxcXCxcXCxcXCx9IiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+                  \[\begin{tikzcd}
+                          \cdots & {X^{n}\oplus X^{n-1}} && {X^{n+1}\oplus X^{n}} && {X^{n+2}\oplus X^{n+1}} & \cdots \\
+                          \cdots & {X^{n}\oplus X^{n-1}} && {X^{n+1}\oplus X^{n}} && {X^{n+2}\oplus X^{n+1}} & \cdots
+                          \arrow[from=1-1, to=1-2]
+                          \arrow["{\binom{-d\,\,\,\,\,\,\,}{1\,\,\,\,d}}", from=1-2, to=1-4]
+                          \arrow["{\binom{-d\,\,\,\,\,\,\,}{1\,\,\,\,d}}", from=1-4, to=1-6]
+                          \arrow[from=1-6, to=1-7]
+                          \arrow[from=2-1, to=2-2]
+                          \arrow["{\binom{-d\,\,\,\,\,\,\,}{1\,\,\,\,d}}"', from=2-2, to=2-4]
+                          \arrow["{\binom{-d\,\,\,\,\,\,\,}{1\,\,\,\,d}}"', from=2-4, to=2-6]
+                          \arrow[from=2-6, to=2-7]
+                          \arrow[Rightarrow, no head, from=1-2, to=2-2]
+                          \arrow[Rightarrow, no head, from=1-4, to=2-4]
+                          \arrow[Rightarrow, no head, from=1-6, to=2-6]
+                          \arrow["{\binom{\,\,\,\,\,\,1}{\,\,\,\,}}"{description}, dashed, from=1-4, to=2-2]
+                          \arrow["{\binom{\,\,\,\,\,\,1}{\,\,\,\,}}"{description}, dashed, from=1-6, to=2-4]
+                      \end{tikzcd}.\]
+            \item 只需证明对存在同伦等价 $\varphi$ 使得下图在 $K(\mathcal A)$ 中交换
+                  % https://q.uiver.app/#q=WzAsOCxbMCwwLCJZIl0sWzEsMCwiXFxtYXRocm17Y29uZX0odSkiXSxbMiwwLCJYWzFdIl0sWzAsMSwiWSJdLFsxLDEsIlxcbWF0aHJte2NvbmV9KHUpIl0sWzIsMSwiXFxtYXRocm17Y29uZX0oXFxiaW5vbTAxKSJdLFszLDEsIllbMV0iXSxbMywwLCJZWzFdIl0sWzAsMSwiXFxiaW5vbTAxIl0sWzEsMiwiKDEsMCkiXSxbMyw0LCJcXGJpbm9tMDEiLDJdLFs0LDUsIlxcYmlub217MH17MX0iLDJdLFs1LDYsIigxLDApIiwyXSxbMiw3LCItdVsxXSJdLFswLDMsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsNCwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNyw2LCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsyLDUsIlxcdmFycGhpICIsMl1d
+                  \[\begin{tikzcd}
+                          Y & {\mathrm{cone}(u)} & {X[1]} & {Y[1]} \\
+                          Y & {\mathrm{cone}(u)} & {\mathrm{cone}(\binom01)} & {Y[1]}
+                          \arrow["\binom01", from=1-1, to=1-2]
+                          \arrow["{(1,0)}", from=1-2, to=1-3]
+                          \arrow["\binom01"', from=2-1, to=2-2]
+                          \arrow["{\binom{0}{1}}"', from=2-2, to=2-3]
+                          \arrow["{(1,0)}"', from=2-3, to=2-4]
+                          \arrow["{-u[1]}", from=1-3, to=1-4]
+                          \arrow[Rightarrow, no head, from=1-1, to=2-1]
+                          \arrow[Rightarrow, no head, from=1-2, to=2-2]
+                          \arrow[Rightarrow, no head, from=1-4, to=2-4]
+                          \arrow["{\varphi }"', from=1-3, to=2-3]
+                      \end{tikzcd},\]
+                  兹断言下图即为所求
+                  % https://q.uiver.app/#q=WzAsOCxbMCwwLCJZIl0sWzEsMCwiWFsxXVxcb3BsdXMgWSJdLFsyLDAsIlhbMV0iXSxbMCwxLCJZIl0sWzEsMSwiWFsxXVxcb3BsdXMgWSJdLFsyLDEsIllbMV1cXG9wbHVzIFhbMV1cXG9wbHVzIFkiXSxbMywxLCJZWzFdIl0sWzMsMCwiWVsxXSJdLFswLDEsIlxcYmlub20wMSJdLFsxLDIsIigxLDApIl0sWzMsNCwiXFxiaW5vbTAxIiwyXSxbNCw1LCJcXGxlZnQoXFxzdWJzdGFja3swXFwsXFwsMFxcXFwxXFwsXFwsMFxcXFwwXFwsXFwsMX1cXHJpZ2h0KSIsMl0sWzUsNiwiKDEsMCwwKSIsMl0sWzIsNywiLXVbMV0iXSxbMCwzLCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxLDQsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzcsNiwiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMiw1LCJcXGxlZnQoXFxzdWJzdGFja3stdVsxXVxcXFwxXFxcXDB9XFxyaWdodCkiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+                  \[\begin{tikzcd}
+                          Y & {X[1]\oplus Y} & {X[1]} & {Y[1]} \\
+                          Y & {X[1]\oplus Y} & {Y[1]\oplus X[1]\oplus Y} & {Y[1]}
+                          \arrow["\binom01", from=1-1, to=1-2]
+                          \arrow["{(1,0)}", from=1-2, to=1-3]
+                          \arrow["\binom01"', from=2-1, to=2-2]
+                          \arrow["{\left(\substack{0\,\,0\\1\,\,0\\0\,\,1}\right)}"', from=2-2, to=2-3]
+                          \arrow["{(1,0,0)}"', from=2-3, to=2-4]
+                          \arrow["{-u[1]}", from=1-3, to=1-4]
+                          \arrow[Rightarrow, no head, from=1-1, to=2-1]
+                          \arrow[Rightarrow, no head, from=1-2, to=2-2]
+                          \arrow[Rightarrow, no head, from=1-4, to=2-4]
+                          \arrow["{\left(\substack{-u[1]\\1\\0}\right)}"', dashed, from=1-3, to=2-3]
+                      \end{tikzcd}.\]
+                  \begin{enumerate}
+                      \item 先证明上图在 $K(\mathcal A)$ 中交换. 实际上,
+                  \end{enumerate}
+        \end{enumerate}
+    \end{proof}
+\end{proposition}
 
 \end{document}
