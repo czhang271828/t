@@ -4,12 +4,12 @@
 
 % Customise href Colours.
 \usepackage[colorlinks = true,
-            linkcolor = blue,
-            urlcolor  = blue,
-            citecolor = blue,
-            anchorcolor = blue]{hyperref}
+ linkcolor = blue,
+ urlcolor = blue,
+ citecolor = blue,
+ anchorcolor = blue]{hyperref}
 
-\newcommand{\changeurlcolor}[1]{\hypersetup{urlcolor=#1}}       
+\newcommand{\changeurlcolor}[1]{\hypersetup{urlcolor=#1}} 
 
 \newcommand*{\name}{张陈成}
 \newcommand*{\id}{023071910029}
@@ -278,7 +278,7 @@
     注意以下相似命题.
     \begin{enumerate}
         \item ``可缩复形''``无环复形''用于描述单个复形的性质. Abel 范畴中, 可缩复形即可裂的无环复形.
-        \item  ``同构''``同伦等价''``拟同构''用于描述两个复形对象的关系. 其中,
+        \item ``同构''``同伦等价''``拟同构''用于描述两个复形对象的关系. 其中,
               % https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXHRleHR75ZCM5p6EfSJdLFsyLDAsIlxcdGV4dHvlkIzkvKbnrYnku7d9Il0sWzQsMCwiXFx0ZXh0e+aLn+WQjOaehH0iXSxbMCwxLCJcXHRleHR75Lil5qC85by65LqOfSJdLFsxLDIsIlxcdGV4dHvkuKXmoLzlvLrkuo59Il1d
               \[\begin{tikzcd}
                       {\text{同构}} && {\text{同伦等价}} && {\text{拟同构}}
@@ -653,8 +653,235 @@
     \end{proof}
 \end{proposition}
 
+\begin{remark}
+    给定映射链
+    % https://q.uiver.app/#q=WzAsNyxbMiwwLCJYIl0sWzMsMCwiWSJdLFs0LDAsIlxcbWF0aHJte2NvbmV9KHUpIl0sWzUsMCwiWFsxXSJdLFsxLDAsIlxcbWF0aHJte2NvbmV9KHUpWy0xXSJdLFswLDAsIlxcY2RvdHMiXSxbNiwwLCJcXGNkb3RzIl0sWzQsMCwiKDEsMCkiXSxbMCwxLCJ1Il0sWzEsMiwiXFxiaW5vbTAxIl0sWzIsMywiKDEsMCkiXSxbNSw0XSxbMyw2XV0=
+    \[\begin{tikzcd}
+            \cdots & {\mathrm{cone}(u)[-1]} & X & Y & {\mathrm{cone}(u)} & {X[1]} & \cdots
+            \arrow["{(-1,0)}", from=1-2, to=1-3]
+            \arrow["u", from=1-3, to=1-4]
+            \arrow["\binom01", from=1-4, to=1-5]
+            \arrow["{(1,0)}", from=1-5, to=1-6]
+            \arrow[from=1-1, to=1-2]
+            \arrow[from=1-6, to=1-7]
+        \end{tikzcd},\]
+    相邻两项之复合为零伦.
+\end{remark}
 
 \section{映射筒}
 
+\begin{definition}[映射筒]
+    给定映射 $X\overset u\longrightarrow Y$ 与 $K(\mathcal A)$ 中三角 $\begin{tikzcd}
+            X & Y & {\mathrm{cone}(u)} & {X[1]}
+            \arrow["u", from=1-1, to=1-2]
+            \arrow["\binom01", from=1-2, to=1-3]
+            \arrow["{(1,0)}", from=1-3, to=1-4]
+        \end{tikzcd}$, 定义映射筒 $\mathrm{cyl}(u)$ 为同伦核的映射锥. 即,
+    \begin{align*}
+        \mathrm{cyl}(u):=\mathrm{cone}\Big((-1,0):\mathrm{cone}(u)[-1]\to X\Big)=X[1]\oplus Y\oplus X\quad \forall n\in \mathbb Z.
+    \end{align*}
+    其 $n$-次微分为
+    \begin{align*}
+        \begin{pmatrix}
+            -d_X^{n+1}                             \\
+            u^{n+1}                & d_Y^n         \\
+            -\mathrm{id}_{X^{n+1}} &       & d_X^n
+        \end{pmatrix}:
+        X^{n+1}\oplus Y^n\oplus X^n\longrightarrow X^{n+2}\oplus Y^{n+1}\oplus X^{n+1}.
+    \end{align*}
+\end{definition}
+
+\begin{example}
+    映射 $X\overset u\longrightarrow Y$ 诱导了如下 $K(\mathcal A)$ 中正合列, 其中任意三角为好三角.
+    % https://q.uiver.app/#q=WzAsMTAsWzIsMCwiWCJdLFs0LDAsIlxcbWF0aHJte2NvbmV9KHUpIl0sWzUsMCwiWFsxXSJdLFsxLDAsIlxcbWF0aHJte2NvbmV9KHUpWy0xXSJdLFs2LDAsIlxcY2RvdHMiXSxbMywwLCJcXG1hdGhybXtjeWx9KHUpIl0sWzEsMSwiWFxcb3BsdXMgWVstMV0iXSxbMywxLCJYWzFdXFxvcGx1cyBZXFxvcGx1cyBYIl0sWzQsMSwiWFsxXVxcb3BsdXMgWSJdLFswLDAsIlxcY2RvdHMiXSxbMSwyLCIoMSwwKSJdLFsyLDRdLFs1LDEsIlxcYmlub217MVxcLFxcLDBcXCxcXCwwfXswXFwsXFwsMVxcLFxcLDB9Il0sWzAsNSwiXFxsZWZ0KFxcc3Vic3RhY2t7MFxcXFwwXFxcXDF9XFxyaWdodCkiXSxbMywwLCIoLTEsMCkiXSxbNiwzLCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs3LDUsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzgsMSwiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbOSwzXV0=
+    \[\begin{tikzcd}
+            \cdots & {\mathrm{cone}(u)[-1]} & X & {\mathrm{cyl}(u)} & {\mathrm{cone}(u)} & {X[1]} & \cdots \\
+            & {X\oplus Y[-1]} && {X[1]\oplus Y\oplus X} & {X[1]\oplus Y}
+            \arrow["{(1,0)}", from=1-5, to=1-6]
+            \arrow[from=1-6, to=1-7]
+            \arrow["{\binom{1\,\,0\,\,0}{0\,\,1\,\,0}}", from=1-4, to=1-5]
+            \arrow["{\left(\substack{0\\0\\1}\right)}", from=1-3, to=1-4]
+            \arrow["{(-1,0)}", from=1-2, to=1-3]
+            \arrow[Rightarrow, no head, from=2-2, to=1-2]
+            \arrow[Rightarrow, no head, from=2-4, to=1-4]
+            \arrow[Rightarrow, no head, from=2-5, to=1-5]
+            \arrow[from=1-1, to=1-2]
+        \end{tikzcd}.\]
+\end{example}
+
+\begin{proposition}
+    映射筒给出如下可裂短正合列
+    % https://q.uiver.app/#q=WzAsNSxbMSwwLCJYIl0sWzMsMCwiXFxtYXRocm17Y29uZX0odSkiXSxbMiwwLCJcXG1hdGhybXtjeWx9KHUpIl0sWzAsMCwiMCJdLFs0LDAsIjAiXSxbMiwxLCJcXGJpbm9tezFcXCxcXCwwXFwsXFwsMH17MFxcLFxcLDFcXCxcXCwwfSJdLFswLDIsIlxcbGVmdChcXHN1YnN0YWNrezBcXFxcMFxcXFwxfVxccmlnaHQpIl0sWzMsMF0sWzEsNF1d
+    \[\begin{tikzcd}
+            0 & X & {\mathrm{cyl}(u)} & {\mathrm{cone}(u)} & 0
+            \arrow["{\binom{1\,\,0\,\,0}{0\,\,1\,\,0}}", from=1-3, to=1-4]
+            \arrow["{\left(\substack{0\\0\\1}\right)}", from=1-2, to=1-3]
+            \arrow[from=1-1, to=1-2]
+            \arrow[from=1-4, to=1-5]
+        \end{tikzcd}.\]
+\end{proposition}
+
+\begin{proposition}
+    $(0,1,u):\mathrm{cyl}(u)\longrightarrow Y$ 是同伦等价.
+    \begin{proof}
+        依照态射在好三角中嵌入的唯一性, 作同伦范畴的交换图
+        % https://q.uiver.app/#q=WzAsMTIsWzAsMSwiWCJdLFsyLDEsIlxcbWF0aHJte2NvbmV9KHUpIl0sWzEsMSwiXFxtYXRocm17Y3lsfSh1KSJdLFszLDEsIlhbMV0iXSxbMCwyLCJYIl0sWzIsMiwiXFxtYXRocm17Y29uZX0odSkiXSxbMywyLCJYWzFdIl0sWzEsMiwiWSJdLFswLDAsIlgiXSxbMSwwLCJZIl0sWzIsMCwiXFxtYXRocm17Y29uZX0odSkiXSxbMywwLCJYWzFdIl0sWzIsMSwiXFxiaW5vbXsxXFwsXFwsMFxcLFxcLDB9ezBcXCxcXCwxXFwsXFwsMH0iXSxbMSwzLCIoMSwwKSJdLFs1LDYsIigxLDApIiwyXSxbMCw0LCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDYsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzQsNywidSIsMl0sWzcsNSwiXFxiaW5vbTAxIiwyXSxbMSw1LCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsyLDcsIigwLDEsdSkiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMCwyLCJcXGxlZnQoXFxzdWJzdGFja3swXFxcXDBcXFxcMX1cXHJpZ2h0KSIsMl0sWzgsOSwidSJdLFs5LDEwLCJcXGJpbm9tMDEiXSxbMTAsMTEsIigxLDApIl0sWzgsMCwiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbOSwyLCJcXGxlZnQoXFxzdWJzdGFja3swXFxcXDFcXFxcMH1cXHJpZ2h0KSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsxMCwxLCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxMSwzLCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+        \[\begin{tikzcd}
+                X & Y & {\mathrm{cone}(u)} & {X[1]} \\
+                X & {\mathrm{cyl}(u)} & {\mathrm{cone}(u)} & {X[1]} \\
+                X & Y & {\mathrm{cone}(u)} & {X[1]}
+                \arrow["{\binom{1\,\,0\,\,0}{0\,\,1\,\,0}}", from=2-2, to=2-3]
+                \arrow["{(1,0)}", from=2-3, to=2-4]
+                \arrow["{(1,0)}"', from=3-3, to=3-4]
+                \arrow[Rightarrow, no head, from=2-1, to=3-1]
+                \arrow[Rightarrow, no head, from=2-4, to=3-4]
+                \arrow["u"', from=3-1, to=3-2]
+                \arrow["\binom01"', from=3-2, to=3-3]
+                \arrow[Rightarrow, no head, from=2-3, to=3-3]
+                \arrow["{(0,1,u)}", dashed, from=2-2, to=3-2]
+                \arrow["{\left(\substack{0\\0\\1}\right)}"', from=2-1, to=2-2]
+                \arrow["u", from=1-1, to=1-2]
+                \arrow["\binom01", from=1-2, to=1-3]
+                \arrow["{(1,0)}", from=1-3, to=1-4]
+                \arrow[Rightarrow, no head, from=1-1, to=2-1]
+                \arrow["{\left(\substack{0\\1\\0}\right)}"', dashed, from=1-2, to=2-2]
+                \arrow[Rightarrow, no head, from=1-3, to=2-3]
+                \arrow[Rightarrow, no head, from=1-4, to=2-4]
+            \end{tikzcd}.\]
+        显然第一行第二列方块与第二行第一列方块交换, 且上图第二列复合为 $\mathrm{id}_Y$. 依照``二推三''之同构定理, $\begin{pmatrix}0\\1\\0\end{pmatrix}(0,1,u)=\begin{pmatrix}0&0&0\\0&1&u\\0&0&0\end{pmatrix}$ 与 $\mathrm{id}_{\mathrm{cyl}(u)}$ 同伦. 下仅需证明
+        \begin{enumerate}
+            \item 第一行第一列处方块交换, 即, $\begin{pmatrix}0\\u\\-1\end{pmatrix}:X\to \mathrm{cyl}(u)$ 零伦;
+            \item 第二行第二列处方块交换, 即, $\begin{pmatrix}1\\&&-u\end{pmatrix}:\mathrm{cyl}(u)\to \mathrm{cone}(u)$ 零伦;
+        \end{enumerate}
+        对前者, 考虑
+        \begin{align*}
+            \begin{pmatrix}
+                0 \\
+                u \\
+                -1
+            \end{pmatrix} =\begin{pmatrix}
+                -d &   &   \\
+                u  & d &   \\
+                -1 &   & d
+            \end{pmatrix}\begin{pmatrix}
+                1 \\
+                0 \\0
+            \end{pmatrix} +\begin{pmatrix}
+                1 \\
+                0 \\0
+            \end{pmatrix}\begin{pmatrix}
+                d
+            \end{pmatrix}.
+        \end{align*}
+        对后者, 考虑
+        \begin{align*}
+            \begin{pmatrix}
+                1 & 0 & 0  \\
+                0 & 0 & -u
+            \end{pmatrix} =\begin{pmatrix}
+                0 & 0 & -1 \\
+                0 & 0 & 0
+            \end{pmatrix}\begin{pmatrix}
+                -d &   &   \\
+                u  & d &   \\
+                -1 &   & d
+            \end{pmatrix} +\begin{pmatrix}
+                -d &   \\
+                u  & d
+            \end{pmatrix}\begin{pmatrix}
+                0 & 0 & -1 \\
+                0 & 0 & 0
+            \end{pmatrix}.
+        \end{align*}
+    \end{proof}
+\end{proposition}
+
+\begin{remark}
+    对 Abel 范畴中复形的短正合列 $\begin{tikzcd}
+            0 & X & Y & Z & 0
+            \arrow[from=1-1, to=1-2]
+            \arrow["u", from=1-2, to=1-3]
+            \arrow["\pi", from=1-3, to=1-4]
+            \arrow[from=1-4, to=1-5]
+        \end{tikzcd}$, 有交换图
+    % https://q.uiver.app/#q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIlgiXSxbMiwwLCJcXG1hdGhybXtjeWx9KHUpIl0sWzMsMCwiXFxtYXRocm17Y29uZX0odSkiXSxbNCwwLCIwIl0sWzEsMSwiWCJdLFsyLDEsIlkiXSxbMywxLCJaIl0sWzQsMSwiMCJdLFswLDEsIjAiXSxbMCwxXSxbMSwyLCJcXGxlZnQoXFxzdWJzdGFja3swXFxcXDBcXFxcMX1cXHJpZ2h0KSJdLFsyLDMsIlxcYmlub217MVxcLFxcLDBcXCxcXCwwfXswXFwsXFwsMVxcLFxcLDB9Il0sWzMsNF0sWzksNV0sWzUsNiwidSIsMl0sWzcsOF0sWzEsNSwiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMiw2LCIoMCwxLHUpIl0sWzMsNywiKDAsdikiXSxbNiw3LCJcXHBpIiwyXV0=
+    \[\begin{tikzcd}
+            0 & X & {\mathrm{cyl}(u)} & {\mathrm{cone}(u)} & 0 \\
+            0 & X & Y & Z & 0
+            \arrow[from=1-1, to=1-2]
+            \arrow["{\left(\substack{0\\0\\1}\right)}", from=1-2, to=1-3]
+            \arrow["{\binom{1\,\,0\,\,0}{0\,\,1\,\,0}}", from=1-3, to=1-4]
+            \arrow[from=1-4, to=1-5]
+            \arrow[from=2-1, to=2-2]
+            \arrow["u"', from=2-2, to=2-3]
+            \arrow[from=2-4, to=2-5]
+            \arrow[Rightarrow, no head, from=1-2, to=2-2]
+            \arrow["{(0,1,u)}", from=1-3, to=2-3]
+            \arrow["{(0,v)}", from=1-4, to=2-4]
+            \arrow["\pi"', from=2-3, to=2-4]
+        \end{tikzcd}.\]
+    此时, 蛇引理给出长正合列的交换图. 注意到 $(0,1,u)$ 是同伦等价, 从而是拟同构, 因此长正合列同构.此时 $(0,v):\mathrm{cone}(u)\longrightarrow Z$ 为拟同构.
+\end{remark}
+
+\begin{definition}[同伦像]
+    映射筒即 $\mathrm{cyl}(u):=\mathrm{cone}(\mathrm{hker}(u))$; 相应地, 定义同伦像 $\mathrm{him}(v):=\mathrm{cone}(\mathrm{hcoker}(v))[-1]$. 具体地, 给定 $Y\overset v\longrightarrow Z$, 则 $\mathrm{him}(v)=Z\oplus Y\oplus Z[-1]$ 的 $n$-次上同调为
+    \begin{align*}
+        \begin{pmatrix}
+            d_{Z}^{n}            &           &              \\
+                                 & d_{Y}^{n} &              \\
+            -\mathrm{id}_{Z^{n}} & -v^{n}    & -d_{Y}^{n-1}
+        \end{pmatrix} :Z^{n} \oplus Y^{n} \oplus Z^{n-1} \longrightarrow Z^{n+1} \oplus Y^{n+1} \oplus Z^{n}.
+    \end{align*}
+\end{definition}
+
+\begin{proposition}[$\mathrm{him}(v)$ 的对偶命题]
+    类似映射筒, 有如下关于同伦像的相似命题
+    \begin{enumerate}
+        \item 有好三角 $\begin{tikzcd}
+                      {Z[-1]} & {\mathrm{cone}(v)[-1]} & {\mathrm{him}(v)} & Z
+                      \arrow["{\binom0{-1}}", from=1-1, to=1-2]
+                      \arrow["{\left(\substack{\,\,\,\,0\,\,\,\,\,\,0\\-1\,\,\,\,\,\,0\\\,\,\,\,0\,\,-1}\right)}", from=1-2, to=1-3]
+                      \arrow["{(-1,0,0)}", from=1-3, to=1-4]
+                  \end{tikzcd}$.
+        \item[1'] 将上一条中的好三角顺时针旋转, 并将前两项反号, 得 $\begin{tikzcd}
+                      {\mathrm{cone}(v)[-1]} & {\mathrm{him}(v)} & Z & {\mathrm{cone}(v)}
+                      \arrow["{\left(\substack{0\,\,0\\1\,\,0\\0\,\,1}\right)}", from=1-1, to=1-2]
+                      \arrow["{(1,0,0)}", from=1-2, to=1-3]
+                      \arrow["\binom01", from=1-3, to=1-4]
+                  \end{tikzcd}$.
+        \item 有可裂短正合列 $\begin{tikzcd}
+                      0 & {\mathrm{cone}(v)[-1]} & {\mathrm{him}(v)} & Z & 0
+                      \arrow["{\left(\substack{0\,\,0\\1\,\,0\\0\,\,1}\right)}", from=1-2, to=1-3]
+                      \arrow["{(1,0,0)}", from=1-3, to=1-4]
+                      \arrow[from=1-4, to=1-5]
+                      \arrow[from=1-1, to=1-2]
+                  \end{tikzcd}$
+        \item 有同伦等价的交换图
+              % https://q.uiver.app/#q=WzAsMTIsWzAsMCwiXFxtYXRocm17Y29uZX0odilbLTFdIl0sWzEsMCwiXFxtYXRocm17aGltfSh2KSJdLFsyLDAsIloiXSxbMywwLCJcXG1hdGhybXtjb25lfSh2KSJdLFswLDEsIlxcbWF0aHJte2NvbmV9KHYpWy0xXSJdLFsxLDEsIlkiXSxbMiwxLCJaIl0sWzMsMSwiXFxtYXRocm17Y29uZX0odikiXSxbMCwyLCJcXG1hdGhybXtjb25lfSh2KVstMV0iXSxbMiwyLCJaIl0sWzMsMiwiXFxtYXRocm17Y29uZX0odikiXSxbMSwyLCJcXG1hdGhybXtoaW19KHYpIl0sWzAsMSwiXFxsZWZ0KFxcc3Vic3RhY2t7MFxcLFxcLDBcXFxcMVxcLFxcLDBcXFxcMFxcLFxcLDF9XFxyaWdodCkiXSxbMSwyLCIoMSwwLDApIl0sWzIsMywiXFxiaW5vbTAxIl0sWzMsNywiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMiw2LCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFswLDQsIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzQsNSwiKC0xLDApIl0sWzUsNiwidiIsMl0sWzEsNSwiKDAsLTEsMCkiXSxbNiw3LCJcXGJpbm9tMDEiLDJdLFs4LDExLCJcXGxlZnQoXFxzdWJzdGFja3swXFwsXFwsMFxcXFwxXFwsXFwsMFxcXFwwXFwsXFwsMX1cXHJpZ2h0KSIsMl0sWzExLDksIigxLDAsMCkiLDJdLFs5LDEwLCJcXGJpbm9tMDEiLDJdLFs3LDEwLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs2LDksIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzQsOCwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNSwxMSwiXFxsZWZ0KFxcc3Vic3RhY2t7dlxcXFwtMVxcXFwwfVxccmlnaHQpIiwyXV0=
+              \[\begin{tikzcd}
+                      {\mathrm{cone}(v)[-1]} & {\mathrm{him}(v)} & Z & {\mathrm{cone}(v)} \\
+                      {\mathrm{cone}(v)[-1]} & Y & Z & {\mathrm{cone}(v)} \\
+                      {\mathrm{cone}(v)[-1]} & {\mathrm{him}(v)} & Z & {\mathrm{cone}(v)}
+                      \arrow["{\left(\substack{0\,\,0\\1\,\,0\\0\,\,1}\right)}", from=1-1, to=1-2]
+                      \arrow["{(1,0,0)}", from=1-2, to=1-3]
+                      \arrow["\binom01", from=1-3, to=1-4]
+                      \arrow[Rightarrow, no head, from=1-4, to=2-4]
+                      \arrow[Rightarrow, no head, from=1-3, to=2-3]
+                      \arrow[Rightarrow, no head, from=1-1, to=2-1]
+                      \arrow["{(-1,0)}", from=2-1, to=2-2]
+                      \arrow["v"', from=2-2, to=2-3]
+                      \arrow["{(0,-1,0)}", from=1-2, to=2-2]
+                      \arrow["\binom01"', from=2-3, to=2-4]
+                      \arrow["{\left(\substack{0\,\,0\\1\,\,0\\0\,\,1}\right)}"', from=3-1, to=3-2]
+                      \arrow["{(1,0,0)}"', from=3-2, to=3-3]
+                      \arrow["\binom01"', from=3-3, to=3-4]
+                      \arrow[Rightarrow, no head, from=2-4, to=3-4]
+                      \arrow[Rightarrow, no head, from=2-3, to=3-3]
+                      \arrow[Rightarrow, no head, from=2-1, to=3-1]
+                      \arrow["{\left(\substack{v\\-1\\0}\right)}"', from=2-2, to=3-2]
+                  \end{tikzcd}.\]
+        \item
+    \end{enumerate}
+\end{proposition}
 
 \end{document}
