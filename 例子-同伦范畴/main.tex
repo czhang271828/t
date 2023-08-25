@@ -880,8 +880,107 @@
                       \arrow[Rightarrow, no head, from=2-1, to=3-1]
                       \arrow["{\left(\substack{v\\-1\\0}\right)}"', from=2-2, to=3-2]
                   \end{tikzcd}.\]
-        \item
+        \item 对任意 Abel 范畴复形的短正合列 $\begin{tikzcd}
+                      0 & X & Y & Z & 0
+                      \arrow[from=1-1, to=1-2]
+                      \arrow["u", from=1-2, to=1-3]
+                      \arrow["v", from=1-3, to=1-4]
+                      \arrow[from=1-4, to=1-5]
+                  \end{tikzcd}$, 有拟同构 $\begin{pmatrix}-u\\0\end{pmatrix}: X\to \mathrm{cone}(v)[-1]$, 如以下正合列的交换图所示
+              % https://q.uiver.app/#q=WzAsMTAsWzEsMCwiWCJdLFsyLDAsIlkiXSxbMywwLCJaIl0sWzAsMCwiMCJdLFs0LDAsIjAiXSxbMCwxLCIwIl0sWzEsMSwiXFxtYXRocm17Y29uZX0odilbLTFdIl0sWzIsMSwiXFxtYXRocm17aGltfSh2KSJdLFszLDEsIloiXSxbNCwxLCIwIl0sWzMsMF0sWzAsMSwidSJdLFsyLDRdLFs1LDZdLFs2LDcsIlxcbGVmdChcXHN1YnN0YWNrezBcXCxcXCwwXFxcXDFcXCxcXCwwXFxcXDBcXCxcXCwxfVxccmlnaHQpIiwyXSxbNyw4LCIoMSwwLDApIiwyXSxbOCw5XSxbMSwyLCJ2Il0sWzIsOCwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMSw3LCJcXGxlZnQoXFxzdWJzdGFja3t2XFxcXC0xXFxcXDB9XFxyaWdodCkiLDJdLFswLDYsIlxcbGVmdChcXHN1YnN0YWNrey11XFxcXDB9XFxyaWdodCkiLDJdXQ==
+              \[\begin{tikzcd}
+                      0 & X & Y & Z & 0 \\
+                      0 & {\mathrm{cone}(v)[-1]} & {\mathrm{him}(v)} & Z & 0
+                      \arrow[from=1-1, to=1-2]
+                      \arrow["u", from=1-2, to=1-3]
+                      \arrow[from=1-4, to=1-5]
+                      \arrow[from=2-1, to=2-2]
+                      \arrow["{\left(\substack{0\,\,0\\1\,\,0\\0\,\,1}\right)}"', from=2-2, to=2-3]
+                      \arrow["{(1,0,0)}"', from=2-3, to=2-4]
+                      \arrow[from=2-4, to=2-5]
+                      \arrow["v", from=1-3, to=1-4]
+                      \arrow[Rightarrow, no head, from=1-4, to=2-4]
+                      \arrow["{\left(\substack{v\\-1\\0}\right)}"', from=1-3, to=2-3]
+                      \arrow["{\left(\substack{-u\\0}\right)}"', from=1-2, to=2-2]
+                  \end{tikzcd}.\]
     \end{enumerate}
+\end{proposition}
+
+\begin{proposition}[$H^n$ 是上同调函子]
+    给定同伦范畴 $K(\mathcal A)$, 则任一 $\mathrm H^n$ 将好三角映作正合列. 三角射诱导的长正合列之连接态射自然.
+    \begin{proof}
+        对任意 $K(\mathcal A)$ 中好三角 $\begin{tikzcd}
+                X & Y & {\mathrm{cone}(u)} & {X[1]}
+                \arrow["u", from=1-1, to=1-2]
+                \arrow["\binom01", from=1-2, to=1-3]
+                \arrow["{(1,0)}", from=1-3, to=1-4]
+            \end{tikzcd}$, 既证同伦交换图% https://q.uiver.app/#q=WzAsMTIsWzAsMCwiWCJdLFsxLDAsIlkiXSxbMywwLCJYWzFdIl0sWzAsMiwiWCciXSxbMSwyLCJcXG1hdGhybXtjeWx9KHUnKSJdLFsyLDAsIloiXSxbMiwyLCJcXG1hdGhybXtjb25lfSh1JykiXSxbMywyLCJYWzFdIl0sWzAsMSwiWCciXSxbMSwxLCJZJyJdLFsyLDEsIlxcbWF0aHJte2NvbmV9KHUnKSJdLFszLDEsIlgnWzFdIl0sWzAsMSwidSJdLFszLDQsIlxcbGVmdChcXHN1YnN0YWNrezBcXFxcMFxcXFwxfVxccmlnaHQpIiwyXSxbMSw1LCJ2Il0sWzUsMiwidyJdLFs0LDYsIlxcYmlub217MVxcLFxcLDBcXCxcXCwwfXswXFwsXFwsMVxcLFxcLDB9IiwyXSxbNiw3LCIoMSwwKSIsMl0sWzAsOCwiZiIsMl0sWzEsOSwiZyIsMl0sWzUsMTAsImgiLDJdLFsyLDExLCJmWzFdIl0sWzgsMywiIiwxLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNCw5LCIoMCwxLHUpIl0sWzcsMTEsIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzgsOSwidSciXSxbOSwxMCwiXFxiaW5vbTAxIl0sWzEwLDExLCIoMSwwKSJdLFs2LDEwLCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+        \[\begin{tikzcd}
+                X & Y & Z & {X[1]} \\
+                {X'} & {Y'} & {\mathrm{cone}(u')} & {X'[1]} \\
+                {X'} & {\mathrm{cyl}(u')} & {\mathrm{cone}(u')} & {X[1]}
+                \arrow["u", from=1-1, to=1-2]
+                \arrow["{\left(\substack{0\\0\\1}\right)}"', from=3-1, to=3-2]
+                \arrow["v", from=1-2, to=1-3]
+                \arrow["w", from=1-3, to=1-4]
+                \arrow["{\binom{1\,\,0\,\,0}{0\,\,1\,\,0}}"', from=3-2, to=3-3]
+                \arrow["{(1,0)}"', from=3-3, to=3-4]
+                \arrow["f"', from=1-1, to=2-1]
+                \arrow["g"', from=1-2, to=2-2]
+                \arrow["h"', from=1-3, to=2-3]
+                \arrow["{f[1]}", from=1-4, to=2-4]
+                \arrow[Rightarrow, no head, from=2-1, to=3-1]
+                \arrow["{(0,1,u)}", from=3-2, to=2-2]
+                \arrow[Rightarrow, no head, from=3-4, to=2-4]
+                \arrow["{u'}", from=2-1, to=2-2]
+                \arrow["\binom01", from=2-2, to=2-3]
+                \arrow["{(1,0)}", from=2-3, to=2-4]
+                \arrow[Rightarrow, no head, from=3-3, to=2-3]
+            \end{tikzcd}.\]
+        作用任一 $\mathrm H^n$ 函子, 得
+        % https://q.uiver.app/#q=WzAsOSxbMCwwLCJcXG1hdGhybSBIXm4oWCkiXSxbMSwwLCJcXG1hdGhybSBIXm4oWSkiXSxbMCwyLCJcXG1hdGhybSBIXm4oWCcpIl0sWzEsMiwiXFxtYXRocm0gSF5uKFxcbWF0aHJte2N5bH0odScpKSJdLFsyLDAsIlxcbWF0aHJtIEhebihaKSJdLFsyLDIsIlxcbWF0aHJtIEhebihcXG1hdGhybXtjb25lfSh1JykpIl0sWzAsMSwiXFxtYXRocm0gSF5uKFgnKSJdLFsxLDEsIlxcbWF0aHJtIEhebihZJykiXSxbMiwxLCJcXG1hdGhybSBIXm4oXFxtYXRocm17Y29uZX0odScpKSJdLFsyLDMsIlxcbGVmdChcXHN1YnN0YWNrezBcXFxcMFxcXFwxfVxccmlnaHQpIiwyXSxbMSw0LCJ2Il0sWzMsNSwiXFxiaW5vbXsxXFwsXFwsMFxcLFxcLDB9ezBcXCxcXCwxXFwsXFwsMH0iLDJdLFs2LDIsIiIsMSx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzYsNywidSciXSxbNyw4LCJcXGJpbm9tMDEiXSxbNSw4LCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFswLDEsInUiXSxbMCw2LCJcXHNpbSIsMl0sWzEsNywiXFxzaW0iLDJdLFs0LDgsIlxcc2ltIiwyXSxbNywzLCJcXHNpbSIsMl1d
+        \[\begin{tikzcd}
+                {\mathrm H^n(X)} & {\mathrm H^n(Y)} & {\mathrm H^n(Z)} \\
+                {\mathrm H^n(X')} & {\mathrm H^n(Y')} & {\mathrm H^n(\mathrm{cone}(u'))} \\
+                {\mathrm H^n(X')} & {\mathrm H^n(\mathrm{cyl}(u'))} & {\mathrm H^n(\mathrm{cone}(u'))}
+                \arrow["{\left(\substack{0\\0\\1}\right)}"', from=3-1, to=3-2]
+                \arrow["v", from=1-2, to=1-3]
+                \arrow["{\binom{1\,\,0\,\,0}{0\,\,1\,\,0}}"', from=3-2, to=3-3]
+                \arrow[Rightarrow, no head, from=2-1, to=3-1]
+                \arrow["{u'}", from=2-1, to=2-2]
+                \arrow["\binom01", from=2-2, to=2-3]
+                \arrow[Rightarrow, no head, from=3-3, to=2-3]
+                \arrow["u", from=1-1, to=1-2]
+                \arrow["\sim"', from=1-1, to=2-1]
+                \arrow["\sim"', from=1-2, to=2-2]
+                \arrow["\sim"', from=1-3, to=2-3]
+                \arrow["\sim"', from=2-2, to=3-2]
+            \end{tikzcd}.\]
+        其中, 最后一行为可裂短正合列, $\sim$ 表示同伦等价在 $\mathrm H^n$ 下的像, 即同构. 因此前两行均正合. 对任意三角射
+        % https://q.uiver.app/#q=WzAsMTQsWzMsMCwiXFxtYXRocm0gSF5uKFgpIl0sWzQsMCwiXFxtYXRocm0gSF5uKFkpIl0sWzUsMCwiXFxtYXRocm0gSF5uKFopIl0sWzMsMSwiXFxtYXRocm0gSF5uKFgnKSJdLFs0LDEsIlxcbWF0aHJtIEhebihZJykiXSxbNSwxLCJcXG1hdGhybSBIXm4oWicpIl0sWzYsMCwiXFxtYXRocm0gSF5uKFhbMV0pIl0sWzYsMSwiXFxtYXRocm0gSF5uKFgnWzFdKSJdLFs3LDAsIlxcY2RvdHMgIl0sWzcsMSwiXFxjZG90cyJdLFsxLDAsIlxcbWF0aHJtIEhebihYWy0xXSkiXSxbMSwxLCJcXG1hdGhybSBIXm4oWCdbLTFdKSJdLFswLDAsIlxcY2RvdHMiXSxbMCwxLCJcXGRvdHMiXSxbMSwyLCJcXG1hdGhybSBIXm4odikiXSxbMyw0LCJcXG1hdGhybSBIXm4odScpIiwyXSxbNCw1LCJcXG1hdGhybSBIXm4odicpIiwyXSxbMiw1LCJcXG1hdGhybSBIXm4oaCkiXSxbMSw0LCJcXG1hdGhybSBIXm4oZykiXSxbMCwzLCJcXG1hdGhybSBIXm4oZikiXSxbMCwxLCJcXG1hdGhybSBIXm4odSkiXSxbMiw2LCJcXG1hdGhybSBIXm4odykiXSxbNSw3LCJcXG1hdGhybSBIXm4odycpIiwyXSxbNiw3LCJcXG1hdGhybSBIXm4oZlsxXSkiXSxbNiw4XSxbNyw5XSxbMTAsMCwiXFxtYXRocm0gSF5uKC13Wy0xXSkiXSxbMTEsMywiXFxtYXRocm0gSF5uKC13J1stMV0pIiwyXSxbMTAsMTEsIlxcbWF0aHJtIEhebihoWy0xXSkiXSxbMTIsMTBdLFsxMywxMV1d
+        \[\begin{tikzcd}
+                \cdots & {\mathrm H^n(X[-1])} && {\mathrm H^n(X)} & {\mathrm H^n(Y)} & {\mathrm H^n(Z)} & {\mathrm H^n(X[1])} & {\cdots } \\
+                \dots & {\mathrm H^n(X'[-1])} && {\mathrm H^n(X')} & {\mathrm H^n(Y')} & {\mathrm H^n(Z')} & {\mathrm H^n(X'[1])} & \cdots
+                \arrow["{\mathrm H^n(v)}", from=1-5, to=1-6]
+                \arrow["{\mathrm H^n(u')}"', from=2-4, to=2-5]
+                \arrow["{\mathrm H^n(v')}"', from=2-5, to=2-6]
+                \arrow["{\mathrm H^n(h)}", from=1-6, to=2-6]
+                \arrow["{\mathrm H^n(g)}", from=1-5, to=2-5]
+                \arrow["{\mathrm H^n(f)}", from=1-4, to=2-4]
+                \arrow["{\mathrm H^n(u)}", from=1-4, to=1-5]
+                \arrow["{\mathrm H^n(w)}", from=1-6, to=1-7]
+                \arrow["{\mathrm H^n(w')}"', from=2-6, to=2-7]
+                \arrow["{\mathrm H^n(f[1])}", from=1-7, to=2-7]
+                \arrow[from=1-7, to=1-8]
+                \arrow[from=2-7, to=2-8]
+                \arrow["{\mathrm H^n(-w[-1])}", from=1-2, to=1-4]
+                \arrow["{\mathrm H^n(-w'[-1])}"', from=2-2, to=2-4]
+                \arrow["{\mathrm H^n(h[-1])}", from=1-2, to=2-2]
+                \arrow[from=1-1, to=1-2]
+                \arrow[from=2-1, to=2-2]
+            \end{tikzcd}.\]
+        其中, 任一 $\mathrm H^n(-)$ 函子将同伦交换图映作 Abel 范畴的交换图.
+    \end{proof}
 \end{proposition}
 
 \end{document}

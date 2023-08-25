@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.6.13)  22 AUG 2023 21:58
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.6.13)  23 AUG 2023 20:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1180,12 +1180,12 @@ Overfull \hbox (14.1262pt too wide) in paragraph at lines 846--852
 []\TU/SimSun(0)/m/n/10.53937 将 上 一 条 中 的 好 三 角 顺 时 针 旋 转\TU/lmr/m/n/10.53937 , \TU/SimSun(0)/m/n/10.53937 并 将 前 两 项 反 号\TU/lmr/m/n/10.53937 , \TU/SimSun(0)/m/n/10.53937 得 $[]$\TU/lmr/m/n/10.53937 . 
  []
 
-[9]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 887.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 887.
+[9] [10]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 986.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 986.
  (./main.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 887.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 887.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 986.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 986.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 4062D92BFF049AD3ED8C0B2954C5BEA6;265.
 
@@ -1193,15 +1193,15 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.41063pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 887.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 986.
  ) 
 Here is how much of TeX's memory you used:
- 36060 strings out of 479418
- 751829 string characters out of 5888105
- 1158829 words of memory out of 5000000
- 52916 multiletter control sequences out of 15000+600000
+ 36582 strings out of 479418
+ 765527 string characters out of 5888105
+ 1182581 words of memory out of 5000000
+ 53438 multiletter control sequences out of 15000+600000
  536970 words of font info for 73 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  73i,21n,90p,2012b,1267s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (9 pages).
+Output written on main.pdf (10 pages).
